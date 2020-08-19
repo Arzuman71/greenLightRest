@@ -67,7 +67,8 @@ public class UserController {
         Optional<User> byEmail = userService.findByEmail(userRequest.getEmail());
 
         if (byEmail.isPresent()) {
-            if (!byEmail.get().getActive()) {
+            if (byEmail.get().getState() == State.ARCHIVED) {
+
                 return forRegister(userRequest);
             }
             return "register";
@@ -194,8 +195,8 @@ public class UserController {
         userService.save(user);
         return "redirect:/";
     }
-    
-     @GetMapping("/user/forgotPassword")
+
+    @GetMapping("/user/forgotPassword")
     public String forgotPass(@RequestParam("email") String email) {
         Optional<User> byEmail = userService.findByEmail(email);
         if (byEmail.isPresent() && byEmail.get().getActive()) {
@@ -240,9 +241,21 @@ public class UserController {
         return "login";
     }
 
-    //LocalDate today=LocalDate.now();
-    //        LocalDate birthDate=LocalDate.of(1989,10,4);
-    //        int years = Period.between(birthDate, today).getYears();
+    @GetMapping("/user/activate/byEmail")
+    public String activateByEmail(@RequestParam("email") String email) {
 
-
+        Optional<User> byUsername = userService.findByEmail(email);
+        if (byUsername.isPresent()) {
+            User user = byUsername.get();
+            String link = "http://localhost:8080/activate?email=" + user.getEmail() + "&token=" + user.getToken();
+            emailService.send(user.getEmail(), "Welcome", "Dear " + user.getName() + ' ' + user.getSurname() + " You have successfully registered.Please " +
+                    "activate your account by clicking on:" + link);
+            return "redirect:/";
+        }
+        return null;
+    }
 }
+//LocalDate today=LocalDate.now();
+//        LocalDate birthDate=LocalDate.of(1989,10,4);
+//        int years = Period.between(birthDate, today).getYears();
+
