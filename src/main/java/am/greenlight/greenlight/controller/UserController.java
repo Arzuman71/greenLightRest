@@ -229,9 +229,9 @@ public class UserController {
                              @RequestParam("password") String password,
                              @RequestParam("repetPassword") String repetPassword) {
 
-        Optional<User> byUsername = userService.findByEmail(email);
-        if (byUsername.isPresent()) {
-            User user = byUsername.get();
+        Optional<User> byEmail = userService.findByEmail(email);
+        if (byEmail.isPresent()) {
+            User user = byEmail.get();
             if (user.getToken().equals(token) && password.equals(repetPassword)) {
                 user.setPassword(passwordEncoder.encode(password));
                 userService.save(user);
@@ -244,9 +244,10 @@ public class UserController {
     @GetMapping("/user/activate/byEmail")
     public String activateByEmail(@RequestParam("email") String email) {
 
-        Optional<User> byUsername = userService.findByEmail(email);
-        if (byUsername.isPresent()) {
-            User user = byUsername.get();
+        Optional<User> byEmail = userService.findByEmail(email);
+        if (byEmail.isPresent() && !byEmail.get().getActive()) {
+            User user = byEmail.get();
+            user.setToken(UUID.randomUUID().toString());
             String link = "http://localhost:8080/activate?email=" + user.getEmail() + "&token=" + user.getToken();
             emailService.send(user.getEmail(), "Welcome", "Dear " + user.getName() + ' ' + user.getSurname() + " You have successfully registered.Please " +
                     "activate your account by clicking on:" + link);
