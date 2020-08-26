@@ -9,7 +9,6 @@ import am.greenlight.greenlight.model.enumForUser.Role;
 import am.greenlight.greenlight.model.enumForUser.State;
 import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.service.CarService;
-import am.greenlight.greenlight.service.EmailService;
 import am.greenlight.greenlight.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +24,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -39,7 +37,6 @@ public class UserController {
     private final UserService userService;
     private final CarService carService;
     private final PasswordEncoder passwordEncoder;
-    private final EmailService emailService;
 
 
     @GetMapping("/user")
@@ -56,8 +53,8 @@ public class UserController {
 
 
     @PostMapping("/user/register")
-    public String registerUser(@Valid @ModelAttribute("userRequestDto") UserRequestDto userRequest,
-                               BindingResult result, ModelMap model, Locale locale) {
+    public String registerUser(@ModelAttribute("userRequestDto") UserRequestDto userRequest,
+                               BindingResult result, Locale locale) {
         if (result.hasErrors()) {
             return "register";
         }
@@ -93,9 +90,7 @@ public class UserController {
         userService.save(user);
 
         //  log.error("user with address {} email was could not registered", user.getEmail());
-        String link = "http://localhost:8080/activate?email=" + user.getEmail() + "&token=" + user.getToken();
-        emailService.send(user.getEmail(), "Welcome", "Dear " + user.getName() + ' ' + user.getSurname() + " You have successfully registered.Please " +
-                "activate your account by clicking on:" + link);
+
         return "redirect:/";
     }
 
@@ -160,7 +155,7 @@ public class UserController {
 
     @PostMapping("/userDataChange")
     public String userDataChange(@AuthenticationPrincipal CurrentUser currentUser,
-                                 @Valid @ModelAttribute UserChangeDto userChangeDto,
+                                 @ModelAttribute UserChangeDto userChangeDto,
                                  BindingResult result) {
 
         if (result.hasErrors()) {
@@ -180,7 +175,7 @@ public class UserController {
 
     @PostMapping("/user/Password/Change")
     public String userPasswordChange(@AuthenticationPrincipal CurrentUser currentUser,
-                                     @Valid @ModelAttribute PasswordChangeDto pasChange, BindingResult result) {
+                                     @ModelAttribute PasswordChangeDto pasChange, BindingResult result) {
         if (result.hasErrors()) {
             return "userDataChangePage";
         }
@@ -204,8 +199,6 @@ public class UserController {
             String token = UUID.randomUUID().toString();
             user.setToken(token);
             userService.save(user);
-            String link = " http://localhost:8080/user/forgotPassword/reset?email=" + user.getEmail() + "&token=" + token;
-            emailService.send(user.getEmail(), "RESET password", "Dear user, please open this link in order to reset your password: " + link);
         }
         return "login";
     }
@@ -248,9 +241,7 @@ public class UserController {
         if (byEmail.isPresent() && !byEmail.get().getActive()) {
             User user = byEmail.get();
             user.setToken(UUID.randomUUID().toString());
-            String link = "http://localhost:8080/activate?email=" + user.getEmail() + "&token=" + user.getToken();
-            emailService.send(user.getEmail(), "Welcome", "Dear " + user.getName() + ' ' + user.getSurname() + " You have successfully registered.Please " +
-                    "activate your account by clicking on:" + link);
+
             return "redirect:/";
         }
         return null;

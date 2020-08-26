@@ -7,7 +7,6 @@ import am.greenlight.greenlight.model.enumForUser.Role;
 import am.greenlight.greenlight.model.enumForUser.State;
 import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.service.AnnouncementService;
-import am.greenlight.greenlight.service.EmailService;
 import am.greenlight.greenlight.service.MainService;
 import am.greenlight.greenlight.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +34,6 @@ public class MainController {
     private final UserService userService;
     private final MainService mainService;
     private final AnnouncementService announcementService;
-    private final EmailService emailService;
 
 
     //todo
