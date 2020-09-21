@@ -14,7 +14,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
 
 class UserServiceTest {
 
@@ -41,10 +40,10 @@ class UserServiceTest {
 
     @Test
     void save_NullPointerException() {
-        given(userRepository.save(any(User.class))).willThrow(NullPointerException.class);
+        given(userRepository.save(user)).willThrow(NullPointerException.class);
 
         Throwable thrown = assertThrows(NullPointerException.class, () -> {
-            userService.save(any(User.class));
+            userService.save(user);
         });
         assertThat(thrown).isInstanceOf(NullPointerException.class);
 
@@ -52,7 +51,8 @@ class UserServiceTest {
 
     @Test
     void findByEmail_Ok() {
-        given(userRepository.findByEmail("poxos@mail.ru"));
+        Optional<User> userOptional = Optional.of(new User());
+        given(userRepository.findByEmail("poxos@mail.ru")).willReturn(userOptional);
         Optional<User> userResponse = userService.findByEmail("poxos@mail.ru");
         assertThat(userResponse).isNotNull();
     }

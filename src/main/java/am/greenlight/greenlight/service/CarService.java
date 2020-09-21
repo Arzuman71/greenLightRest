@@ -23,24 +23,21 @@ public class CarService {
 
     private final CarRepository carRepository;
 
-    public void save(Car car) {
-        car.setStatus(Status.ACTIVE);
-        carRepository.save(car);
+    public Car save(Car car) {
+        return carRepository.save(car);
     }
 
-    public void saveCar(Car car, MultipartFile file) {
+    public Car save(Car car, MultipartFile file) {
         try {
             String name = UUID.randomUUID().toString().replace("-", "") + file.getOriginalFilename();
             File picCar = new File(uploadDir, name);
-
             file.transferTo(picCar);
-
             car.setPicCar(name);
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
-        carRepository.save(car);
-
+        return carRepository.save(car);
     }
 
     public Car getOne(long id) {
@@ -51,13 +48,8 @@ public class CarService {
         return carRepository.findCarByUserId(id);
     }
 
-    public List<Car> findCarByUserIdAndState(long id, Status state) {
+    public List<Car> findCarByUserIdAndStatus(long id, Status state) {
         return carRepository.findCarByUserIdAndStatus(id, state);
     }
-
-    public void deleteCarById(long id) {
-        carRepository.deleteById(id);
-    }
-
 
 }
