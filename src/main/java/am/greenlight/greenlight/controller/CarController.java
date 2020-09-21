@@ -3,30 +3,23 @@ package am.greenlight.greenlight.controller;
 import am.greenlight.greenlight.dto.CarRequestDto;
 import am.greenlight.greenlight.model.Car;
 import am.greenlight.greenlight.model.User;
+import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.service.CarService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class CarController {
 
     private final CarService carService;
-
-    @GetMapping("/car/save")
-    public String carAddPage() {
-        return "saveCar";
-    }
 
     @PostMapping("/car/save")
     public String saveCar(@ModelAttribute CarRequestDto carReq, @RequestParam("id") int id, @AuthenticationPrincipal CurrentUser currentUser) {
@@ -46,11 +39,10 @@ public class CarController {
     }
 
     @GetMapping("/cars")
-    public String carPage(@AuthenticationPrincipal CurrentUser currentUser, Model model) {
+    public ResponseEntity<List<Car>> cars(@AuthenticationPrincipal CurrentUser currentUser) {
         User user = currentUser.getUser();
-        List<Car> cars = carService.findCarByUserId(user.getId());
-        model.addAttribute("cars", cars);
-        return "carPage";
+        List<Car> cars = carService.findCarByUserIdAndState(user.getId(), Status.ACTIVE);
+        return ResponseEntity.ok(cars);
     }
 
     @GetMapping("/car/edit")

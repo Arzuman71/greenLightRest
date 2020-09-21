@@ -13,6 +13,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @Builder
 public class PasswordChangeDto {
+
     @Size(min = 6, message = "Password length sold be at least 6 symbol")
     private String oldPassword;
     @Size(min = 6, message = "Password length sold be at least 6 symbol")

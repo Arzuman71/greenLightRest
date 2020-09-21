@@ -4,32 +4,29 @@ import am.greenlight.greenlight.dto.AnnouncementRequestDto;
 import am.greenlight.greenlight.model.Announcement;
 import am.greenlight.greenlight.model.Car;
 import am.greenlight.greenlight.model.enumForAnnouncement.AnnouncementType;
-import am.greenlight.greenlight.model.enumForUser.State;
+import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.service.AnnouncementService;
 import am.greenlight.greenlight.service.CarService;
 import am.greenlight.greenlight.service.RatingService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class AnnouncementController {
     private final AnnouncementService announcementService;
     private final CarService carService;
     private final RatingService ratingService;
+    private final ModelMapper modelMapper;
 
 
-    @PostMapping("/addAnnouncement")
+    @PostMapping("/announcement/Add")
     public String addAnnouncement(@ModelAttribute AnnouncementRequestDto announcementReq,
                                   @AuthenticationPrincipal CurrentUser currentUser,
                                   @RequestParam(name = "carId", required = false) Long carId) {
@@ -40,52 +37,36 @@ public class AnnouncementController {
             }
             announcementReq.setCar(car);
         }
-        Announcement announcement = Announcement.builder()
-                .id(0)
-                .fromIs(announcementReq.getFromIs())
-                .whereIs(announcementReq.getWhereIs())
-                .startDate(announcementReq.getStartDate())
-                .price(announcementReq.getPrice())
-                .state(State.ACTIVE)
-                .user(currentUser.getUser())
-                .car(announcementReq.getCar())
-                .announcementType(announcementReq.getAnnouncementType())
-                .numberOfPassengers(announcementReq.getNumberOfPassengers())
-                .build();
+        Announcement announcement = modelMapper.map(announcementReq, Announcement.class);
+
         announcementService.save(announcement);
         return "redirect:/user";
     }
 
-    @GetMapping("/Announcement/ByUserAndState")
+    @GetMapping("/announcement/byUserIdAndState")
     public String getAnnouncement(ModelMap modelMap,
                                   @AuthenticationPrincipal CurrentUser currentUser,
-                                  @RequestParam("state") State state) {
-        if (state == State.DELETED) {
+                                  @RequestParam("state") Status state) {
+        if (state == Status.DELETED) {
             return "redirect:/";
         }
         long id = currentUser.getUser().getId();
         List<Announcement> announcements = announcementService.findAllByUserIdAndState(id, state);
 
         modelMap.addAttribute("announcements", announcements);
-        if (state == State.ARCHIVED) {
+        if (state == Status.ARCHIVED) {
             return "finishedAnnouncement";
         }
         return "userAnnouncement";
     }
 
-    @GetMapping("/truckAndPeopleAnnouncementP")
-    public String truckAndPeopleAnnouncement(ModelMap modelMap, @AuthenticationPrincipal CurrentUser currentUser) {
-        long userId = currentUser.getUser().getId();
-        List<Car> cars = carService.findCarByUserIdAndState(userId, State.ACTIVE);
-        modelMap.addAttribute("cars", cars);
-        return "truckAndPeopleAnnouncement";
-    }
+
 
 
     @GetMapping("/driverAndPassengerAnnouncementP")
     public String driverAndPassengerAnnouncement(ModelMap modelMap, @AuthenticationPrincipal CurrentUser currentUser) {
         long userId = currentUser.getUser().getId();
-        List<Car> cars = carService.findCarByUserIdAndState(userId, State.ACTIVE);
+        List<Car> cars = carService.findCarByUserIdAndState(userId, Status.ACTIVE);
         modelMap.addAttribute("cars", cars);
         return "driverAndPassengerAnnouncement";
     }
@@ -105,11 +86,11 @@ public class AnnouncementController {
             path = "changePassengerAnnouncementP";
         } else if (announcement.getAnnouncementType() == AnnouncementType.CAR_DRIVER) {
             path = "changeDriverAnnouncementP";
-            cars = carService.findCarByUserIdAndState(userId, State.ACTIVE);
+            cars = carService.findCarByUserIdAndState(userId, Status.ACTIVE);
 
         } else if (announcement.getAnnouncementType() == AnnouncementType.TRUCK_DRIVER) {
             path = "changeTruckAnnouncementP";
-            cars = carService.findCarByUserIdAndState(userId, State.ACTIVE);
+            cars = carService.findCarByUserIdAndState(userId, Status.ACTIVE);
 
         } else if (announcement.getAnnouncementType() == AnnouncementType.SEEKER_TRUCK) {
             path = "changePeopleAnnouncementP";
@@ -120,9 +101,8 @@ public class AnnouncementController {
 
     }
 
-    @PostMapping("/changeAnnouncement")
-    public String changeAnnouncement(ModelMap modelMap,
-                                     @ModelAttribute AnnouncementRequestDto announcementReq,
+    @PutMapping("/announcement/Change")
+    public String changeAnnouncement(@ModelAttribute AnnouncementRequestDto announcementReq,
                                      @RequestParam(name = "carId", required = false) Long carId,
                                      @AuthenticationPrincipal CurrentUser currentUser) {
         if (carId != null && carId != 0) {
@@ -131,20 +111,8 @@ public class AnnouncementController {
                 return "redirect:/";
             }
         }
-        Announcement announcement = Announcement.builder()
-                .id(0)
-                .fromIs(announcementReq.getFromIs())
-                .whereIs(announcementReq.getWhereIs())
-                .startDate(announcementReq.getStartDate())
-                .price(announcementReq.getPrice())
-                .user(currentUser.getUser())
-                .car(announcementReq.getCar())
-                .announcementType(announcementReq.getAnnouncementType())
-                .numberOfPassengers(announcementReq.getNumberOfPassengers())
-                .createdDate(LocalDateTime.now())
-                .build();
+        Announcement announcement =  modelMapper.map(announcementReq,Announcement.class);
         announcementService.save(announcement);
-        modelMap.addAttribute("msg", "ձեր հայտարարությունը հաջողությամբ փոփոխվեց");
         return "messagePage";
     }
 
@@ -158,16 +126,10 @@ public class AnnouncementController {
             return "redirect:/";
         }
 
-        announcement.setState(State.DELETED);
+        announcement.setStatus(Status.DELETED);
         announcementService.save(announcement);
         modelMap.addAttribute("msg", "ձեր հայտարարությունը հաջողությամբ ջնջվեց");
         return "messagePage";
-    }
-
-
-    @GetMapping("/addAnnouncementP")
-    public String addAnnouncementP() {
-        return "carOrTruck";
     }
 
 

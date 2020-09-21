@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -27,6 +28,6 @@ public class CarRequestDto {
     @NotBlank(message = "color is required")
     private Color color;
     @NotNull(message = "Parameter Date Unadjusted can not be blank or null")
-    private int year;
+    private LocalDate year;
     private String picCar;
 }

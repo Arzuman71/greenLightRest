@@ -1,6 +1,6 @@
 package am.greenlight.greenlight.model.enumForUser;
 
-public enum State {
+public enum Status {
     ACTIVE,
     ARCHIVED,
     DELETED

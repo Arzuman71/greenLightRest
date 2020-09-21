@@ -1,7 +1,7 @@
 package am.greenlight.greenlight.service;
 
 import am.greenlight.greenlight.model.Car;
-import am.greenlight.greenlight.model.enumForUser.State;
+import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,7 +24,7 @@ public class CarService {
     private final CarRepository carRepository;
 
     public void save(Car car) {
-        car.setState(State.ACTIVE);
+        car.setStatus(Status.ACTIVE);
         carRepository.save(car);
     }
 
@@ -51,8 +51,8 @@ public class CarService {
         return carRepository.findCarByUserId(id);
     }
 
-    public List<Car> findCarByUserIdAndState(long id, State state) {
-        return carRepository.findCarByUserIdAndState(id, state);
+    public List<Car> findCarByUserIdAndState(long id, Status state) {
+        return carRepository.findCarByUserIdAndStatus(id, state);
     }
 
     public void deleteCarById(long id) {

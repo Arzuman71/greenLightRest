@@ -2,7 +2,7 @@ package am.greenlight.greenlight.service;
 
 import am.greenlight.greenlight.model.User;
 import am.greenlight.greenlight.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,21 +14,28 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class UserService {
 
     @Value("${file.upload.dir}")
     private String uploadDir;
 
-    private final UserRepository userRepository;
-    private final PreferenceService prefService;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private PreferenceService prefService;
 
 
-    public void save(User user) {
+    public UserService(UserRepository userRepository, PreferenceService prefService) {
+        this.userRepository = userRepository;
+        this.prefService = prefService;
+
+    }
+    public User save(User user) {
         if (user.getPreference() == null) {
             user.setPreference(prefService.getOne(1));
         }
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     public Optional<User> findByEmail(String email) {
@@ -37,7 +44,7 @@ public class UserService {
     }
 
 
-    public void saveUserImg(User user, MultipartFile file) {
+    public boolean saveUserImg(User user, MultipartFile file) {
 
         try {
             String name = UUID.randomUUID().toString().replace("-", "") + file.getOriginalFilename();
@@ -48,23 +55,17 @@ public class UserService {
             user.setPicUrl(name);
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
         userRepository.save(user);
+        return true;
     }
 
-    public List<User> findByNameSurname(String name, String surname) {
+    public List<User> findByNameAndSurname(String name, String surname) {
         return userRepository.findByNameAndSurname(name, surname);
     }
 
     public User getOne(long id) {
         return userRepository.getOne(id);
     }
-
-
-    public void deleteById(long id) {
-        userRepository.deleteById(id);
-
-    }
-
-
 }

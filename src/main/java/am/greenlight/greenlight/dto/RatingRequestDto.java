@@ -15,5 +15,7 @@ public class RatingRequestDto {
 
     @Size(min = 1, max = 5, message = "rating length must be at least 1 and more than 5 characters")
     private double number;
+    private long toId;
+
 
 }

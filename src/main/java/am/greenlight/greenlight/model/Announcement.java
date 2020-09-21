@@ -1,7 +1,7 @@
 package am.greenlight.greenlight.model;
 
 import am.greenlight.greenlight.model.enumForAnnouncement.AnnouncementType;
-import am.greenlight.greenlight.model.enumForUser.State;
+import am.greenlight.greenlight.model.enumForUser.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity()
+@Entity
 @Table(name = "announcement")
 public class Announcement {
 
@@ -27,9 +27,8 @@ public class Announcement {
     @Column(name = "where_is")
     private String whereIs;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    private LocalDateTime startDate;
-    private double price;
-    private LocalDateTime createdDate;
+    private LocalDateTime deadline;
+    private String price;
     @ManyToOne
     private User user;
     @ManyToOne
@@ -38,7 +37,11 @@ public class Announcement {
     private AnnouncementType announcementType;
     private int numberOfPassengers;
     @Enumerated(value = EnumType.STRING)
-    private State state;
+    private Status status = Status.ACTIVE;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime createdDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime deletedDate;
 
 
     // for the future

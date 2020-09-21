@@ -8,28 +8,29 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
-
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserChangeDto {
-
-    @NotBlank(message = "Name is required")
+public class UserGetDto {
     private String name;
-    @NotBlank(message = "Surname is required")
     private String surname;
-    @NotBlank
-    private Gender gender;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @NotNull(message = "Parameter Date Unadjusted can not be blank or null")
     private LocalDate age;
-    @NotBlank
+    private String password;
+    private int phoneNumber;
+    private String email;
+    @Enumerated(value = EnumType.STRING)
+    private Gender gender;
+    private String picUrl;
+    private String aboutMe;
+    @ManyToOne
     private Preference preference;
+    private LocalDate createdDate;
 
 }

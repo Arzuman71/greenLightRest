@@ -2,13 +2,16 @@ package am.greenlight.greenlight.model;
 
 import am.greenlight.greenlight.model.enumForCar.CarType;
 import am.greenlight.greenlight.model.enumForCar.Color;
-import am.greenlight.greenlight.model.enumForUser.State;
+import am.greenlight.greenlight.model.enumForUser.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -27,12 +30,18 @@ public class Car {
     private String carNumber;
     @Enumerated(value = EnumType.STRING)
     private Color color;
-    // @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private int year;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate year;
     private String picCar;
     @ManyToOne
     private User user;
     @Enumerated(value = EnumType.STRING)
-    private State state;
+    private Status status = Status.ACTIVE;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime createdDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime updatedDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime deletedDate;
 
 }

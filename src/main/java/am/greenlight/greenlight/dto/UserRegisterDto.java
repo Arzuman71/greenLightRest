@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserRequestDto {
+public class UserRegisterDto {
 
     @NotBlank(message = "Name is required")
     private String name;
@@ -32,15 +32,5 @@ public class UserRequestDto {
             "+(?:[a-zA-Z]){2,}\\.?)$", message = "the given email cannot exist")
     private String email;
     private Gender gender;
-    private String picUrl;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @NotNull(message = "Parameter Date Unadjusted can not be blank or null")
-    private LocalDate age;
-    // @Min(value = 8, message = "phone number should not be less than 8")
-    //   @Max(value = 15, message = "phone number not be greater than 15")
-     private int phoneNumber;
-    private String aboutMe;
-
-    private Preference preference;
 
 }

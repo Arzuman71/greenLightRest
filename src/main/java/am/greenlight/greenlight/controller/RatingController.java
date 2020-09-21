@@ -1,17 +1,17 @@
 package am.greenlight.greenlight.controller;
 
+import am.greenlight.greenlight.dto.RatingRequestDto;
 import am.greenlight.greenlight.model.Rating;
 import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.service.RatingService;
 import am.greenlight.greenlight.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class RatingController {
 
@@ -19,26 +19,20 @@ public class RatingController {
     private final UserService userService;
 
 
-    @GetMapping("/rating/add")
-    public String addRating(ModelMap model,
-                            @RequestParam("number") String number,
-                            @RequestParam("toId") long toId,
-                            @RequestParam("announcementId") long announcementId,
-                            @AuthenticationPrincipal CurrentUser currentUser) {
+    @PostMapping("/rating")
+    public ResponseEntity<String> addRating(@AuthenticationPrincipal CurrentUser currentUser,
+                                            @ModelAttribute RatingRequestDto ratingReq) {
 
         long fromId = currentUser.getUser().getId();
-        Rating rating = ratingService.getByToIdAndFromId(toId, fromId);
+        Rating rating = ratingService.getByToIdAndFromId(ratingReq.getToId(), fromId);
 
         if (rating == null) {
             rating = new Rating();
-            rating.setTo(userService.getOne(toId));
+            rating.setTo(userService.getOne(ratingReq.getToId()));
             rating.setFrom(currentUser.getUser());
         }
-        rating.setNumber(Long.parseLong(number));
+        rating.setNumber(ratingReq.getNumber());
         ratingService.save(rating);
-
-        return "redirect:/announcement/details?id=" + announcementId;
-
+        return ResponseEntity.ok("ok");
     }
-
 }

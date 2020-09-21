@@ -25,7 +25,7 @@ public class AdvertisementService {
 
     }
 
-    public void saveAdvertisement(Advertisement advertisement, MultipartFile file) {
+    public void save(Advertisement advertisement, MultipartFile file) {
 
 
         try {
@@ -33,7 +33,6 @@ public class AdvertisementService {
             File picUrl = new File(uploadDir, name);
 
             file.transferTo(picUrl);
-
             advertisement.setPicUrl(name);
         } catch (IOException e) {
             e.printStackTrace();

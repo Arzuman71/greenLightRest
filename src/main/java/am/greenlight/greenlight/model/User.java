@@ -2,7 +2,7 @@ package am.greenlight.greenlight.model;
 
 import am.greenlight.greenlight.model.enumForUser.Gender;
 import am.greenlight.greenlight.model.enumForUser.Role;
-import am.greenlight.greenlight.model.enumForUser.State;
+import am.greenlight.greenlight.model.enumForUser.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -28,22 +29,34 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate age;
     private String password;
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
     private String picUrl;
-    private String aboutMe;
+    private String about;
     @ManyToOne
     private Preference preference;
 
     @Enumerated(value = EnumType.STRING)
     private Role role = Role.USER;
-    private LocalDate createdDate;
     @Enumerated(value = EnumType.STRING)
-    private State state = State.ACTIVE;
-    private Boolean active;
+    private Status status = Status.ARCHIVED;
+    private boolean phoneActive;
     private String token;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime createdDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime updatedDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime deletedDate;
 
 
+    public void userChange(User user) {
+        this.name = user.getName();
+        this.surname = user.getSurname();
+        this.gender = user.getGender();
+        this.age = user.getAge();
+        this.preference = user.getPreference();
+    }
 }
