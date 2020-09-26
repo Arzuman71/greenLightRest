@@ -1,6 +1,6 @@
-package am.greenlight.greenlight.model.enumForAnnouncement;
+package am.greenlight.greenlight.model.enumForItem;
 
-public enum AnnouncementType {
+public enum Type {
     CAR_DRIVER,
     TRUCK_DRIVER,
     PASSENGER,

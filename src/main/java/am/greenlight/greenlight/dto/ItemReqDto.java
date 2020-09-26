@@ -1,7 +1,6 @@
 package am.greenlight.greenlight.dto;
 
-import am.greenlight.greenlight.model.Car;
-import am.greenlight.greenlight.model.enumForAnnouncement.AnnouncementType;
+import am.greenlight.greenlight.model.enumForItem.Type;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AnnouncementRequestDto {
+public class ItemReqDto {
 
     private long id;
     @NotBlank(message = "fromIs is required")
@@ -27,7 +26,7 @@ public class AnnouncementRequestDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime startDate;
     @NotBlank(message = "announcementType is required")
-    private AnnouncementType announcementType;
+    private Type type;
     private double price;
     private long carId;
     private int numberOfPassengers;

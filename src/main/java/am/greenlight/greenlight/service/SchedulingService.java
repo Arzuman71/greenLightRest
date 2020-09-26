@@ -1,7 +1,7 @@
 package am.greenlight.greenlight.service;
 
 import am.greenlight.greenlight.model.Advertisement;
-import am.greenlight.greenlight.model.Announcement;
+import am.greenlight.greenlight.model.Item;
 import am.greenlight.greenlight.model.User;
 import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.repository.UserRepo;
@@ -17,14 +17,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SchedulingService {
 
-    private final AnnouncementService announcementService;
+    private final ItemService announcementService;
     private final AdvertisementService advertisementService;
     private final UserRepo userRepo;
 
 
     @Scheduled(cron = " 0 0 3 * * *")
     public void changeAnnouncementsStatus() {
-        List<Announcement> announcements = announcementService.findAll();
+        List<Item> announcements = announcementService.findAll();
         announcements.stream()
                 .filter(a -> a.getDeadline().isBefore(LocalDateTime.now().plus(4, ChronoUnit.HOURS)))
                 .forEach(a -> a.setStatus(Status.ARCHIVED));

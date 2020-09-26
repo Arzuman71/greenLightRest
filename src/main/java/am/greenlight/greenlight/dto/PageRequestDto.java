@@ -1,6 +1,6 @@
 package am.greenlight.greenlight.dto;
 
-import am.greenlight.greenlight.model.Announcement;
+import am.greenlight.greenlight.model.Item;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,5 +15,5 @@ import java.util.List;
 @Builder
 public class PageRequestDto {
     private List<Integer> pageNumbers;
-    private Page<Announcement> allAnnouncement;
+    private Page<Item> allAnnouncement;
 }

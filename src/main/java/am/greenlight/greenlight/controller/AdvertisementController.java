@@ -20,24 +20,24 @@ public class AdvertisementController {
 
     private final AdvertisementService advertisementService;
 
-    @GetMapping("/advertisement")
-    public String advertisement(ModelMap modelMap) {
-        List<Advertisement> advertisement = advertisementService.findAll();
-        modelMap.addAttribute("advertisement", advertisement);
-        return "advertisement";
+    @GetMapping("/advertisements")
+    public ResponseEntity<List<Advertisement>> findAll() {
+        List<Advertisement> advertisements = advertisementService.findAll();
+        return ResponseEntity.ok(advertisements);
     }
 
 
     @PostMapping("/advertisement")
-    public String offerPage(Model model, @ModelAttribute Advertisement advertisement, @AuthenticationPrincipal CurrentUser currentUser, @RequestParam("image") MultipartFile file) {
-        model.addAttribute("currentUser", currentUser.getUser());
+    public ResponseEntity.BodyBuilder save( @ModelAttribute Advertisement advertisement,
+                             @AuthenticationPrincipal CurrentUser currentUser,
+                             @RequestParam("image") MultipartFile file) {
         advertisement.setUser(currentUser.getUser());
         advertisementService.save(advertisement, file);
-        return "redirect:/advertisement";
+        return ResponseEntity.ok();
     }
 
     @DeleteMapping("/advertisement/{id}")
-    public ResponseEntity.BodyBuilder deleteBook(@PathVariable("id") int id) {
+    public ResponseEntity.BodyBuilder delete(@PathVariable("id") int id) {
         Advertisement advertisement = advertisementService.getOne(id);
         advertisement.setStatus(Status.ARCHIVED);
         advertisementService.save(advertisement);

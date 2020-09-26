@@ -1,6 +1,6 @@
 package am.greenlight.greenlight.model.forTheFuture;
 
-import am.greenlight.greenlight.model.Announcement;
+import am.greenlight.greenlight.model.Item;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +23,6 @@ public class Transportation {
     private ParcelType parcelType;
     private double price;
     @OneToMany
-    private List<Announcement> announcements;
+    private List<Item> announcements;
 
 }

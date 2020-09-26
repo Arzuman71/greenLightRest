@@ -1,6 +1,6 @@
 package am.greenlight.greenlight.model;
 
-import am.greenlight.greenlight.model.enumForAnnouncement.AnnouncementType;
+import am.greenlight.greenlight.model.enumForItem.Type;
 import am.greenlight.greenlight.model.enumForUser.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,8 +17,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "announcement")
-public class Announcement {
+@Table(name = "item")
+public class Item {
 
     @Id
     @GeneratedValue()
@@ -34,7 +34,7 @@ public class Announcement {
     @ManyToOne
     private Car car;
     @Enumerated(value = EnumType.STRING)
-    private AnnouncementType announcementType;
+    private Type type;
     private int numberOfPassengers;
     @Enumerated(value = EnumType.STRING)
     private Status status = Status.ACTIVE;

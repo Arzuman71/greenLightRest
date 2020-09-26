@@ -2,6 +2,7 @@ package am.greenlight.greenlight.controller;
 
 import am.greenlight.greenlight.dto.*;
 import am.greenlight.greenlight.model.User;
+import am.greenlight.greenlight.model.enumForUser.Role;
 import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.security.JwtTokenUtil;
@@ -200,6 +201,17 @@ public class UserController {
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED);
     }
+
+
+    @DeleteMapping("/user")
+    public ResponseEntity<String> deleteUser(@AuthenticationPrincipal CurrentUser currentUser) {
+        User user = currentUser.getUser();
+        user.setStatus(Status.ARCHIVED);
+        userService.save(user);
+        return ResponseEntity.ok("you have deleted your account");
+
+    }
+
 
     //  @PutMapping("/user/activate/byEmail")
     //  public ResponseEntity.BodyBuilder activateByEmail(@RequestParam("email") String email) {

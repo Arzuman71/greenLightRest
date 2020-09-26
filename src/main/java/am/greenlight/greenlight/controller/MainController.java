@@ -1,23 +1,15 @@
 package am.greenlight.greenlight.controller;
 
 import am.greenlight.greenlight.dto.PageRequestDto;
-import am.greenlight.greenlight.model.Announcement;
-import am.greenlight.greenlight.model.User;
-import am.greenlight.greenlight.model.enumForUser.Role;
-import am.greenlight.greenlight.model.enumForUser.Status;
-import am.greenlight.greenlight.security.CurrentUser;
-import am.greenlight.greenlight.service.AnnouncementService;
+import am.greenlight.greenlight.model.Item;
+import am.greenlight.greenlight.service.ItemService;
 import am.greenlight.greenlight.service.MainService;
-import am.greenlight.greenlight.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.jaxb.SpringDataJaxb;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,7 +25,7 @@ import java.util.stream.IntStream;
 public class MainController {
 
     private final MainService mainService;
-    private final AnnouncementService announcementService;
+    private final ItemService announcementService;
 
 
     //todo  AnnouncementResponseDto
@@ -44,7 +36,7 @@ public class MainController {
 
         PageRequest pageRequest = PageRequest.of(page - 1, size,
                 Sort.by(Sort.Order.desc("createdDate")));
-        Page<Announcement> allAnnouncement = announcementService.findAll(pageRequest);
+        Page<Item> allAnnouncement = announcementService.findAll(pageRequest);
         PageRequestDto pageDto = new PageRequestDto();
         int totalPages = allAnnouncement.getTotalPages();
         if (totalPages > 0) {

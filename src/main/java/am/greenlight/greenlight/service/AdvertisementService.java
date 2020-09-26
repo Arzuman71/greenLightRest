@@ -27,7 +27,6 @@ public class AdvertisementService {
 
     public void save(Advertisement advertisement, MultipartFile file) {
 
-
         try {
             String name = UUID.randomUUID().toString().replace("-", "") + file.getOriginalFilename();
             File picUrl = new File(uploadDir, name);
