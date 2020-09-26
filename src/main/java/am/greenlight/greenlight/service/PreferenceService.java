@@ -26,6 +26,9 @@ public class PreferenceService {
         if (newPreference.getMusic() == null) {
             newPreference.setMusic(preference.getMusic());
         }
+        if (preference.getId() != 1) {
+            newPreference.setId(preference.getId());
+        }
         return PrefRepository.save(newPreference);
     }
 
