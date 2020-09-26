@@ -1,7 +1,7 @@
 package am.greenlight.greenlight.service;
 
 import am.greenlight.greenlight.model.Preference;
-import am.greenlight.greenlight.repository.PreferenceRepository;
+import am.greenlight.greenlight.repository.PreferenceRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PreferenceService {
 
-    private final PreferenceRepository PrefRepository;
+    private final PreferenceRepo PrefRepository;
 
 
     public Preference save(Preference newPreference, Preference preference) {

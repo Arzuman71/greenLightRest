@@ -6,9 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface AnnouncementRepository extends JpaRepository<Announcement, Long> {
-
-    List<Announcement> findAllByUserId(long id);
+public interface AnnouncementRepo extends JpaRepository<Announcement, Long> {
 
 
     List<Announcement> findAllByUserIdAndStatus(long id, Status status);

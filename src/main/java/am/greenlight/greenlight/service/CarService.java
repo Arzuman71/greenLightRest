@@ -2,7 +2,7 @@ package am.greenlight.greenlight.service;
 
 import am.greenlight.greenlight.model.Car;
 import am.greenlight.greenlight.model.enumForUser.Status;
-import am.greenlight.greenlight.repository.CarRepository;
+import am.greenlight.greenlight.repository.CarRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class CarService {
     @Value("${file.upload.dir}")
     private String uploadDir;
 
-    private final CarRepository carRepository;
+    private final CarRepo carRepository;
 
     public Car save(Car car) {
         return carRepository.save(car);
@@ -32,7 +32,7 @@ public class CarService {
             String name = UUID.randomUUID().toString().replace("-", "") + file.getOriginalFilename();
             File picCar = new File(uploadDir, name);
             file.transferTo(picCar);
-            car.setPicCar(name);
+            car.setPicUrl(name);
         } catch (IOException e) {
             e.printStackTrace();
             return null;

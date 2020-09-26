@@ -1,9 +1,11 @@
 package am.greenlight.greenlight.controller;
 
 import am.greenlight.greenlight.model.Advertisement;
+import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.service.AdvertisementService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -30,14 +32,16 @@ public class AdvertisementController {
     public String offerPage(Model model, @ModelAttribute Advertisement advertisement, @AuthenticationPrincipal CurrentUser currentUser, @RequestParam("image") MultipartFile file) {
         model.addAttribute("currentUser", currentUser.getUser());
         advertisement.setUser(currentUser.getUser());
-        advertisementService.save(advertisement,file);
+        advertisementService.save(advertisement, file);
         return "redirect:/advertisement";
     }
-    @GetMapping("/advertisement/delete")
-    public String deleteBook(@RequestParam("id") int id) {
-        advertisementService.deleteById(id);
-        return ("redirect:/advertisement");
 
+    @DeleteMapping("/advertisement/{id}")
+    public ResponseEntity.BodyBuilder deleteBook(@PathVariable("id") int id) {
+        Advertisement advertisement = advertisementService.getOne(id);
+        advertisement.setStatus(Status.ARCHIVED);
+        advertisementService.save(advertisement);
+        return ResponseEntity.ok();
 
     }
 

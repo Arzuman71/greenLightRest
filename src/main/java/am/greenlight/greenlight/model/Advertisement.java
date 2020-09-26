@@ -27,13 +27,13 @@ public class Advertisement {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime deadline;
     private String description;
+    @ManyToOne
+    private User user;
     private Status status = Status.ACTIVE;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime createdDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime deletedDate;
 
-    @ManyToOne
-    private User user;
 
 }

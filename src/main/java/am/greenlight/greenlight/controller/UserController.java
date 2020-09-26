@@ -64,7 +64,6 @@ public class UserController {
     @PostMapping("/user")
     public ResponseEntity<Integer> registerUser(@Valid @RequestBody UserRegisterDto userRegister,
                                                 BindingResult result, Locale locale) {
-
         if (!result.hasErrors()) {
             if (userRegister.getPassword().equals(userRegister.getConfirmPassword())) {
                 Optional<User> byEmail = userService.findByEmail(userRegister.getEmail());
@@ -72,10 +71,10 @@ public class UserController {
                 if (!byEmail.isPresent() || byEmail.get().getStatus() == Status.ARCHIVED) {
                     User user = modelMapper.map(userRegister, User.class);
                     user.setPassword(passwordEncoder.encode(userRegister.getPassword()));
-                    user.setToken(UUID.randomUUID().toString());
+                    user.setOtp(UUID.randomUUID().toString());
                     userService.save(user);
-                    //  log.error("user with address {} email was could not registered", user.getEmail());
-                    String link = "http://localhost:8080/user/activate?email=" + user.getEmail() + "&token=" + user.getToken();
+                    log.error("user with address {} email was could not registered", user.getEmail());
+                    String link = "http://localhost:8080/user/activate?email=" + user.getEmail() + "&token=" + user.getOtp();
                     emailService.send(user.getEmail(), "Welcome", "Dear " + user.getName() + ' ' + user.getSurname() + " You have successfully registered.Please " +
                             "activate your account by clicking on:" + link);
                     return ResponseEntity.ok(0);
@@ -92,9 +91,9 @@ public class UserController {
         Optional<User> byEmail = userService.findByEmail(email);
         if (byEmail.isPresent()) {
             User user = byEmail.get();
-            if (user.getToken().equals(token)) {
+            if (user.getOtp().equals(token)) {
                 user.setStatus(Status.ACTIVE);
-                user.setToken("");
+                user.setOtp("");
                 userService.save(user);
                 return ResponseEntity.ok("User was activate,please login");
             }
@@ -161,9 +160,9 @@ public class UserController {
         Optional<User> byEmail = userService.findByEmail(email);
         if (byEmail.isPresent() && byEmail.get().getStatus() == Status.ACTIVE) {
             User user = byEmail.get();
-            user.setToken(UUID.randomUUID().toString());
+            user.setOtp(UUID.randomUUID().toString());
             userService.save(user);
-            String link = "http://localhost:8080/user/forgotPassword/reset?email=" + user.getEmail() + "&token=" + user.getToken();
+            String link = "http://localhost:8080/user/forgotPassword/reset?email=" + user.getEmail() + "&token=" + user.getOtp();
             emailService.send(user.getEmail(), "Welcome", "Dear " + user.getName() + ' ' + user.getSurname() + "activate your account by clicking on:" + link);
 
             return ResponseEntity.ok("Your password changed");
@@ -177,9 +176,9 @@ public class UserController {
         ConfirmEmailDto confirmEmail = new ConfirmEmailDto();
 
         Optional<User> byUsername = userService.findByEmail(email);
-        if (byUsername.isPresent() && byUsername.get().getToken().equals(token)) {
+        if (byUsername.isPresent() && byUsername.get().getOtp().equals(token)) {
             confirmEmail.setEmail(byUsername.get().getEmail());
-            confirmEmail.setToken(byUsername.get().getToken());
+            confirmEmail.setToken(byUsername.get().getOtp());
             return ResponseEntity.ok(confirmEmail);
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(confirmEmail);
@@ -191,7 +190,7 @@ public class UserController {
         Optional<User> byEmail = userService.findByEmail(forgotPass.getEmail());
         if (byEmail.isPresent()) {
             User user = byEmail.get();
-            if (user.getToken().equals(forgotPass.getToken())
+            if (user.getOtp().equals(forgotPass.getToken())
                     && forgotPass.getPassword().equals(forgotPass.getRepeatPassword())) {
 
                 user.setPassword(passwordEncoder.encode(forgotPass.getPassword()));

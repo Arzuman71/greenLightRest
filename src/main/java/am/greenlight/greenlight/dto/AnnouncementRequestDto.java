@@ -17,6 +17,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class AnnouncementRequestDto {
+
+    private long id;
     @NotBlank(message = "fromIs is required")
     private String fromIs;
     @NotBlank(message = "whereIs is required")
@@ -27,7 +29,7 @@ public class AnnouncementRequestDto {
     @NotBlank(message = "announcementType is required")
     private AnnouncementType announcementType;
     private double price;
-    private Car car;
+    private long carId;
     private int numberOfPassengers;
 
 }

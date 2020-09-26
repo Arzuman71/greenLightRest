@@ -1,7 +1,7 @@
 package am.greenlight.greenlight.service;
 
 import am.greenlight.greenlight.model.Rating;
-import am.greenlight.greenlight.repository.RatingRepository;
+import am.greenlight.greenlight.repository.RatingRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,17 +10,12 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class RatingService {
-    private final RatingRepository ratingRepository;
+    private final RatingRepo ratingRepository;
 
-    public double RatingById(long id) {
-        double sum = 0;
-        int size = 0;
+    public double getRatingByToId(long id) {
+
         List<Rating> all = ratingRepository.findAllByToId(id);
-        for (Rating rating : all) {
-            size++;
-            sum += rating.getNumber();
-        }
-        return sum / size;
+        return all.stream().mapToDouble(Rating::getNumber).average().orElse(3);
     }
 
     public void save(Rating rating) {

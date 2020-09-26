@@ -23,18 +23,19 @@ public class Car {
     @Id
     @GeneratedValue()
     private long id;
+    private String carBrand;
     @Enumerated(value = EnumType.STRING)
     private CarType carType;
-    private String carBrand;
-    private String carModel;
     private String carNumber;
-    @Enumerated(value = EnumType.STRING)
-    private Color color;
+    private String picUrl;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate year;
-    private String picCar;
+    private String carModel;
     @ManyToOne
     private User user;
+    @Enumerated(value = EnumType.STRING)
+    private Color color;
+
     @Enumerated(value = EnumType.STRING)
     private Status status = Status.ACTIVE;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")

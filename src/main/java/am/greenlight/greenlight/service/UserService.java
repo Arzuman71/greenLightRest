@@ -1,7 +1,7 @@
 package am.greenlight.greenlight.service;
 
 import am.greenlight.greenlight.model.User;
-import am.greenlight.greenlight.repository.UserRepository;
+import am.greenlight.greenlight.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -14,33 +14,32 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-//@RequiredArgsConstructor
 public class UserService {
 
     @Value("${file.upload.dir}")
     private String uploadDir;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepo userRepo;
     @Autowired
     private PreferenceService prefService;
 
 
-    public UserService(UserRepository userRepository, PreferenceService prefService) {
-        this.userRepository = userRepository;
+    public UserService(UserRepo userRepository, PreferenceService prefService) {
+        this.userRepo = userRepository;
         this.prefService = prefService;
-
     }
+
     public User save(User user) {
         if (user.getPreference() == null) {
             user.setPreference(prefService.getOne(1));
         }
-        return userRepository.save(user);
+        return userRepo.save(user);
     }
 
     public Optional<User> findByEmail(String email) {
 
-        return userRepository.findByEmail(email);
+        return userRepo.findByEmail(email);
     }
 
 
@@ -57,15 +56,15 @@ public class UserService {
             e.printStackTrace();
             return false;
         }
-        userRepository.save(user);
+        userRepo.save(user);
         return true;
     }
 
     public List<User> findByNameAndSurname(String name, String surname) {
-        return userRepository.findByNameAndSurname(name, surname);
+        return userRepo.findByNameAndSurname(name, surname);
     }
 
     public User getOne(long id) {
-        return userRepository.getOne(id);
+        return userRepo.getOne(id);
     }
 }

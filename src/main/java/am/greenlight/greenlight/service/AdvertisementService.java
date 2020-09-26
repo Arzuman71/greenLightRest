@@ -1,7 +1,7 @@
 package am.greenlight.greenlight.service;
 
 import am.greenlight.greenlight.model.Advertisement;
-import am.greenlight.greenlight.repository.AdvertisementRepository;
+import am.greenlight.greenlight.repository.AdvertisementRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -17,11 +17,11 @@ import java.util.UUID;
 public class AdvertisementService {
     @Value("${file.upload.dir}")
     private String uploadDir;
-    private final AdvertisementRepository advertisementRepository;
+    private final AdvertisementRepo advertisementRepo;
 
 
     public List<Advertisement> findAll() {
-        return advertisementRepository.findAll();
+        return advertisementRepo.findAll();
 
     }
 
@@ -37,13 +37,15 @@ public class AdvertisementService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        advertisementRepository.save(advertisement);
-    }
-    public void deleteById(long id){
-        advertisementRepository.deleteById(id);
-
+        advertisementRepo.save(advertisement);
     }
 
 
+    public void save(Advertisement advertisement) {
+        advertisementRepo.save(advertisement);
+    }
 
+    public Advertisement getOne(long id) {
+        return advertisementRepo.getOne(id);
+    }
 }

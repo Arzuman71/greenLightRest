@@ -43,7 +43,7 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private Status status = Status.ARCHIVED;
     private boolean phoneActive;
-    private String token;
+    private String otp;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime createdDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")

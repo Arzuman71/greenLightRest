@@ -7,9 +7,10 @@ import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.service.CarService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,20 +21,12 @@ import java.util.List;
 public class CarController {
 
     private final CarService carService;
+    private final ModelMapper modelMapper;
 
     @PostMapping("/car/save")
-    public String saveCar(@ModelAttribute CarRequestDto carReq, @RequestParam("id") int id, @AuthenticationPrincipal CurrentUser currentUser) {
-        Car car = Car.builder()
-                .id(id)
-                .carModel(carReq.getCarModel())
-                .carBrand(carReq.getCarBrand())
-                .user(currentUser.getUser())
-                .year(carReq.getYear())
-                .carNumber(carReq.getCarNumber())
-                .color(carReq.getColor())
-                .carType(carReq.getCarType())
-                .build();
-
+    public String saveCar(@ModelAttribute CarRequestDto carReq, @AuthenticationPrincipal CurrentUser currentUser) {
+        Car car = modelMapper.map(carReq, Car.class);
+        car.setUser(currentUser.getUser());
         carService.save(car);
         return "redirect:/user";
     }
@@ -41,36 +34,35 @@ public class CarController {
     @GetMapping("/cars")
     public ResponseEntity<List<Car>> cars(@AuthenticationPrincipal CurrentUser currentUser) {
         User user = currentUser.getUser();
-        List<Car> cars = carService.findCarByUserIdAndState(user.getId(), Status.ACTIVE);
+        List<Car> cars = carService.findCarByUserIdAndStatus(user.getId(), Status.ACTIVE);
         return ResponseEntity.ok(cars);
     }
 
-    @GetMapping("/car/edit")
-    public String carEditPage(@RequestParam("id") int id, Model model) {
-        model.addAttribute("car", carService.getOne(id));
-        return "editCar";
-    }
-
-    @GetMapping("/car/saveImage")
-    public String carSaveImagePage(@RequestParam("id") int id, Model model) {
+    @GetMapping("/car/{id}")
+    public ResponseEntity<Car> getOne(@PathVariable("id") int id) {
         Car car = carService.getOne(id);
-        model.addAttribute("car", car);
-        return "changeCarImage";
+        if (car != null) {
+            return ResponseEntity.ok(car);
+        }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
     }
 
-    @PostMapping("/car/saveImage")
-    public String changeCarImg(@RequestParam("id") int id,
-                               @RequestParam("img") MultipartFile file) {
+    @PutMapping("/car/Image")
+    public ResponseEntity.BodyBuilder changeCarImg(@RequestParam("id") int id,
+                                                   @RequestParam("img") MultipartFile file) {
         Car car = carService.getOne(id);
-                carService.saveCar(car, file);
-                return "redirect:/user";
+        carService.save(car, file);
+        return ResponseEntity.ok();
 
     }
 
-    @GetMapping("/car/delete")
-    public String deleteAuthor(@RequestParam("id") int id) {
-        carService.deleteCarById(id);
-        return "redirect:/user";
+    @DeleteMapping("/car")
+    public ResponseEntity.BodyBuilder deleteCar(@RequestParam("id") int id) {
+        Car car = carService.getOne(id);
+        car.setStatus(Status.ARCHIVED);
+        carService.save(car);
+        return ResponseEntity.ok();
     }
 
 }
