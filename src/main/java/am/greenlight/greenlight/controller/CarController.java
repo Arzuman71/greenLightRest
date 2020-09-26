@@ -23,13 +23,6 @@ public class CarController {
     private final CarService carService;
     private final ModelMapper modelMapper;
 
-    @PostMapping("/car/save")
-    public String saveCar(@ModelAttribute CarRequestDto carReq, @AuthenticationPrincipal CurrentUser currentUser) {
-        Car car = modelMapper.map(carReq, Car.class);
-        car.setUser(currentUser.getUser());
-        carService.save(car);
-        return "redirect:/user";
-    }
 
     @GetMapping("/cars")
     public ResponseEntity<List<Car>> cars(@AuthenticationPrincipal CurrentUser currentUser) {
@@ -47,6 +40,15 @@ public class CarController {
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
     }
+
+    @PostMapping("/car/save")
+    public ResponseEntity<Car> saveCar(@ModelAttribute CarRequestDto carReq, @AuthenticationPrincipal CurrentUser currentUser) {
+        Car car = modelMapper.map(carReq, Car.class);
+        car.setUser(currentUser.getUser());
+        car = carService.save(car);
+        return ResponseEntity.ok(car);
+    }
+
 
     @PutMapping("/car/Image")
     public ResponseEntity.BodyBuilder changeCarImg(@RequestParam("id") int id,

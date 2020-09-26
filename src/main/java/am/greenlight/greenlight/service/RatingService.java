@@ -12,7 +12,7 @@ import java.util.List;
 public class RatingService {
     private final RatingRepo ratingRepository;
 
-    public double getRatingByToId(long id) {
+    public double findAllByToId(long id) {
 
         List<Rating> all = ratingRepository.findAllByToId(id);
         return all.stream().mapToDouble(Rating::getNumber).average().orElse(3);

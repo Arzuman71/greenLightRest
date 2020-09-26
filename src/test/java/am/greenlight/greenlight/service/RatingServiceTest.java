@@ -29,7 +29,7 @@ class RatingServiceTest {
     void ratingById() {
         List<Rating> list = new ArrayList<>();
         given(ratingRepo.findAllByToId(22)).willReturn(list);
-        double sum = ratingService.getRatingByToId(22);
+        double sum = ratingService.findAllByToId(22);
         assertThat(sum).isNotNull();
     }
 

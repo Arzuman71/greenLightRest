@@ -26,18 +26,17 @@ public class ItemController {
 
 
     @PostMapping("/item")
-    public ResponseEntity<Object> save(
-            @ModelAttribute ItemReqDto itemRequestDto,
-            @AuthenticationPrincipal CurrentUser currentUser) {
+    public ResponseEntity<Object> save(@ModelAttribute ItemReqDto itemReqDto,
+                                       @AuthenticationPrincipal CurrentUser currentUser) {
         Car car = null;
-        long carId = itemRequestDto.getCarId();
+        long carId = itemReqDto.getCarId();
         if (carId != 0) {
             car = carService.getOne(carId);
             if (!(car.getUser().equals(currentUser.getUser()))) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
             }
         }
-        Item item = modelMapper.map(itemRequestDto, Item.class);
+        Item item = modelMapper.map(itemReqDto, Item.class);
         item.setCar(car);
         item = itemService.save(item);
         return ResponseEntity.ok(item);
@@ -70,7 +69,7 @@ public class ItemController {
 
     //ok
     @PutMapping("/item/change")
-    public ResponseEntity<ItemReqDto> changeAnnouncement(@RequestBody ItemReqDto itemReqDto,
+    public ResponseEntity<ItemReqDto> changeItem(@RequestBody ItemReqDto itemReqDto,
                                                          @AuthenticationPrincipal CurrentUser currentUser) {
         long carId = itemReqDto.getCarId();
         if (carId != 0) {

@@ -8,9 +8,7 @@ import am.greenlight.greenlight.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -35,5 +33,11 @@ public class RatingController {
         rating.setNumber(ratingReq.getNumber());
         ratingService.save(rating);
         return ResponseEntity.ok("ok");
+    }
+
+    @GetMapping("/rating/{id}")
+    public ResponseEntity<Double> findAllByToId(@PathVariable("id") long id) {
+        Double rating = ratingService.findAllByToId(id);
+        return ResponseEntity.ok(rating);
     }
 }

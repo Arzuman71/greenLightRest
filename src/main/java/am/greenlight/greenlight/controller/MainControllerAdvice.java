@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class MainControllerAdvice {
 
 
-    @ModelAttribute("user")
-    public User username(@AuthenticationPrincipal CurrentUser currentUser){
-        if (currentUser != null){
-            return currentUser.getUser();
-        }
-        return null;
+    //  @ModelAttribute("user")
+    //  public User username(@AuthenticationPrincipal CurrentUser currentUser){
+    //      if (currentUser != null){
+    //          return currentUser.getUser();
+    //      }
+    //      return null;
 
-    }
+    //   }
 }

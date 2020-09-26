@@ -27,8 +27,7 @@ public class AdminController {
 
 
     @DeleteMapping("/user/{id}")
-    public ResponseEntity<String> deleteUserByAdmin(@PathVariable("id") long id,
-                                                    @AuthenticationPrincipal CurrentUser currentUser) {
+    public ResponseEntity<String> deleteUserByAdmin(@PathVariable("id") long id) {
         User userDelete = userService.getOne(id);
         userDelete.setStatus(Status.DELETED);
         userService.save(userDelete);

@@ -61,7 +61,7 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public ResponseEntity<Integer> registerUser(@Valid @RequestBody UserRegisterDto userRegister,
+    public ResponseEntity<Integer> register(@Valid @RequestBody UserRegisterDto userRegister,
                                                 BindingResult result, Locale locale) {
         if (!result.hasErrors()) {
             if (userRegister.getPassword().equals(userRegister.getConfirmPassword())) {
