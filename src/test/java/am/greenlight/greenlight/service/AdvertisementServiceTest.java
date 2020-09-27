@@ -51,7 +51,7 @@ class AdvertisementServiceTest {
     }
 
     @Test
-    void getOne() {
+    void getOne_Ok() {
         given(advertisementRepo.getOne(11L)).willReturn(advertisement);
         advertisement = advertisementService.getOne(11);
         assertThat(advertisement).isNotNull();

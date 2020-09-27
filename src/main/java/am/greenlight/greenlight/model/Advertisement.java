@@ -29,6 +29,7 @@ public class Advertisement {
     private String description;
     @ManyToOne
     private User user;
+    @Enumerated(value = EnumType.STRING)
     private Status status = Status.ACTIVE;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime createdDate;
