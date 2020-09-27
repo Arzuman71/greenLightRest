@@ -16,6 +16,8 @@ class RatingServiceTest {
 
     @Mock
     private RatingRepo ratingRepo;
+    @Mock
+    Rating rating;
     private RatingService ratingService;
 
 
@@ -26,19 +28,33 @@ class RatingServiceTest {
 
 
     @Test
-    void ratingById() {
+    void ratingById_Ok() {
         List<Rating> list = new ArrayList<>();
         given(ratingRepo.findAllByToId(22)).willReturn(list);
         double sum = ratingService.findAllByToId(22);
         assertThat(sum).isNotNull();
     }
 
+
     @Test
-    void save() {
+    void save_Ok() {
+        given(ratingRepo.save(rating)).willReturn(rating);
+        Rating res = ratingService.save(rating);
+        assertThat(res).isNotNull();
     }
 
     @Test
-    void getByToIdAndFromId() {
+    void getByToIdAndFromId_Ok() {
+        given(ratingRepo.getByToIdAndFromId(11, 11)).willReturn(rating);
+        rating = ratingService.getByToIdAndFromId(11, 11);
+        assertThat(rating).isNotNull();
+    }
+
+    @Test
+    void getByToIdAndFromId_Null() {
+        given(ratingRepo.getByToIdAndFromId(11, 11)).willReturn(null);
+        rating = ratingService.getByToIdAndFromId(11, 11);
+        assertThat(rating).isNull();
     }
 
 }

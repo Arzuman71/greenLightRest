@@ -16,8 +16,8 @@ import java.util.List;
 public class ItemService {
     private final ItemRepo itemRepo;
 
-    public Item save(Item announcement) {
-        return itemRepo.save(announcement);
+    public Item save(Item item) {
+        return itemRepo.save(item);
     }
 
     public Page<Item> findAll(PageRequest pageRequest) {
@@ -32,7 +32,7 @@ public class ItemService {
         return itemRepo.getOne(id);
     }
 
-    public List<Item> findAllByUserIdAndState(long id, Status state) {
+    public List<Item> findAllByUserIdAndStatus(long id, Status state) {
         return itemRepo.findAllByUserIdAndStatus(id, state);
     }
 

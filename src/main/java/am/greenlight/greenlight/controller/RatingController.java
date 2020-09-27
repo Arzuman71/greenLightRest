@@ -6,6 +6,7 @@ import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.service.RatingService;
 import am.greenlight.greenlight.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +38,8 @@ public class RatingController {
 
     @GetMapping("/rating/{id}")
     public ResponseEntity<Double> findAllByToId(@PathVariable("id") long id) {
-        Double rating = ratingService.findAllByToId(id);
-        return ResponseEntity.ok(rating);
+        double rating = ratingService.findAllByToId(id);
+            return ResponseEntity.ok(rating);
+
     }
 }

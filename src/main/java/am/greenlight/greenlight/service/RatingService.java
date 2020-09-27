@@ -18,10 +18,9 @@ public class RatingService {
         return all.stream().mapToDouble(Rating::getNumber).average().orElse(3);
     }
 
-    public void save(Rating rating) {
+    public Rating save(Rating rating) {
 
-        ratingRepository.save(rating);
-
+        return ratingRepository.save(rating);
     }
 
     public Rating getByToIdAndFromId(long toId, long fromId) {

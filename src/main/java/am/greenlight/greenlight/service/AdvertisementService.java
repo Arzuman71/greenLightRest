@@ -25,7 +25,7 @@ public class AdvertisementService {
 
     }
 
-    public void save(Advertisement advertisement, MultipartFile file) {
+    public Advertisement save(Advertisement advertisement, MultipartFile file) {
 
         try {
             String name = UUID.randomUUID().toString().replace("-", "") + file.getOriginalFilename();
@@ -36,12 +36,12 @@ public class AdvertisementService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        advertisementRepo.save(advertisement);
+        return advertisementRepo.save(advertisement);
     }
 
 
-    public void save(Advertisement advertisement) {
-        advertisementRepo.save(advertisement);
+    public Advertisement save(Advertisement advertisement) {
+        return advertisementRepo.save(advertisement);
     }
 
     public Advertisement getOne(long id) {

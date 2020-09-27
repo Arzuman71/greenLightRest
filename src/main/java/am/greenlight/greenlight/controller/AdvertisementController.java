@@ -26,11 +26,11 @@ public class AdvertisementController {
 
 
     @PostMapping("/advertisement")
-    public ResponseEntity.BodyBuilder save( @ModelAttribute Advertisement advertisement,
-                             @AuthenticationPrincipal CurrentUser currentUser,
-                             @RequestParam("image") MultipartFile file) {
+    public ResponseEntity.BodyBuilder save(@ModelAttribute Advertisement advertisement,
+                                           @AuthenticationPrincipal CurrentUser currentUser,
+                                           @RequestParam("image") MultipartFile file) {
         advertisement.setUser(currentUser.getUser());
-        advertisementService.save(advertisement, file);
+        advertisement = advertisementService.save(advertisement, file);
         return ResponseEntity.ok();
     }
 

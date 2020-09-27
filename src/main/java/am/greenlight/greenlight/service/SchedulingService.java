@@ -17,14 +17,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SchedulingService {
 
-    private final ItemService announcementService;
+    private final ItemService ItemService;
     private final AdvertisementService advertisementService;
     private final UserRepo userRepo;
 
 
     @Scheduled(cron = " 0 0 3 * * *")
-    public void changeAnnouncementsStatus() {
-        List<Item> announcements = announcementService.findAll();
+    public void changeItemsStatus() {
+        List<Item> announcements = ItemService.findAll();
         announcements.stream()
                 .filter(a -> a.getDeadline().isBefore(LocalDateTime.now().plus(4, ChronoUnit.HOURS)))
                 .forEach(a -> a.setStatus(Status.ARCHIVED));

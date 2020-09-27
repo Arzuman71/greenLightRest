@@ -53,7 +53,7 @@ public class ItemController {
     @GetMapping("/item/active")
     public ResponseEntity<List<Item>> getItemsActive(@AuthenticationPrincipal CurrentUser currentUser) {
         long id = currentUser.getUser().getId();
-        List<Item> items = itemService.findAllByUserIdAndState(id, Status.ACTIVE);
+        List<Item> items = itemService.findAllByUserIdAndStatus(id, Status.ACTIVE);
 
         return ResponseEntity.ok(items);
     }
@@ -61,7 +61,7 @@ public class ItemController {
     @GetMapping("/item/archived")
     public ResponseEntity<List<Item>> getItemsArchived(@AuthenticationPrincipal CurrentUser currentUser) {
         long id = currentUser.getUser().getId();
-        List<Item> items = itemService.findAllByUserIdAndState(id, Status.ARCHIVED);
+        List<Item> items = itemService.findAllByUserIdAndStatus(id, Status.ARCHIVED);
 
         return ResponseEntity.ok(items);
     }

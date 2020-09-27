@@ -19,9 +19,16 @@ public class MainService {
     private String uploadDir;
 
 
-    public byte[] getImage(String imageName) throws IOException {
-        InputStream in = new FileInputStream(uploadDir + File.separator + imageName);
-        return IOUtils.toByteArray(in);
+    public byte[] getImageOrNull(String imageName) {
+        InputStream in = null;
+        try {
+            in = new FileInputStream(uploadDir + File.separator + imageName);
+
+            return IOUtils.toByteArray(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }

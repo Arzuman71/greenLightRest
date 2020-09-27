@@ -33,12 +33,6 @@ public class PreferenceService {
     }
 
 
-    public void deleteById(long prefId) {
-        if (prefId != 1) {
-            PrefRepository.deleteById(prefId);
-        }
-    }
-
     public Preference getOne(long prefId) {
 
         return PrefRepository.getOne(prefId);

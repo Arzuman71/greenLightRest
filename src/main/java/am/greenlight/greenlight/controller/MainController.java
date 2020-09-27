@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -51,12 +50,11 @@ public class MainController {
     }
 
 
-        @GetMapping(value = "/image", produces = MediaType.IMAGE_JPEG_VALUE)
+    @GetMapping(value = "/image", produces = MediaType.IMAGE_JPEG_VALUE)
 
-        public @ResponseBody
-        byte[] getImage (@RequestParam("name") String imageName) throws IOException {
+    public @ResponseBody byte[] getImage(@RequestParam("name") String imageName) {
 
-            return mainService.getImage(imageName);
-        }
-
+            return mainService.getImageOrNull(imageName);
     }
+
+}
