@@ -36,6 +36,7 @@ public class RatingController {
         return ResponseEntity.ok("ok");
     }
 
+    //ok
     @GetMapping("/rating/{id}")
     public ResponseEntity<Double> findAllByToId(@PathVariable("id") long id) {
         double rating = ratingService.findAllByToId(id);

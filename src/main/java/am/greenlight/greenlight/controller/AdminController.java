@@ -17,7 +17,7 @@ import java.util.List;
 public class AdminController {
 
     private final UserService userService;
-    private final ItemService announcementService;
+    private final ItemService itemService;
 
     @GetMapping("/user/find")
     public ResponseEntity<List<User>> findUserByNameAndSurname(@ModelAttribute User user) {

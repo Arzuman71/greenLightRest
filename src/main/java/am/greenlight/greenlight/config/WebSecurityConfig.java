@@ -35,15 +35,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                 .and()
                 .authorizeRequests()
-                //   .antMatchers("/","/login","/register").permitAll()
-                .antMatchers("/").permitAll()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/register").permitAll()
-                .antMatchers(HttpMethod.POST, "/user/Password/Change").hasAnyAuthority("USER")
-                .antMatchers(HttpMethod.GET, "/user").hasAnyAuthority("USER")
-                .antMatchers(HttpMethod.PUT, "/user/data").hasAnyAuthority("USER")
+                .antMatchers(HttpMethod.GET, "/", "/user/forgotPassword", "/user/forgotPassword/reset", "/rating/{id}", "/image", "/item/{id}", "/advertisements").permitAll()
+                .antMatchers(HttpMethod.POST, "user/auth", "/user", "/user/activate").permitAll()
+                .antMatchers(HttpMethod.PUT, "/user/forgotPassword/reset").permitAll()
+
+                .antMatchers(HttpMethod.GET, "/user" , "/item/active", "/item/archived", "/cars", "/car/{id}").hasAnyAuthority("USER")
+                .antMatchers(HttpMethod.POST, "/rating", "/preference","/item", "/car/save").hasAnyAuthority("USER")
+                .antMatchers(HttpMethod.PUT, "/user/Password/Change", "/user/about", "/user/img", "/user", "/item/change", "/car/Image", "/car").hasAnyAuthority("USER")
+                .antMatchers(HttpMethod.DELETE, "/user", "/item/{id}").hasAnyAuthority("USER")
+
+                .antMatchers(HttpMethod.GET, "/user/find").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/advertisement","/user/find").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/advertisement/{id}", "/user/{id}").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated();
-        //                .antMatchers("/").hasAnyAuthority("ADMIN");
 
         // Custom JWT based security filter
         http

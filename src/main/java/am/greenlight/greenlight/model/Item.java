@@ -23,11 +23,10 @@ public class Item {
     @Id
     @GeneratedValue()
     private long id;
-    private String fromIs;
-    @Column(name = "where_is")
-    private String whereIs;
+    private String from;
+    private String where;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    private LocalDateTime deadline;
+    private LocalDateTime startDate;
     private String price;
     @ManyToOne
     private User user;
@@ -40,6 +39,8 @@ public class Item {
     private Status status = Status.ACTIVE;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime createdDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime updatedDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime deletedDate;
 

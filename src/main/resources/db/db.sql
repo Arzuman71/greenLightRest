@@ -28,43 +28,16 @@ CREATE TABLE `advertisement` (
   `description` text NOT NULL,
   `user_id` int(11) NOT NULL,
   `status` enum('ACTIVE','ARCHIVED','DELETED') NOT NULL,
-  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `advertisement_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `advertisement` */
 
-/*Table structure for table `announcement` */
-
-DROP TABLE IF EXISTS `announcement`;
-
-CREATE TABLE `announcement` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `from_is` varchar(255) NOT NULL,
-  `where_is` varchar(255) NOT NULL,
-  `deadline` timestamp NULL DEFAULT NULL,
-  `price` varchar(255) DEFAULT NULL,
-  `user_id` int(11) NOT NULL,
-  `parcel_type` enum('DOCUMENT','PARCEL','ALIVE','GLASS','OTHER') DEFAULT 'PARCEL',
-  `car_id` int(11) DEFAULT NULL,
-  `announcement_type` enum('CAR_DRIVER','TRUCK_DRIVER','PASSENGER','SEEKER_TRUCK') NOT NULL,
-  `number_of_passengers` int(3) DEFAULT NULL,
-  `status` enum('ACTIVE','ARCHIVED','DELETED') NOT NULL DEFAULT 'ACTIVE',
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `deleted_date` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  KEY `car_id` (`car_id`),
-  CONSTRAINT `announcement_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `announcement_ibfk_2` FOREIGN KEY (`car_id`) REFERENCES `car` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
-
-/*Data for the table `announcement` */
-
-insert  into `announcement`(`id`,`from_is`,`where_is`,`deadline`,`price`,`user_id`,`parcel_type`,`car_id`,`announcement_type`,`number_of_passengers`,`status`,`created_date`,`deleted_date`) values (1,'test','test','2020-08-07 22:08:00','0.0',22,'PARCEL',NULL,'SEEKER_TRUCK',0,'ACTIVE','2020-09-24 19:15:11',NULL),(2,'test2','test2','2021-08-14 13:38:07','11',22,'PARCEL',NULL,'SEEKER_TRUCK',0,'ACTIVE','2020-09-18 19:15:05',NULL);
+insert  into `advertisement`(`id`,`link`,`pic_url`,`deadline`,`description`,`user_id`,`status`,`created_date`,`deleted_date`) values (1,'sdff','xxqqw','2020-09-15 23:34:00','sdc',22,'ACTIVE','2020-09-27 23:34:22',NULL);
 
 /*Table structure for table `car` */
 
@@ -106,6 +79,36 @@ CREATE TABLE `images` (
 
 /*Data for the table `images` */
 
+/*Table structure for table `item` */
+
+DROP TABLE IF EXISTS `item`;
+
+CREATE TABLE `item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `from` varchar(255) NOT NULL,
+  `where` varchar(255) NOT NULL,
+  `start_date` timestamp NULL DEFAULT NULL,
+  `price` varchar(255) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `parcel_type` enum('DOCUMENT','PARCEL','ALIVE','GLASS','OTHER') DEFAULT 'PARCEL',
+  `car_id` int(11) DEFAULT NULL,
+  `type` enum('CAR_DRIVER','TRUCK_DRIVER','PASSENGER','SEEKER_TRUCK') NOT NULL,
+  `number_of_passengers` int(3) DEFAULT NULL,
+  `status` enum('ACTIVE','ARCHIVED','DELETED') NOT NULL DEFAULT 'ACTIVE',
+  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deleted_date` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `car_id` (`car_id`),
+  CONSTRAINT `item_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  CONSTRAINT `item_ibfk_2` FOREIGN KEY (`car_id`) REFERENCES `car` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `item` */
+
+insert  into `item`(`id`,`from`,`where`,`start_date`,`price`,`user_id`,`parcel_type`,`car_id`,`type`,`number_of_passengers`,`status`,`created_date`,`updated_date`,`deleted_date`) values (3,'test','test','2020-09-29 17:07:25','11',22,'OTHER',NULL,'SEEKER_TRUCK',1,'ACTIVE','2020-09-29 17:08:00','2020-09-29 17:11:45',NULL),(4,'test','test','2020-09-30 17:08:48',NULL,22,'PARCEL',NULL,'SEEKER_TRUCK',2,'ACTIVE','2020-09-28 17:08:11','2020-09-29 17:11:48',NULL);
+
 /*Table structure for table `massage` */
 
 DROP TABLE IF EXISTS `massage`;
@@ -145,10 +148,10 @@ DROP TABLE IF EXISTS `rating`;
 
 CREATE TABLE `rating` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `number` double NOT NULL DEFAULT '3',
+  `number` double NOT NULL,
   `to_id` int(11) NOT NULL,
   `from_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`from_id`),
+  PRIMARY KEY (`id`),
   KEY `user_id` (`to_id`),
   KEY `appreciater_id` (`from_id`),
   CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`to_id`) REFERENCES `user` (`id`),

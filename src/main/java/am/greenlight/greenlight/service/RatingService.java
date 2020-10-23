@@ -12,6 +12,7 @@ import java.util.List;
 public class RatingService {
     private final RatingRepo ratingRepository;
 
+
     public double findAllByToId(long id) {
 
         List<Rating> all = ratingRepository.findAllByToId(id);

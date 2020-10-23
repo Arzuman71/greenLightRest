@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -26,7 +27,7 @@ public class SchedulingService {
     public void changeItemsStatus() {
         List<Item> announcements = ItemService.findAll();
         announcements.stream()
-                .filter(a -> a.getDeadline().isBefore(LocalDateTime.now().plus(4, ChronoUnit.HOURS)))
+                .filter(a -> a.getStartDate().isBefore(LocalDateTime.now().plus(4, ChronoUnit.HOURS)))
                 .forEach(a -> a.setStatus(Status.ARCHIVED));
 
     }

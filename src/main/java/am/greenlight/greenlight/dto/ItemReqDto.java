@@ -19,9 +19,9 @@ public class ItemReqDto {
 
     private long id;
     @NotBlank(message = "fromIs is required")
-    private String fromIs;
+    private String from;
     @NotBlank(message = "whereIs is required")
-    private String whereIs;
+    private String where;
     @NotNull(message = "Parameter Date Unadjusted can not be blank or null")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime startDate;

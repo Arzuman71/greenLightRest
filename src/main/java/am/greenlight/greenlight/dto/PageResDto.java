@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PageRequestDto {
+public class PageResDto {
     private List<Integer> pageNumbers;
-    private Page<Item> allAnnouncement;
+    private Page<Item> items;
 }

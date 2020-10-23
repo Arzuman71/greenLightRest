@@ -24,14 +24,14 @@ public class AdvertisementController {
         return ResponseEntity.ok(advertisements);
     }
 
-
+    //dto 2
     @PostMapping("/advertisement")
-    public ResponseEntity.BodyBuilder save(@ModelAttribute Advertisement advertisement,
+    public ResponseEntity<Advertisement> save(@ModelAttribute Advertisement advertisement,
                                            @AuthenticationPrincipal CurrentUser currentUser,
                                            @RequestParam("image") MultipartFile file) {
         advertisement.setUser(currentUser.getUser());
         advertisement = advertisementService.save(advertisement, file);
-        return ResponseEntity.ok();
+        return ResponseEntity.ok(advertisement);
     }
 
     @DeleteMapping("/advertisement/{id}")

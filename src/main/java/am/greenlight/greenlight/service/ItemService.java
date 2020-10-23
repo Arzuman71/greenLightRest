@@ -1,6 +1,7 @@
 package am.greenlight.greenlight.service;
 
 
+import am.greenlight.greenlight.dto.ItemSearchDto;
 import am.greenlight.greenlight.model.Item;
 import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.repository.ItemRepo;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -37,4 +39,11 @@ public class ItemService {
     }
 
 
+    public Page<Item> itemSearch(PageRequest pageRequest, ItemSearchDto itemSearchDto) {
+        itemSearchDto.setDateFrom(LocalDateTime.of(2020, 9, 29, 00, 00, 00));
+        itemSearchDto.setDateTo(LocalDateTime.of(2021, 8, 30, 00, 00, 00));
+
+        return itemRepo.itemSearch(itemSearchDto.getFrom(), itemSearchDto.getWhere(), itemSearchDto.getType(),
+                itemSearchDto.getDateFrom(), itemSearchDto.getDateTo(), pageRequest);
+    }
 }
