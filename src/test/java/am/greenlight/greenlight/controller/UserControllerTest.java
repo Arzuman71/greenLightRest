@@ -1,22 +1,14 @@
 package am.greenlight.greenlight.controller;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import am.greenlight.greenlight.repository.ItemRepo;
 import am.greenlight.greenlight.security.JwtTokenUtil;
 import am.greenlight.greenlight.service.EmailService;
 import am.greenlight.greenlight.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import lombok.RequiredArgsConstructor;
-
-import net.bytebuddy.build.EntryPoint;
-import org.hamcrest.Matchers;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
@@ -24,19 +16,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.mock.web.MockServletContext;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -62,22 +49,22 @@ class UserControllerTest {
     private EmailService emailService;
 
     @BeforeEach
-    public void setUp() throws Exception {
-        mvc = MockMvcBuilders.standaloneSetup(new UserController( userService,
+    public void setUp() {
+        mvc = MockMvcBuilders.standaloneSetup(new UserController(userService,
                 passwordEncoder, modelMapper, tokenUtil, emailService)).build();
     }
 
 
-    @Test
-    @WithMockUser(username = "arzuman.kochoyan@mail.ru", password = "Arzuman", roles = {"USER", "ADMIN"})
-    public void getUser() throws Exception {
+    // @Test
+    // @WithMockUser(username = "arzuman.kochoyan@mail.ru", password = "Arzuman", roles = {"USER", "ADMIN"})
+    // public void getUser() throws Exception {
 
-        mvc.perform(MockMvcRequestBuilders.get("/user")
-                .contentType(MediaType.ALL))
-                //  .andExpect(status().isOk())
-                .andDo(MockMvcResultHandlers.print());
+    //     mvc.perform(MockMvcRequestBuilders.get("/user")
+    //             .contentType(MediaType.ALL))
+    //             //  .andExpect(status().isOk())
+    //             .andDo(MockMvcResultHandlers.print());
 
-    }
+    // }
 
     @Test
     public void auth_Ok() throws Exception {
@@ -171,4 +158,37 @@ class UserControllerTest {
 
     }
 
+    @Test
+    void forgotPass_Ok() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/user/forgotPassword?email=arzuman.kochoyan98@mail.ru")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+
+    }
+
+    @Test
+    void forgotPass_ClientError() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/user/forgotPassword?email=ClientError@mail.ru")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().is4xxClientError())
+                .andDo(MockMvcResultHandlers.print());
+
+    }
+
+    @Test
+    void reset_Ok() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/user/forgotPassword/reset?email=arzuman.kochoyan98@mail.ru&otp=6b1bad5e-2198-4dd7-be38-4799c3661049")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+    }
+
+    @Test
+    void reset_ClientError() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/user/forgotPassword/reset?email=arzuman.kochoyan98@mail.ru&otp=ClientError")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().is4xxClientError())
+                .andDo(MockMvcResultHandlers.print());
+    }
 }

@@ -14,20 +14,16 @@ public class RatingService {
 
 
     public double findAllByToId(long id) {
-
         List<Rating> all = ratingRepository.findAllByToId(id);
         return all.stream().mapToDouble(Rating::getNumber).average().orElse(3);
     }
 
     public Rating save(Rating rating) {
-
         return ratingRepository.save(rating);
     }
 
     public Rating getByToIdAndFromId(long toId, long fromId) {
 
         return ratingRepository.getByToIdAndFromId(toId, fromId);
-
     }
-
 }

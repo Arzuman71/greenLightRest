@@ -1,9 +1,10 @@
 package am.greenlight.greenlight.controller;
 
+import am.greenlight.greenlight.service.CarService;
 import am.greenlight.greenlight.service.ItemService;
-import am.greenlight.greenlight.service.MainService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,38 +16,32 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class MainControllerTest {
+class ItemControllerTest {
 
     private MockMvc mvc;
     @Autowired
-    private MainService mainService;
-    @Autowired
     private ItemService itemService;
+    @Autowired
+    private CarService carService;
+    @Autowired
+    private ModelMapper modelMapper;
+
 
     @BeforeEach
     public void setUp() {
-        mvc = MockMvcBuilders.standaloneSetup(new MainController(mainService, itemService)).build();
+        mvc = MockMvcBuilders.standaloneSetup(new ItemController(itemService, carService, modelMapper)).build();
     }
 
     @Test
-    void mainPage_Ok() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/"))
-                .andDo(print())
-                .andExpect(status().isOk());
-
-    }
-
-    @Test
-    void getImage_Ok() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/image?name=17.png")
-                .contentType(MediaType.IMAGE_JPEG_VALUE))
+    void findById_Ok() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/item/3")
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }
+
 
 }

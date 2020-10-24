@@ -191,7 +191,7 @@ public class UserController {
 
     @GetMapping("/user/forgotPassword/reset")
     public ResponseEntity<ConfirmEmailDto> reset(@RequestParam("email") String email,
-                                                 @RequestParam("token") String otp) {
+                                                 @RequestParam("otp") String otp) {
         ConfirmEmailDto confirmEmail = new ConfirmEmailDto();
 
         Optional<User> byUsername = userService.findByEmail(email);
@@ -203,7 +203,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(confirmEmail);
     }
 
-    // front end-ը պետք է տա օտպ, էմաիլը
+    // front end-ը պետք է տա օտպը ու էմաիլը
     @PostMapping("/user/forgotPassword/change")
     public ResponseEntity.BodyBuilder changePass(@ModelAttribute ForgotPasswordDto forgotPass) {
 

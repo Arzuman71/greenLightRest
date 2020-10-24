@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +33,10 @@ public class ItemService {
 
     public Item getOne(long id) {
         return itemRepo.getOne(id);
+    }
+
+    public Optional<Item> findById(long id) {
+        return itemRepo.findById(id);
     }
 
     public List<Item> findAllByUserIdAndStatus(long id, Status state) {

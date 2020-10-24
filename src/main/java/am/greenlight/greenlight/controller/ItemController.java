@@ -16,6 +16,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -44,9 +45,12 @@ public class ItemController {
 
     //ok
     @GetMapping("/item/{id}")
-    public ResponseEntity<ItemResDto> getOne(@PathVariable("id") Long id) {
-        Item item = itemService.getOne(id);
-        ItemResDto itemResDto = modelMapper.map(item, ItemResDto.class);
+    public ResponseEntity<ItemResDto> findById(@PathVariable("id") Long id) {
+        ItemResDto itemResDto = new ItemResDto();
+        Optional<Item> item = itemService.findById(id);
+        if (item.isPresent()) {
+            itemResDto = modelMapper.map(item, ItemResDto.class);
+        }
         return ResponseEntity.ok(itemResDto);
     }
 
@@ -70,7 +74,7 @@ public class ItemController {
     //ok
     @PutMapping("/item/change")
     public ResponseEntity<ItemReqDto> changeItem(@RequestBody ItemReqDto itemReqDto,
-                                                         @AuthenticationPrincipal CurrentUser currentUser) {
+                                                 @AuthenticationPrincipal CurrentUser currentUser) {
         long carId = itemReqDto.getCarId();
         if (carId != 0) {
             Car car = carService.getOne(carId);
@@ -83,7 +87,7 @@ public class ItemController {
         return ResponseEntity.ok(itemReqDto);
     }
 
-    //ok
+    //getOne or findById
     @DeleteMapping("/item/{id}")
     public ResponseEntity.BodyBuilder delete(
             @PathVariable("id") long id,

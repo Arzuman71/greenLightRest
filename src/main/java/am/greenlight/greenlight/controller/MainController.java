@@ -50,7 +50,6 @@ public class MainController {
 
 
     @GetMapping(value = "/image", produces = MediaType.IMAGE_JPEG_VALUE)
-
     public @ResponseBody
     byte[] getImage(@RequestParam("name") String imageName) {
 

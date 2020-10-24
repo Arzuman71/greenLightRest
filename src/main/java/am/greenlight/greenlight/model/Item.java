@@ -2,6 +2,7 @@ package am.greenlight.greenlight.model;
 
 import am.greenlight.greenlight.model.enumForItem.Type;
 import am.greenlight.greenlight.model.enumForUser.Status;
+import am.greenlight.greenlight.model.forTheFuture.ParcelType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -44,7 +45,7 @@ public class Item {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime deletedDate;
 
-
     // for the future
-    // private ParcelType parcelType;
+    //@Enumerated(value = EnumType.STRING)
+    //private ParcelType parcelType;
 }

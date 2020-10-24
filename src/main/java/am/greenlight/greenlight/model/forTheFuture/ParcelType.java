@@ -1,9 +1,9 @@
 package am.greenlight.greenlight.model.forTheFuture;
 
 public enum ParcelType {
-    GLASS,
-    ALIVE,
-    PARCEL,
     DOCUMENT,
+    PARCEL,
+    ALIVE,
+    GLASS,
     OTHER
 }

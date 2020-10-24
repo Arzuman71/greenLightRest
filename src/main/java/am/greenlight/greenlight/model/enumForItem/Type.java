@@ -4,7 +4,5 @@ public enum Type {
     CAR_DRIVER,
     TRUCK_DRIVER,
     PASSENGER,
-    SEEKER_TRUCK,
-    FINISHED,
-    DELETED
+    SEEKER_TRUCK
 }
