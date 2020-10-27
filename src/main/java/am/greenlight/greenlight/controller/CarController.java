@@ -18,21 +18,22 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/car")
 public class CarController {
 
     private final CarService carService;
     private final ModelMapper modelMapper;
 
 
-    @GetMapping("/cars")
+    @GetMapping("cars")
     public ResponseEntity<List<Car>> cars(@AuthenticationPrincipal CurrentUser currentUser) {
         User user = currentUser.getUser();
         List<Car> cars = carService.findCarByUserIdAndStatus(user.getId(), Status.ACTIVE);
         return ResponseEntity.ok(cars);
     }
 
-    @GetMapping("/car/{id}")
-    public ResponseEntity<Car> getOne(@PathVariable("id") int id) {
+    @GetMapping("{carId}")
+    public ResponseEntity<Car> getOne(@PathVariable("carId") int id) {
         Car car = carService.getOne(id);
         if (car != null) {
             return ResponseEntity.ok(car);
@@ -41,16 +42,15 @@ public class CarController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
     }
 
-    @PostMapping("/car/save")
-    public ResponseEntity<Car> saveCar(@ModelAttribute CarRequestDto carReq, @AuthenticationPrincipal CurrentUser currentUser) {
+    @PostMapping("save")
+    public ResponseEntity<Car> save(@ModelAttribute CarRequestDto carReq, @AuthenticationPrincipal CurrentUser currentUser) {
         Car car = modelMapper.map(carReq, Car.class);
         car.setUser(currentUser.getUser());
         car = carService.save(car);
         return ResponseEntity.ok(car);
     }
 
-
-    @PutMapping("/car/Image")
+    @PutMapping("image")
     public ResponseEntity.BodyBuilder changeCarImg(@RequestParam("id") int id,
                                                    @RequestParam("img") MultipartFile file) {
         Car car = carService.getOne(id);
@@ -59,7 +59,7 @@ public class CarController {
 
     }
 
-    @DeleteMapping("/car")
+    @DeleteMapping("")
     public ResponseEntity.BodyBuilder deleteCar(@RequestParam("id") int id) {
         Car car = carService.getOne(id);
         car.setStatus(Status.ARCHIVED);

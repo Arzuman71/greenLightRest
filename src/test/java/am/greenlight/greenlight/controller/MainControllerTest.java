@@ -34,7 +34,7 @@ class MainControllerTest {
     }
 
     @Test
-    void mainPage_Ok() throws Exception {
+    void items_Ok() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/"))
                 .andDo(print())
                 .andExpect(status().isOk());

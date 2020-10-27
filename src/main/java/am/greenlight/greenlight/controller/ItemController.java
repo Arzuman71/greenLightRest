@@ -10,6 +10,7 @@ import am.greenlight.greenlight.service.CarService;
 import am.greenlight.greenlight.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -20,13 +21,14 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/item")
 public class ItemController {
     private final ItemService itemService;
     private final CarService carService;
     private final ModelMapper modelMapper;
 
 
-    @PostMapping("/item")
+    @PostMapping("")
     public ResponseEntity<Object> save(@ModelAttribute ItemReqDto itemReqDto,
                                        @AuthenticationPrincipal CurrentUser currentUser) {
         Car car = null;
@@ -43,9 +45,8 @@ public class ItemController {
         return ResponseEntity.ok(item);
     }
 
-    //ok
-    @GetMapping("/item/{id}")
-    public ResponseEntity<ItemResDto> findById(@PathVariable("id") Long id) {
+    @GetMapping("{itemId}")
+    public ResponseEntity<ItemResDto> findById(@PathVariable("itemId") Long id) {
         ItemResDto itemResDto = new ItemResDto();
         Optional<Item> item = itemService.findById(id);
         if (item.isPresent()) {
@@ -54,7 +55,7 @@ public class ItemController {
         return ResponseEntity.ok(itemResDto);
     }
 
-    @GetMapping("/item/active")
+    @GetMapping("active")
     public ResponseEntity<List<Item>> getItemsActive(@AuthenticationPrincipal CurrentUser currentUser) {
         long id = currentUser.getUser().getId();
         List<Item> items = itemService.findAllByUserIdAndStatus(id, Status.ACTIVE);
@@ -62,7 +63,7 @@ public class ItemController {
         return ResponseEntity.ok(items);
     }
 
-    @GetMapping("/item/archived")
+    @GetMapping("archived")
     public ResponseEntity<List<Item>> getItemsArchived(@AuthenticationPrincipal CurrentUser currentUser) {
         long id = currentUser.getUser().getId();
         List<Item> items = itemService.findAllByUserIdAndStatus(id, Status.ARCHIVED);
@@ -72,7 +73,7 @@ public class ItemController {
 
 
     //ok
-    @PutMapping("/item/change")
+    @PutMapping("change")
     public ResponseEntity<ItemReqDto> changeItem(@RequestBody ItemReqDto itemReqDto,
                                                  @AuthenticationPrincipal CurrentUser currentUser) {
         long carId = itemReqDto.getCarId();
@@ -88,9 +89,9 @@ public class ItemController {
     }
 
     //getOne or findById
-    @DeleteMapping("/item/{id}")
+    @DeleteMapping("{itemId}")
     public ResponseEntity.BodyBuilder delete(
-            @PathVariable("id") long id,
+            @PathVariable("itemId") long id,
             CurrentUser currentUser) {
 
         Item item = itemService.getOne(id);

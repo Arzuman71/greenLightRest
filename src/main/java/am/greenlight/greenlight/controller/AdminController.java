@@ -14,20 +14,21 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/user")
 public class AdminController {
 
     private final UserService userService;
     private final ItemService itemService;
 
-    @GetMapping("/user/find")
+    @GetMapping("find")
     public ResponseEntity<List<User>> findUserByNameAndSurname(@ModelAttribute User user) {
         List<User> users = userService.findByNameAndSurname(user.getName(), user.getSurname());
         return ResponseEntity.ok(users);
     }
 
 
-    @DeleteMapping("/user/{id}")
-    public ResponseEntity<String> deleteUserByAdmin(@PathVariable("id") long id) {
+    @DeleteMapping("{userId}")
+    public ResponseEntity<String> deleteUserByAdmin(@PathVariable("userId") long id) {
         User userDelete = userService.getOne(id);
         userDelete.setStatus(Status.DELETED);
         userService.save(userDelete);

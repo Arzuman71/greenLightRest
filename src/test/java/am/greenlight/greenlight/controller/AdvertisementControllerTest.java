@@ -30,8 +30,7 @@ class AdvertisementControllerTest {
     public void setUp() {
         mvc = MockMvcBuilders.standaloneSetup(new AdvertisementController(advertisementService)).build();
     }
-
-
+    
     @Test
     void findAll_Ok() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/advertisements")

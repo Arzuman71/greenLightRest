@@ -34,9 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class UserControllerTest {
 
-
     private MockMvc mvc;
-
     @Autowired
     private UserService userService;
     @Autowired
@@ -119,7 +117,7 @@ class UserControllerTest {
         objectNode.put("surname", "poxosya");
         objectNode.put("password", "poxosya");
         objectNode.put("confirmPassword", "poxosya");
-        objectNode.put("email", "arzuman.kochoyan98@mail.ru");
+        objectNode.put("email", "arzuman.ClientError");
         objectNode.put("gender", "MALE");
 
         mvc.perform(post("/user")
@@ -148,7 +146,7 @@ class UserControllerTest {
     public void activate_ClientError() throws Exception {
         ObjectNode objectNode = new ObjectMapper().createObjectNode();
         objectNode.put("email", "arzuman.kochoyan@mail.ru");
-        objectNode.put("otp", "Error");
+        objectNode.put("otp", "ClientError");
 
         mvc.perform(MockMvcRequestBuilders.put("/user/activate")
                 .contentType(MediaType.APPLICATION_JSON)

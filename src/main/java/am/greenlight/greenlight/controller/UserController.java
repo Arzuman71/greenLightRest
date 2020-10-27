@@ -3,7 +3,6 @@ package am.greenlight.greenlight.controller;
 import am.greenlight.greenlight.dto.*;
 import am.greenlight.greenlight.model.User;
 import am.greenlight.greenlight.model.enumForUser.Status;
-import am.greenlight.greenlight.repository.ItemRepo;
 import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.security.JwtTokenUtil;
 import am.greenlight.greenlight.service.EmailService;
@@ -28,6 +27,7 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@RequestMapping("/user")
 public class UserController {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
@@ -36,8 +36,7 @@ public class UserController {
     private final EmailService emailService;
 
 
-    //ok
-    @GetMapping("/user")
+    @GetMapping("")
     public ResponseEntity<UserGetDto> getUser(@AuthenticationPrincipal CurrentUser currentUser) {
         User user = currentUser.getUser();
         UserGetDto userGetDto = modelMapper.map(user, UserGetDto.class);
@@ -45,8 +44,7 @@ public class UserController {
         return ResponseEntity.ok(userGetDto);
     }
 
-    //ok
-    @PostMapping("user/auth")
+    @PostMapping("auth")
     public ResponseEntity<Object> auth(@RequestBody AuthRequestDto authRequest) {
         Optional<User> byEmail = userService.findByEmail(authRequest.getEmail());
 
@@ -61,7 +59,7 @@ public class UserController {
 
     }
 
-    @PostMapping("/user")
+    @PostMapping("")
     public ResponseEntity<Integer> register(@Valid @RequestBody UserRegisterDto userRegister,
                                             BindingResult result, Locale locale) {
         if (!result.hasErrors() && userRegister.getPassword().equals(userRegister.getConfirmPassword())) {
@@ -95,7 +93,7 @@ public class UserController {
                 "activate your account by clicking on:" + link);
     }
 
-    @PutMapping("/user/activate")
+    @PutMapping("activate")
     public ResponseEntity<String> activate(@RequestBody ActivateDto ActivateDto) {
 
         Optional<User> byEmail = userService.findByEmail(ActivateDto.getEmail());
@@ -112,9 +110,9 @@ public class UserController {
     }
 
     //ok
-    @PutMapping("/user/about")
-    public ResponseEntity<String> addAboutMe(@AuthenticationPrincipal CurrentUser currentUser,
-                                             @NonNull @RequestBody String about) {
+    @PutMapping("about")
+    public ResponseEntity<String> changeAbout(@AuthenticationPrincipal CurrentUser currentUser,
+                                              @NonNull @RequestBody String about) {
 
         User user = currentUser.getUser();
         user.setAbout(about);
@@ -122,9 +120,9 @@ public class UserController {
         return ResponseEntity.ok("ok");
     }
 
-    @PutMapping("/user/img")
-    public ResponseEntity.BodyBuilder saveUserImg(@AuthenticationPrincipal CurrentUser currentUser,
-                                                  @RequestParam("picUrl") MultipartFile file) {
+    @PutMapping("img")
+    public ResponseEntity.BodyBuilder changeImg(@AuthenticationPrincipal CurrentUser currentUser,
+                                                @RequestParam("picUrl") MultipartFile file) {
 
         if (userService.saveUserImg(currentUser.getUser(), file)) {
             return ResponseEntity.ok();
@@ -133,7 +131,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED);
     }
 
-    @PutMapping("/user")
+    @PutMapping("")
     public ResponseEntity.BodyBuilder change(
             @AuthenticationPrincipal CurrentUser currentUser,
             @ModelAttribute UserChangeDto userChangeDto,
@@ -149,9 +147,9 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED);
     }
 
-    @PutMapping("/user/password/change")
-    public ResponseEntity<String> userPasswordChange(@AuthenticationPrincipal CurrentUser currentUser,
-                                                     @ModelAttribute PasswordChangeDto pasChange, BindingResult result) {
+    @PutMapping("password/change")
+    public ResponseEntity<String> passwordChange(@AuthenticationPrincipal CurrentUser currentUser,
+                                                 @ModelAttribute PasswordChangeDto pasChange, BindingResult result) {
         User user = currentUser.getUser();
 
         if (!result.hasErrors()
@@ -165,7 +163,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("incompatibility");
     }
 
-    @DeleteMapping("/user")
+    @DeleteMapping("")
     public ResponseEntity<String> deleteUser(@AuthenticationPrincipal CurrentUser currentUser) {
         User user = currentUser.getUser();
         user.setStatus(Status.ARCHIVED);
@@ -174,7 +172,7 @@ public class UserController {
 
     }
 
-    @GetMapping("/user/forgotPassword")
+    @GetMapping("forgotPassword")
     public ResponseEntity<String> forgotPass(@RequestParam("email") String email) {
         Optional<User> byEmail = userService.findByEmail(email);
         if (byEmail.isPresent() && byEmail.get().getStatus() == Status.ACTIVE) {
@@ -189,7 +187,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("this email not existent");
     }
 
-    @GetMapping("/user/forgotPassword/reset")
+    @GetMapping("forgotPassword/reset")
     public ResponseEntity<ConfirmEmailDto> reset(@RequestParam("email") String email,
                                                  @RequestParam("otp") String otp) {
         ConfirmEmailDto confirmEmail = new ConfirmEmailDto();
@@ -204,7 +202,7 @@ public class UserController {
     }
 
     // front end-ը պետք է տա օտպը ու էմաիլը
-    @PostMapping("/user/forgotPassword/change")
+    @PostMapping("forgotPassword/change")
     public ResponseEntity.BodyBuilder changePass(@ModelAttribute ForgotPasswordDto forgotPass) {
 
         Optional<User> byEmail = userService.findByEmail(forgotPass.getEmail());

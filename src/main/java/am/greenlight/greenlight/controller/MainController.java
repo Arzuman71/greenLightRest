@@ -30,7 +30,7 @@ public class MainController {
 
 
     @GetMapping("/")
-    public ResponseEntity<PageResDto> mainPage(ItemSearchDto itemSearchDto,
+    public ResponseEntity<PageResDto> items(ItemSearchDto itemSearchDto,
                                                @RequestParam(value = "page", defaultValue = "1") int page,
                                                @RequestParam(value = "size", defaultValue = "10") int size) {
 

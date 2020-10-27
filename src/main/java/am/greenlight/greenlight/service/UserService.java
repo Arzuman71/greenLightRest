@@ -2,6 +2,7 @@ package am.greenlight.greenlight.service;
 
 import am.greenlight.greenlight.model.User;
 import am.greenlight.greenlight.repository.UserRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -14,21 +15,18 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
+
 public class UserService {
 
     @Value("${file.upload.dir}")
     private String uploadDir;
 
-    @Autowired
-    private UserRepo userRepo;
-    @Autowired
-    private PreferenceService prefService;
+    private final UserRepo userRepo;
+    private final PreferenceService prefService;
 
 
-    public UserService(UserRepo userRepository, PreferenceService prefService) {
-        this.userRepo = userRepository;
-        this.prefService = prefService;
-    }
+
 
     public User save(User user) {
         if (user.getPreference() == null) {

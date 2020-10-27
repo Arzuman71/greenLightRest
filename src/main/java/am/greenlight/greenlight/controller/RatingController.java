@@ -13,14 +13,15 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/rating")
 public class RatingController {
 
     private final RatingService ratingService;
     private final UserService userService;
 
 
-    @PostMapping("/rating")
-    public ResponseEntity<String> addRating(@AuthenticationPrincipal CurrentUser currentUser,
+    @PostMapping("")
+    public ResponseEntity<String>  addOrChangeRating(@AuthenticationPrincipal CurrentUser currentUser,
                                             @ModelAttribute RatingRequestDto ratingReq) {
 
         long fromId = currentUser.getUser().getId();
@@ -36,8 +37,8 @@ public class RatingController {
         return ResponseEntity.ok("ok");
     }
 
-    @GetMapping("/rating/{id}")
-    public ResponseEntity<Double> findAllByToId(@PathVariable("id") int id) {
+    @GetMapping("{toId}")
+    public ResponseEntity<Double> findAllByToId(@PathVariable("toId") int id) {
         double rating = ratingService.findAllByToId(id);
             return ResponseEntity.ok(rating);
 

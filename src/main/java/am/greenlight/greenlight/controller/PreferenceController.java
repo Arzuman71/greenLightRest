@@ -8,20 +8,18 @@ import am.greenlight.greenlight.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/preference")
 public class PreferenceController {
 
 
     private final PreferenceService prefService;
     private final UserService userService;
 
-    @PostMapping("/preference")
+    @PostMapping("")
     public ResponseEntity.BodyBuilder save(
             @AuthenticationPrincipal CurrentUser currentUser,
             @RequestBody Preference newPreference) {
