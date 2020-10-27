@@ -52,17 +52,14 @@ class UserControllerTest {
                 passwordEncoder, modelMapper, tokenUtil, emailService)).build();
     }
 
-
-    // @Test
-    // @WithMockUser(username = "arzuman.kochoyan@mail.ru", password = "Arzuman", roles = {"USER", "ADMIN"})
-    // public void getUser() throws Exception {
-
-    //     mvc.perform(MockMvcRequestBuilders.get("/user")
-    //             .contentType(MediaType.ALL))
-    //             //  .andExpect(status().isOk())
-    //             .andDo(MockMvcResultHandlers.print());
-
-    // }
+    @Test
+    @WithMockUser(username = "arzuman.kochoyan@mail.ru", roles = {"USER", "ADMIN"})
+    public void getUser() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/user")
+                .contentType(MediaType.APPLICATION_JSON))
+                //  .andExpect(status().isOk())
+                .andDo(MockMvcResultHandlers.print());
+    }
 
     @Test
     public void auth_Ok() throws Exception {
