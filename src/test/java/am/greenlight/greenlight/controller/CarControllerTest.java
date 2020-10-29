@@ -1,10 +1,5 @@
 package am.greenlight.greenlight.controller;
 
-import am.greenlight.greenlight.dto.ItemReqDto;
-import am.greenlight.greenlight.model.Car;
-import am.greenlight.greenlight.model.Item;
-import am.greenlight.greenlight.model.enumForUser.Status;
-import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.service.CarService;
 import am.greenlight.greenlight.service.ItemService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,48 +10,37 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.context.support.WithUserDetails;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.WebApplicationContext;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class ItemControllerTest {
+class CarControllerTest {
 
     private MockMvc mvc;
     private MockMvc mvc2;
     @Autowired
-    private ItemService itemService;
-    @Autowired
     private CarService carService;
     @Autowired
     private ModelMapper modelMapper;
+
+
     @Autowired
     private WebApplicationContext context;
 
     @BeforeEach
     public void setUp() {
         mvc = MockMvcBuilders
-                .standaloneSetup(new ItemController(itemService, carService, modelMapper))
+                .standaloneSetup(new CarController(carService, modelMapper))
                 .build();
         mvc2 = MockMvcBuilders
                 .webAppContextSetup(context)
@@ -65,43 +49,35 @@ class ItemControllerTest {
     }
 
     @Test
-    void findById_Ok() throws Exception {
-        mvc2.perform(MockMvcRequestBuilders.get("/item/3")
+    @WithUserDetails("arzuman.@mail.ru")
+    void cars_Ok() throws Exception {
+        mvc2.perform(MockMvcRequestBuilders.get("/car/cars")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }
 
     @Test
-    @WithUserDetails("arzuman.@mail.ru")
-    void getItemsActive_Ok() throws Exception {
-        mvc2.perform(MockMvcRequestBuilders.get("/item/active")
+    void getOne_Ok() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/car/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }
 
-    @Test
-    @WithUserDetails("arzuman.@mail.ru")
-    void getItemsArchived() throws Exception {
-        mvc2.perform(MockMvcRequestBuilders.get("/item/archived")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print());
-    }
 
     @Test
     @WithUserDetails("arzuman.@mail.ru")
     void save_Ok() {
         ObjectNode objectNode = new ObjectMapper().createObjectNode();
-        objectNode.put("carId", -1);
-        objectNode.put("outset", "fr");
-        objectNode.put("end", "wh");
-        objectNode.put("startDate", String.valueOf(LocalDateTime.now()));
-        objectNode.put("type", "CAR_DRIVER");
-
+        objectNode.put("carType", "CAR");
+        objectNode.put("carBrand", "Brand");
+        objectNode.put("carModel", "Model");
+        objectNode.put("carNumber", "17");
+        objectNode.put("color", "BLACK");
+        objectNode.put("year", "1998-10-29");
         try {
-            mvc2.perform(MockMvcRequestBuilders.post("/item")
+            mvc2.perform(MockMvcRequestBuilders.post("/car")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectNode.toString()))
                     .andExpect(MockMvcResultMatchers.status().isOk())
@@ -110,16 +86,15 @@ class ItemControllerTest {
             e.printStackTrace();
         }
     }
-
-    @Test
+@Test
     @WithUserDetails("arzuman.@mail.ru")
     void save_ClientError() {
         ObjectNode objectNode = new ObjectMapper().createObjectNode();
-        objectNode.put("carId", -1);
-        objectNode.put("startDate", "2020-10-29T01:15:21.641");
-        objectNode.put("type", "ClientError");
+        objectNode.put("carType", "CAR");
+        objectNode.put("carBrand", "ClientError");
+        objectNode.put("color", "BLACK");
         try {
-            mvc2.perform(MockMvcRequestBuilders.post("/item")
+            mvc2.perform(MockMvcRequestBuilders.post("/car")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectNode.toString()))
                     .andExpect(MockMvcResultMatchers.status().is4xxClientError())
@@ -129,4 +104,11 @@ class ItemControllerTest {
         }
     }
 
+    @Test
+    void changeCarImg() {
+    }
+
+    @Test
+    void deleteCar() {
+    }
 }

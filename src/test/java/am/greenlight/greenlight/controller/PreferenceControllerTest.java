@@ -1,31 +1,20 @@
 package am.greenlight.greenlight.controller;
 
-import am.greenlight.greenlight.dto.RatingRequestDto;
-import am.greenlight.greenlight.model.Rating;
-import am.greenlight.greenlight.security.CurrentUser;
-import am.greenlight.greenlight.security.JwtTokenUtil;
-import am.greenlight.greenlight.service.EmailService;
 import am.greenlight.greenlight.service.RatingService;
 import am.greenlight.greenlight.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -34,50 +23,37 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class RatingControllerTest {
-
+class PreferenceControllerTest {
 
     private MockMvc mvc;
-    private MockMvc mvc2;
 
-    @Autowired
-    private RatingService ratingService;
-    @Autowired
-    private UserService userService;
+
     @Autowired
     private WebApplicationContext context;
 
 
     @BeforeEach
     public void setUp() {
+
         mvc = MockMvcBuilders
-                .standaloneSetup(new RatingController(ratingService, userService)).build();
-        mvc2 = MockMvcBuilders
                 .webAppContextSetup(context)
                 .apply(springSecurity())
                 .build();
     }
 
     @Test
-    void findAllByToId_Ok() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/rating/46")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andDo(MockMvcResultHandlers.print());
-    }
-
-    @Test
     @WithUserDetails("arzuman.kochoyan@mail.ru")
-    public void addOrChangeRating_Ok() throws Exception {
+    void save_Ok() {
         ObjectNode objectNode = new ObjectMapper().createObjectNode();
-        objectNode.put("number", 2);
-        objectNode.put("toId", 46);
 
-        mvc2.perform(MockMvcRequestBuilders.post("/rating")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectNode.toString()))
-                .andExpect(status().isOk())
-                .andDo(MockMvcResultHandlers.print());
+        try {
+            mvc.perform(MockMvcRequestBuilders.post("/preference")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(objectNode.toString()))
+                    .andExpect(status().isOk())
+                    .andDo(MockMvcResultHandlers.print());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
 }

@@ -14,8 +14,10 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,22 +29,23 @@ public class ItemController {
     private final CarService carService;
     private final ModelMapper modelMapper;
 
-
     @PostMapping("")
-    public ResponseEntity<Object> save(@ModelAttribute ItemReqDto itemReqDto,
+    public ResponseEntity<Object> save(@Valid @RequestBody ItemReqDto itemReqDto, BindingResult result,
                                        @AuthenticationPrincipal CurrentUser currentUser) {
-        Car car = null;
-        long carId = itemReqDto.getCarId();
-        if (carId != 0) {
-            car = carService.getOne(carId);
-            if (!(car.getUser().equals(currentUser.getUser()))) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
+
+        if (!result.hasErrors()) {
+            Optional<Car> car = carService.findById(itemReqDto.getCarId());
+            Item item = modelMapper.map(itemReqDto, Item.class);
+            item.setCar(null);
+            if (car.isPresent() && (car.get().getUser().equals(currentUser.getUser()))) {
+                item.setCar(car.get());
             }
+            item.setUser(currentUser.getUser());
+            item = itemService.save(item);
+            return ResponseEntity.ok(item);
         }
-        Item item = modelMapper.map(itemReqDto, Item.class);
-        item.setCar(car);
-        item = itemService.save(item);
-        return ResponseEntity.ok(item);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
+
     }
 
     @GetMapping("{itemId}")
@@ -59,7 +62,6 @@ public class ItemController {
     public ResponseEntity<List<Item>> getItemsActive(@AuthenticationPrincipal CurrentUser currentUser) {
         long id = currentUser.getUser().getId();
         List<Item> items = itemService.findAllByUserIdAndStatus(id, Status.ACTIVE);
-
         return ResponseEntity.ok(items);
     }
 
@@ -67,10 +69,8 @@ public class ItemController {
     public ResponseEntity<List<Item>> getItemsArchived(@AuthenticationPrincipal CurrentUser currentUser) {
         long id = currentUser.getUser().getId();
         List<Item> items = itemService.findAllByUserIdAndStatus(id, Status.ARCHIVED);
-
         return ResponseEntity.ok(items);
     }
-
 
     //ok
     @PutMapping("change")

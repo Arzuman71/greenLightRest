@@ -45,10 +45,10 @@ public class ItemService {
 
 
     public Page<Item> itemSearch(PageRequest pageRequest, ItemSearchDto itemSearchDto) {
-      //  itemSearchDto.setDateFrom(LocalDateTime.of(2020, 9, 29, 00, 00, 00));
-      //  itemSearchDto.setDateTo(LocalDateTime.of(2021, 8, 30, 00, 00, 00));
+        //  itemSearchDto.setDateFrom(LocalDateTime.of(2020, 9, 29, 00, 00, 00));
+        //  itemSearchDto.setDateTo(LocalDateTime.of(2021, 8, 30, 00, 00, 00));
 
-        return itemRepo.itemSearch(itemSearchDto.getFrom(), itemSearchDto.getWhere(), itemSearchDto.getType(),
+        return itemRepo.itemSearch(itemSearchDto.getOutset(), itemSearchDto.getEnd(), itemSearchDto.getType(),
                 itemSearchDto.getDateFrom(), itemSearchDto.getDateTo(), pageRequest);
     }
 }

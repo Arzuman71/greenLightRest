@@ -18,10 +18,10 @@ import java.time.LocalDateTime;
 public class ItemReqDto {
 
     private long id;
-    @NotBlank(message = "fromIs is required")
-    private String from;
-    @NotBlank(message = "whereIs is required")
-    private String where;
+    @NotBlank(message = "outset is required")
+    private String outset;
+    @NotBlank(message = "end is required")
+    private String end;
     @NotNull(message = "Parameter Date Unadjusted can not be blank or null")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime startDate;

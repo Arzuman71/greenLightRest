@@ -13,8 +13,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class ItemSearchDto {
-    private String from;
-    private String where;
+    private String outset;
+    private String end;
     private Type type;
     private LocalDateTime dateFrom;
     private LocalDateTime dateTo;

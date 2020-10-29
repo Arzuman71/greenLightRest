@@ -26,8 +26,6 @@ public class UserService {
     private final PreferenceService prefService;
 
 
-
-
     public User save(User user) {
         if (user.getPreference() == null) {
             user.setPreference(prefService.getOne(1));
@@ -36,7 +34,6 @@ public class UserService {
     }
 
     public Optional<User> findByEmail(String email) {
-
         return userRepo.findByEmail(email);
     }
 
@@ -46,9 +43,7 @@ public class UserService {
         try {
             String name = UUID.randomUUID().toString().replace("-", "") + file.getOriginalFilename();
             File picUrl = new File(uploadDir, name);
-
             file.transferTo(picUrl);
-
             user.setPicUrl(name);
         } catch (IOException e) {
             e.printStackTrace();

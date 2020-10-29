@@ -20,7 +20,7 @@ public class PreferenceController {
     private final UserService userService;
 
     @PostMapping("")
-    public ResponseEntity.BodyBuilder save(
+    public ResponseEntity<String> save(
             @AuthenticationPrincipal CurrentUser currentUser,
             @RequestBody Preference newPreference) {
 
@@ -28,6 +28,6 @@ public class PreferenceController {
         prefService.save(newPreference, user.getPreference());
         user.setPreference(newPreference);
         userService.save(user);
-        return ResponseEntity.ok();
+        return ResponseEntity.ok("OK");
     }
 }

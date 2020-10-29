@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -42,6 +43,10 @@ public class CarService {
 
     public Car getOne(long id) {
         return carRepository.getOne(id);
+    }
+
+    public Optional<Car> findById(long id) {
+        return carRepository.findById(id);
     }
 
     public List<Car> findCarByUserId(long id) {

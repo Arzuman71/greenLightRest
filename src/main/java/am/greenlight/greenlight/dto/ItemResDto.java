@@ -18,8 +18,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 public class ItemResDto {
-    private String from;
-    private String where;
+    private String outset;
+    private String end;
     private LocalDateTime deadline;
     private String price;
     @ManyToOne

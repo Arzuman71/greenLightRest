@@ -19,8 +19,8 @@ public interface ItemRepo extends JpaRepository<Item, Long> {
     List<Item> findAllByUserIdAndStatus(long id, Status status);
 
     @Query("SELECT i FROM Item i" +
-            " WHERE i.from = ?1 AND i.where = ?2 AND" +
+            " WHERE i.outset = ?1 AND i.end = ?2 AND" +
             " i.type = ?3 AND i.startDate >= ?4 AND i.startDate <= ?5")
-    Page<Item> itemSearch(String from, String Where, Type type, LocalDateTime Date1, LocalDateTime Date2, PageRequest pageRequest);
+    Page<Item> itemSearch(String outset, String end, Type type, LocalDateTime Date1, LocalDateTime Date2, PageRequest pageRequest);
 
 }

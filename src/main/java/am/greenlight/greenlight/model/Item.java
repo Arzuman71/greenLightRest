@@ -1,5 +1,6 @@
 package am.greenlight.greenlight.model;
 
+import am.greenlight.greenlight.config.I18nConfig;
 import am.greenlight.greenlight.model.enumForItem.Type;
 import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.model.forTheFuture.ParcelType;
@@ -22,20 +23,24 @@ import java.time.LocalDateTime;
 public class Item {
 
     @Id
-    @GeneratedValue()
+    @GeneratedValue
     private long id;
-    private String from;
-    private String where;
+    private String outset;
+    private String end;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime startDate;
     private String price;
     @ManyToOne
     private User user;
+    // for the future
+    @Enumerated(value = EnumType.STRING)
+    private ParcelType parcelType;
+
     @ManyToOne
     private Car car;
     @Enumerated(value = EnumType.STRING)
     private Type type;
-    private int numberOfPassengers;
+    private int numberOfPassengers;//number_of_passengers
     @Enumerated(value = EnumType.STRING)
     private Status status = Status.ACTIVE;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
@@ -45,7 +50,5 @@ public class Item {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime deletedDate;
 
-    // for the future
-    //@Enumerated(value = EnumType.STRING)
-    //private ParcelType parcelType;
+
 }

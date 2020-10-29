@@ -11,10 +11,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -33,21 +36,20 @@ public class CarController {
     }
 
     @GetMapping("{carId}")
-    public ResponseEntity<Car> getOne(@PathVariable("carId") int id) {
-        Car car = carService.getOne(id);
-        if (car != null) {
-            return ResponseEntity.ok(car);
-        }
-
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+    public ResponseEntity<Optional<Car>> getOne(@PathVariable("carId") int id) {
+        return ResponseEntity.ok(carService.findById(id));
     }
 
-    @PostMapping("save")
-    public ResponseEntity<Car> save(@ModelAttribute CarRequestDto carReq, @AuthenticationPrincipal CurrentUser currentUser) {
-        Car car = modelMapper.map(carReq, Car.class);
-        car.setUser(currentUser.getUser());
-        car = carService.save(car);
-        return ResponseEntity.ok(car);
+    @PostMapping("")
+    public ResponseEntity<Car> save(@Valid @RequestBody CarRequestDto carReq,
+                                    BindingResult result, @AuthenticationPrincipal CurrentUser currentUser) {
+        if (!result.hasErrors()) {
+            Car car = modelMapper.map(carReq, Car.class);
+            car.setUser(currentUser.getUser());
+            car = carService.save(car);
+            return ResponseEntity.ok(car);
+        }
+        return ResponseEntity.status(403).body(null);
     }
 
     @PutMapping("image")

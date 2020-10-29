@@ -96,7 +96,7 @@ CREATE TABLE `item` (
   `number_of_passengers` int(3) DEFAULT NULL,
   `status` enum('ACTIVE','ARCHIVED','DELETED') NOT NULL DEFAULT 'ACTIVE',
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
@@ -188,11 +188,11 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   KEY `preference_id` (`preference_id`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`preference_id`) REFERENCES `preference` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`name`,`surname`,`age`,`password`,`phone_number`,`email`,`gender`,`pic_url`,`about`,`preference_id`,`role`,`status`,`phone_active`,`otp`,`created_date`,`updated_date`,`deleted_date`) values (22,'Arzuman','Kochoyan','2020-08-07','$2a$10$7V3q9ojVeUdQslZRMrHlWue0LOX/DoNar4W3ABBwP3WAh.MrX8kZ2','0','arzuman.@mail.ru','MALE',NULL,NULL,1,'USER','ACTIVE','','','2020-09-17 23:58:37',NULL,NULL),(23,'pokpok','okpokp','2020-07-27','$2a$10$TmN6RSHSrr54YGH09LDXtuRcpbOOYIKFim1PJkI1PKvQjHbw.nAXa','0','opjpojpo.jijij@mail.yfbnn','MALE',NULL,NULL,1,'USER','ACTIVE','\0','91853bb6-9cec-4d86-a0ce-c460191a2104','2020-09-17 23:58:37',NULL,NULL),(38,'polpol','polpol','2020-07-27','$2a$10$YVNfGniZeYH6OK9sA7xD3O2KJSJ3raA1bxdIJW4UltMBVhRjRfpAK','0','arzuman.kochoyan98@mail.ru','MALE',NULL,NULL,1,'USER','ACTIVE','','','2020-09-20 19:00:09','2020-09-20 19:00:09',NULL),(39,'Arzuman','Arzuman','2020-07-27','$2a$10$0C.v0sW2KPRpr1al4odc4um08oLM9exAvkRprUomVhdjw1WWv2QYy','0','arzuman.kochoyan@mail.ru','MALE',NULL,'jjjjm,lnjlnl',1,'USER','ACTIVE','','9952ef0a-edd3-4c3c-9825-263dc47a315e','2020-09-20 19:00:06','2020-09-20 19:00:06',NULL);
+insert  into `user`(`id`,`name`,`surname`,`age`,`password`,`phone_number`,`email`,`gender`,`pic_url`,`about`,`preference_id`,`role`,`status`,`phone_active`,`otp`,`created_date`,`updated_date`,`deleted_date`) values (22,'Arzuman','Kochoyan','2020-08-07','$2a$10$7V3q9ojVeUdQslZRMrHlWue0LOX/DoNar4W3ABBwP3WAh.MrX8kZ2','0','arzuman.@mail.ru','MALE',NULL,NULL,1,'USER','ACTIVE','','','2020-09-17 23:58:37',NULL,NULL),(23,'pokpok','okpokp','2020-07-27','$2a$10$TmN6RSHSrr54YGH09LDXtuRcpbOOYIKFim1PJkI1PKvQjHbw.nAXa','0','opjpojpo.jijij@mail.yfbnn','MALE',NULL,NULL,1,'USER','ACTIVE','\0','91853bb6-9cec-4d86-a0ce-c460191a2104','2020-09-17 23:58:37',NULL,NULL),(39,'Arzuman','Arzuman','2020-07-27','$2a$10$0C.v0sW2KPRpr1al4odc4um08oLM9exAvkRprUomVhdjw1WWv2QYy','0','arzuman.kochoyan@mail.ru','MALE',NULL,'jjjjm,lnjlnl',1,'USER','ACTIVE','','','2020-10-23 16:27:22','2020-10-23 16:27:22',NULL),(40,'poxosyan','poxosyan',NULL,'$2a$10$Z7aNbwnJCUmmLQ0Tir6p7O0iJgk7mMttiSKz51f01JWB0aRcDt2Hi',NULL,'poxosyan.poxo@mail.ru','MALE',NULL,NULL,1,'USER','ARCHIVED','\0','2360ca8a-3a34-45bd-a29a-39afe6a83cfe','2020-10-23 16:06:52',NULL,NULL),(46,'poxos','poxosya',NULL,'$2a$10$zTwYkG4oswkSGCeMUjPWqe/LwdYUoeU0.rOLpPD6YeoJTsTlf5Koa',NULL,'arzuman.kochoyan98@mail.ru','MALE',NULL,NULL,1,'USER','ACTIVE','\0','ee4c6a21-6593-48da-81fc-32acdd3bc180','2020-10-23 18:18:26','2020-10-23 18:18:26',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

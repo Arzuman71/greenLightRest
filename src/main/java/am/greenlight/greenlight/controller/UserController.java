@@ -40,7 +40,6 @@ public class UserController {
     public ResponseEntity<UserGetDto> getUser(@AuthenticationPrincipal CurrentUser currentUser) {
         User user = currentUser.getUser();
         UserGetDto userGetDto = modelMapper.map(user, UserGetDto.class);
-
         return ResponseEntity.ok(userGetDto);
     }
 
@@ -148,13 +147,12 @@ public class UserController {
     }
 
     @PutMapping("password/change")
-    public ResponseEntity<String> passwordChange(@AuthenticationPrincipal CurrentUser currentUser,
-                                                 @ModelAttribute PasswordChangeDto pasChange, BindingResult result) {
+    public ResponseEntity<String> passwordChange(@Valid @RequestBody PasswordChangeDto pasChange, BindingResult result,
+                                                 @AuthenticationPrincipal CurrentUser currentUser) {
         User user = currentUser.getUser();
-
         if (!result.hasErrors()
-                || passwordEncoder.matches(pasChange.getOldPassword(), user.getPassword())
-                || pasChange.getPassword().equals(pasChange.getConfirmPassword())) {
+                && passwordEncoder.matches(pasChange.getOldPassword(), user.getPassword())
+                && pasChange.getPassword().equals(pasChange.getConfirmPassword())) {
 
             user.setPassword(passwordEncoder.encode(pasChange.getPassword()));
             userService.save(user);

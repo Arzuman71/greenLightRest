@@ -17,7 +17,6 @@ import java.time.LocalDate;
 @Builder
 public class CarRequestDto {
 
-    @NotBlank(message = "Type is required")
     private CarType carType;
     @NotBlank(message = "Brand is required")
     private String carBrand;
@@ -25,7 +24,6 @@ public class CarRequestDto {
     private String carModel;
     @NotBlank(message = "Number is required")
     private String carNumber;
-    @NotBlank(message = "color is required")
     private Color color;
     @NotNull(message = "Parameter Date Unadjusted can not be blank or null")
     private LocalDate year;

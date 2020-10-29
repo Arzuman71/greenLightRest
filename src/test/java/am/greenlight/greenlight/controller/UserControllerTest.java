@@ -1,9 +1,15 @@
 package am.greenlight.greenlight.controller;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.anonymous;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import am.greenlight.greenlight.dto.PasswordChangeDto;
+import am.greenlight.greenlight.model.User;
+import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.security.JwtTokenUtil;
 import am.greenlight.greenlight.service.EmailService;
 import am.greenlight.greenlight.service.UserService;
@@ -15,15 +21,28 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.security.test.context.support.WithUserDetails;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.context.WebApplicationContext;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -32,9 +51,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+//@ContextConfiguration
 class UserControllerTest {
 
     private MockMvc mvc;
+    private MockMvc mvc2;
     @Autowired
     private UserService userService;
     @Autowired
@@ -45,19 +66,27 @@ class UserControllerTest {
     private JwtTokenUtil tokenUtil;
     @Autowired
     private EmailService emailService;
+    @Autowired
+    private WebApplicationContext context;
 
     @BeforeEach
     public void setUp() {
         mvc = MockMvcBuilders.standaloneSetup(new UserController(userService,
-                passwordEncoder, modelMapper, tokenUtil, emailService)).build();
+                passwordEncoder, modelMapper, tokenUtil, emailService))
+                .build();
+
+        mvc2 = MockMvcBuilders
+                .webAppContextSetup(context)
+                .apply(springSecurity())
+                .build();
     }
 
     @Test
-    @WithMockUser(username = "arzuman.kochoyan@mail.ru", roles = {"USER", "ADMIN"})
-    public void getUser() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/user")
+    @WithUserDetails("arzuman.kochoyan@mail.ru")
+    public void getUser_Ok() throws Exception {
+        mvc2.perform(MockMvcRequestBuilders.get("/user")
                 .contentType(MediaType.APPLICATION_JSON))
-                //  .andExpect(status().isOk())
+                .andExpect(status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }
 
@@ -93,11 +122,11 @@ class UserControllerTest {
     @Test
     public void registerUser_Ok() throws Exception {
         ObjectNode objectNode = new ObjectMapper().createObjectNode();
-        objectNode.put("name", "poxosyan");
-        objectNode.put("surname", "poxosyan");
-        objectNode.put("password", "poxosyan");
-        objectNode.put("confirmPassword", "poxosyan");
-        objectNode.put("email", "arzuman.kochoyan98@mail.ru");
+        objectNode.put("name", "user");
+        objectNode.put("surname", "user");
+        objectNode.put("password", "password");
+        objectNode.put("confirmPassword", "password");
+        objectNode.put("email", "user.user@mail.ru");
         objectNode.put("gender", "MALE");
 
         mvc.perform(post("/user")
@@ -186,4 +215,57 @@ class UserControllerTest {
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError())
                 .andDo(MockMvcResultHandlers.print());
     }
+
+    @Test
+    @WithUserDetails("arzuman.kochoyan@mail.ru")
+    void passwordChange_Ok() {
+        ObjectNode objectNode = new ObjectMapper().createObjectNode();
+        objectNode.put("oldPassword", "passwordChange");
+        objectNode.put("password", "Arzuman");
+        objectNode.put("confirmPassword", "Arzuman");
+        try {
+            mvc2.perform(MockMvcRequestBuilders.put("/user/password/change")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(objectNode.toString()))
+                    .andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+  @Test
+    @WithUserDetails("arzuman.kochoyan@mail.ru")
+    void passwordChange_ConfirmPasswordError() {
+        ObjectNode objectNode = new ObjectMapper().createObjectNode();
+        objectNode.put("oldPassword", "Arzuman");
+        objectNode.put("password", "passwordTest");
+        objectNode.put("confirmPassword", "ClientError");
+        try {
+            mvc2.perform(MockMvcRequestBuilders.put("/user/password/change")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(objectNode.toString()))
+                    .andExpect(MockMvcResultMatchers.status().is4xxClientError())
+                    .andDo(MockMvcResultHandlers.print());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    @WithUserDetails("arzuman.kochoyan@mail.ru")
+    void passwordChange_OldPasswordError() {
+        ObjectNode objectNode = new ObjectMapper().createObjectNode();
+        objectNode.put("oldPassword", "PasswordError");
+        objectNode.put("password", "passwordTest");
+        objectNode.put("confirmPassword", "passwordTest");
+        try {
+            mvc2.perform(MockMvcRequestBuilders.put("/user/password/change")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(objectNode.toString()))
+                    .andExpect(MockMvcResultMatchers.status().is4xxClientError())
+                    .andDo(MockMvcResultHandlers.print());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

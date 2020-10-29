@@ -22,7 +22,7 @@ public class RatingController {
 
     @PostMapping("")
     public ResponseEntity<String>  addOrChangeRating(@AuthenticationPrincipal CurrentUser currentUser,
-                                            @ModelAttribute RatingRequestDto ratingReq) {
+                                                     @RequestBody RatingRequestDto ratingReq) {
 
         long fromId = currentUser.getUser().getId();
         Rating rating = ratingService.getByToIdAndFromId(ratingReq.getToId(), fromId);
