@@ -25,7 +25,7 @@ public class ItemReqDto {
     @NotNull(message = "Parameter Date Unadjusted can not be blank or null")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime startDate;
-    @NotBlank(message = "announcementType is required")
+  //  @NotBlank(message = "Type is required")
     private Type type;
     private double price;
     private long carId;

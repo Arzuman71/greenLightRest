@@ -66,7 +66,7 @@ class ItemControllerTest {
 
     @Test
     void findById_Ok() throws Exception {
-        mvc2.perform(MockMvcRequestBuilders.get("/item/3")
+        mvc2.perform(MockMvcRequestBuilders.get("/item/5")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());

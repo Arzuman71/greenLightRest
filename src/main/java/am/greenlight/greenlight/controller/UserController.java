@@ -7,7 +7,6 @@ import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.security.JwtTokenUtil;
 import am.greenlight.greenlight.service.EmailService;
 import am.greenlight.greenlight.service.UserService;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -24,6 +23,8 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.UUID;
 
+
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -55,7 +56,6 @@ public class UserController {
             }
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
-
     }
 
     @PostMapping("")
@@ -87,18 +87,21 @@ public class UserController {
 
     private void sendMessageToEmail(User user) {
         log.error("user with address {} email was could not registered", user.getEmail());
-        String link = "http://localhost:8080/user/activate?email=" + user.getEmail() + "&token=" + user.getOtp();
+        String link = "http://localhost:8080/user/activate?email=" + user.getEmail() + "&otp=" + user.getOtp();
         emailService.send(user.getEmail(), "Welcome", "Dear " + user.getName() + ' ' + user.getSurname() + " You have successfully registered.Please " +
-                "activate your account by clicking on:" + link);
+                "activate your account by clicking on: " + link);
     }
 
-    @PutMapping("activate")
-    public ResponseEntity<String> activate(@RequestBody ActivateDto ActivateDto) {
 
-        Optional<User> byEmail = userService.findByEmail(ActivateDto.getEmail());
+    //TODO test
+    @GetMapping("/user/activate")
+    public ResponseEntity<String> activate(@RequestParam("email") String email,
+                                           @RequestParam("otp") String otp) {
+
+        Optional<User> byEmail = userService.findByEmail(email);
         if (byEmail.isPresent()) {
             User user = byEmail.get();
-            if (user.getOtp().equals(ActivateDto.getOtp())) {
+            if (user.getOtp().equals(otp)) {
                 user.setStatus(Status.ACTIVE);
                 user.setOtp("");
                 userService.save(user);
@@ -108,26 +111,22 @@ public class UserController {
         return ResponseEntity.badRequest().body("Something went wrong.Please try again");
     }
 
-    //ok
     @PutMapping("about")
     public ResponseEntity<String> changeAbout(@AuthenticationPrincipal CurrentUser currentUser,
-                                              @NonNull @RequestBody String about) {
-
+                                              @RequestBody AboutChangeDto aboutDto) {
         User user = currentUser.getUser();
-        user.setAbout(about);
+        user.setAbout(aboutDto.getAbout());
         userService.save(user);
         return ResponseEntity.ok("ok");
     }
 
-    @PutMapping("img")
-    public ResponseEntity.BodyBuilder changeImg(@AuthenticationPrincipal CurrentUser currentUser,
-                                                @RequestParam("picUrl") MultipartFile file) {
-
+    @PostMapping("avatar")
+    public ResponseEntity<String> changeAvatar(@AuthenticationPrincipal CurrentUser currentUser,
+                                               @RequestParam MultipartFile file) {
         if (userService.saveUserImg(currentUser.getUser(), file)) {
-            return ResponseEntity.ok();
-
+            return ResponseEntity.ok("ok");
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
     }
 
     @PutMapping("")
@@ -201,7 +200,7 @@ public class UserController {
 
     // front end-ը պետք է տա օտպը ու էմաիլը
     @PostMapping("forgotPassword/change")
-    public ResponseEntity.BodyBuilder changePass(@ModelAttribute ForgotPasswordDto forgotPass) {
+    public ResponseEntity.BodyBuilder changePass(@RequestBody ForgotPasswordDto forgotPass) {
 
         Optional<User> byEmail = userService.findByEmail(forgotPass.getEmail());
         if (byEmail.isPresent()) {

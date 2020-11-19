@@ -1,15 +1,14 @@
 package am.greenlight.greenlight.dto;
 
-import am.greenlight.greenlight.model.Preference;
 import am.greenlight.greenlight.model.enumForUser.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.*;
-import java.time.LocalDate;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 
 @Data

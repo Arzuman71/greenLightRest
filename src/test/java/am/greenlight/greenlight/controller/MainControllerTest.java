@@ -2,6 +2,8 @@ package am.greenlight.greenlight.controller;
 
 import am.greenlight.greenlight.service.ItemService;
 import am.greenlight.greenlight.service.MainService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -35,7 +39,14 @@ class MainControllerTest {
 
     @Test
     void items_Ok() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/"))
+        ObjectNode objectNode = new ObjectMapper().createObjectNode();
+        objectNode.put("outset", "fr");
+        objectNode.put("end", "wh");
+        objectNode.put("dateFrom", String.valueOf(LocalDate.now()));
+        objectNode.put("type", "CAR_DRIVER");
+        mvc.perform(MockMvcRequestBuilders.post("/")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectNode.toString()))
                 .andDo(print())
                 .andExpect(status().isOk());
 

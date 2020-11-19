@@ -30,7 +30,7 @@ public class Item {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime startDate;
     private String price;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
     // for the future
     @Enumerated(value = EnumType.STRING)

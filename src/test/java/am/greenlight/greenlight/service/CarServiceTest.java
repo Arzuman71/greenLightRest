@@ -16,15 +16,12 @@ import static org.mockito.BDDMockito.given;
 
 class CarServiceTest {
 
-
     @Mock
     private CarRepo carRepo;
-
     @Mock
     private Car car;
     @Mock
     private MockMultipartFile file;
-
     private CarService carService;
 
     public CarServiceTest() {

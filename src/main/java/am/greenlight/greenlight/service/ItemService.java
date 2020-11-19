@@ -44,11 +44,21 @@ public class ItemService {
     }
 
 
-    public Page<Item> itemSearch(PageRequest pageRequest, ItemSearchDto itemSearchDto) {
-        //  itemSearchDto.setDateFrom(LocalDateTime.of(2020, 9, 29, 00, 00, 00));
-        //  itemSearchDto.setDateTo(LocalDateTime.of(2021, 8, 30, 00, 00, 00));
+    public List<Item> itemSearch(ItemSearchDto itemSearchDto) {
+        LocalDateTime from = LocalDateTime.now();
 
-        return itemRepo.itemSearch(itemSearchDto.getOutset(), itemSearchDto.getEnd(), itemSearchDto.getType(),
-                itemSearchDto.getDateFrom(), itemSearchDto.getDateTo(), pageRequest);
+        if (itemSearchDto.getOutset().equals("")) {
+            itemSearchDto.setOutset("_");
+        }
+        if (itemSearchDto.getEnd().equals("")) {
+            itemSearchDto.setEnd("_");
+        }
+        if (itemSearchDto.getDateFrom() != null) {
+            from = itemSearchDto.getDateFrom().atStartOfDay();
+        }
+        itemSearchDto.setDateTo(from.plusDays(1));
+
+        return itemRepo.itemSearch(itemSearchDto.getOutset(), itemSearchDto.getEnd(),
+                itemSearchDto.getType(), from, itemSearchDto.getDateTo());
     }
 }

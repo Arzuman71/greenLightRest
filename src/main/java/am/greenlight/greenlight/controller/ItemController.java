@@ -10,7 +10,6 @@ import am.greenlight.greenlight.service.CarService;
 import am.greenlight.greenlight.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,6 +20,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/item")
@@ -48,14 +48,14 @@ public class ItemController {
 
     }
 
-    @GetMapping("{itemId}")
-    public ResponseEntity<ItemResDto> findById(@PathVariable("itemId") Long id) {
-        ItemResDto itemResDto = new ItemResDto();
+    @GetMapping("/{itemId}")
+    public ResponseEntity<Item> findById(@PathVariable("itemId") Long id) {
+     //   ItemResDto itemResDto = new ItemResDto();
         Optional<Item> item = itemService.findById(id);
-        if (item.isPresent()) {
-            itemResDto = modelMapper.map(item, ItemResDto.class);
-        }
-        return ResponseEntity.ok(itemResDto);
+     //   if (item.isPresent()) {
+      //      itemResDto = modelMapper.map(item, ItemResDto.class);
+     //   }
+        return ResponseEntity.ok(item.get());
     }
 
     @GetMapping("active")
