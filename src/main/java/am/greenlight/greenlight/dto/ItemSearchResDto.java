@@ -1,6 +1,5 @@
 package am.greenlight.greenlight.dto;
 
-import am.greenlight.greenlight.model.Rating;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,5 +15,5 @@ public class ItemSearchResDto {
     private String surname;
     private String outset;
     private String end;
-    private Rating Rating;
+    private double Rating;
 }

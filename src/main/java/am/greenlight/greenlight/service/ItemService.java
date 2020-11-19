@@ -2,6 +2,7 @@ package am.greenlight.greenlight.service;
 
 
 import am.greenlight.greenlight.dto.ItemSearchDto;
+import am.greenlight.greenlight.dto.ItemSearchResDto;
 import am.greenlight.greenlight.model.Item;
 import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.repository.ItemRepo;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +20,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ItemService {
     private final ItemRepo itemRepo;
+    private final RatingService ratingService;
 
     public Item save(Item item) {
         return itemRepo.save(item);
@@ -44,7 +47,7 @@ public class ItemService {
     }
 
 
-    public List<Item> itemSearch(ItemSearchDto itemSearchDto) {
+    public List<ItemSearchResDto> itemSearch(ItemSearchDto itemSearchDto) {
         LocalDateTime from = LocalDateTime.now();
 
         if (itemSearchDto.getOutset().equals("")) {
@@ -58,7 +61,33 @@ public class ItemService {
         }
         itemSearchDto.setDateTo(from.plusDays(1));
 
-        return itemRepo.itemSearch(itemSearchDto.getOutset(), itemSearchDto.getEnd(),
-                itemSearchDto.getType(), from, itemSearchDto.getDateTo());
+        List<Item> items = itemRepo.itemSearch(itemSearchDto.getOutset(),
+                itemSearchDto.getEnd(),
+                itemSearchDto.getType(),
+                from, itemSearchDto.getDateTo());
+
+        return getItemDtoFromItem(items);
+
     }
+
+    private List<ItemSearchResDto> getItemDtoFromItem(List<Item> items) {
+        List<ItemSearchResDto> itemDto = new ArrayList<>();
+        items.forEach(i -> {
+            String picUrl = "17.png";
+
+            if (i.getCar() != null && i.getCar().getPicUrl() != null) {
+                picUrl = i.getCar().getPicUrl();
+            }
+            itemDto.add(ItemSearchResDto.builder()
+                    .picture(picUrl)
+                    .name(i.getUser().getName())
+                    .surname(i.getUser().getSurname())
+                    .outset(i.getOutset())
+                    .end(i.getEnd())
+                    .Rating(ratingService.findAllByToId(i.getUser().getId()))
+                    .build());
+        });
+        return itemDto;
+    }
+
 }

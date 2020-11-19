@@ -1,13 +1,14 @@
 package am.greenlight.greenlight.controller;
 
 import am.greenlight.greenlight.dto.ItemReqDto;
-import am.greenlight.greenlight.dto.ItemResDto;
+import am.greenlight.greenlight.dto.ItemSearchResDto;
 import am.greenlight.greenlight.model.Car;
 import am.greenlight.greenlight.model.Item;
 import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.service.CarService;
 import am.greenlight.greenlight.service.ItemService;
+import am.greenlight.greenlight.service.RatingService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,7 @@ public class ItemController {
     private final ItemService itemService;
     private final CarService carService;
     private final ModelMapper modelMapper;
+
 
     @PostMapping("")
     public ResponseEntity<Object> save(@Valid @RequestBody ItemReqDto itemReqDto, BindingResult result,
@@ -50,11 +52,11 @@ public class ItemController {
 
     @GetMapping("/{itemId}")
     public ResponseEntity<Item> findById(@PathVariable("itemId") Long id) {
-     //   ItemResDto itemResDto = new ItemResDto();
-        Optional<Item> item = itemService.findById(id);
-     //   if (item.isPresent()) {
+       Optional<Item> item = itemService.findById(id);
+    //  if (item.isPresent()) {
       //      itemResDto = modelMapper.map(item, ItemResDto.class);
-     //   }
+
+      //  }
         return ResponseEntity.ok(item.get());
     }
 

@@ -27,10 +27,12 @@ class ItemServiceTest {
     private Page<Item> itemPage;
 
     private ItemService itemService;
+    private RatingService ratingService;
+
 
     ItemServiceTest() {
         MockitoAnnotations.initMocks(this);
-        this.itemService = new ItemService(itemRepo);
+        this.itemService = new ItemService(itemRepo, ratingService);
     }
 
     @Test
