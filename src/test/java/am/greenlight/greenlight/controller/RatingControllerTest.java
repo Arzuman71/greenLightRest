@@ -1,17 +1,11 @@
 package am.greenlight.greenlight.controller;
 
-import am.greenlight.greenlight.dto.RatingRequestDto;
-import am.greenlight.greenlight.model.Rating;
-import am.greenlight.greenlight.security.CurrentUser;
-import am.greenlight.greenlight.security.JwtTokenUtil;
-import am.greenlight.greenlight.service.EmailService;
 import am.greenlight.greenlight.service.RatingService;
 import am.greenlight.greenlight.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;

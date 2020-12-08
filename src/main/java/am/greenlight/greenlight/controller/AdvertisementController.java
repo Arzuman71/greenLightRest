@@ -26,9 +26,9 @@ public class AdvertisementController {
 
     //dto 2
     @PostMapping("/advertisement")
-    public ResponseEntity<Advertisement> save(@ModelAttribute Advertisement advertisement,
-                                           @AuthenticationPrincipal CurrentUser currentUser,
-                                           @RequestParam("image") MultipartFile file) {
+    public ResponseEntity<Advertisement> save(@AuthenticationPrincipal CurrentUser currentUser,
+                                              @RequestBody Advertisement advertisement,
+                                              @RequestParam("image") MultipartFile file) {
         advertisement.setUser(currentUser.getUser());
         advertisement = advertisementService.save(advertisement, file);
         return ResponseEntity.ok(advertisement);

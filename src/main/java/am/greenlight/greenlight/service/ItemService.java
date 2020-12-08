@@ -79,6 +79,7 @@ public class ItemService {
                 picUrl = i.getCar().getPicUrl();
             }
             itemDto.add(ItemSearchResDto.builder()
+                    .id(i.getId())
                     .picture(picUrl)
                     .name(i.getUser().getName())
                     .surname(i.getUser().getSurname())

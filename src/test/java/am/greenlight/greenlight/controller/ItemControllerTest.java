@@ -1,12 +1,9 @@
 package am.greenlight.greenlight.controller;
 
-import am.greenlight.greenlight.dto.ItemReqDto;
-import am.greenlight.greenlight.model.Car;
-import am.greenlight.greenlight.model.Item;
-import am.greenlight.greenlight.model.enumForUser.Status;
-import am.greenlight.greenlight.security.CurrentUser;
+
 import am.greenlight.greenlight.service.CarService;
 import am.greenlight.greenlight.service.ItemService;
+import am.greenlight.greenlight.service.RatingService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.jupiter.api.BeforeEach;
@@ -51,12 +48,14 @@ class ItemControllerTest {
     @Autowired
     private ModelMapper modelMapper;
     @Autowired
+    private  RatingService ratingService;
+    @Autowired
     private WebApplicationContext context;
 
     @BeforeEach
     public void setUp() {
         mvc = MockMvcBuilders
-                .standaloneSetup(new ItemController(itemService, carService, modelMapper))
+                .standaloneSetup(new ItemController(itemService, carService, modelMapper, ratingService))
                 .build();
         mvc2 = MockMvcBuilders
                 .webAppContextSetup(context)

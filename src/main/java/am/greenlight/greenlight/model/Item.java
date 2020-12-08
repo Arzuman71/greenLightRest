@@ -36,11 +36,11 @@ public class Item {
     @Enumerated(value = EnumType.STRING)
     private ParcelType parcelType;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Car car;
     @Enumerated(value = EnumType.STRING)
     private Type type;
-    private int numberOfPassengers;//number_of_passengers
+    private int numberOfPassengers;
     @Enumerated(value = EnumType.STRING)
     private Status status = Status.ACTIVE;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")

@@ -11,7 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -29,9 +28,9 @@ public class MainController {
     }
 
 
-    @GetMapping(value = "/image", produces = MediaType.IMAGE_JPEG_VALUE)
+    @GetMapping(value = "/image/{name}", produces = MediaType.IMAGE_JPEG_VALUE)
     public @ResponseBody
-    byte[] getImage(@RequestParam("name") String imageName) {
+    byte[] getImage(@PathVariable("name") String imageName) {
 
         return mainService.getImageOrNull(imageName);
     }

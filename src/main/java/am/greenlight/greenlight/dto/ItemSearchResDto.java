@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class ItemSearchResDto {
+    private long id;
     private String picture;
     private String name;
     private String surname;

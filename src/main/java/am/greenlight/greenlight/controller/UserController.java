@@ -6,6 +6,7 @@ import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.security.JwtTokenUtil;
 import am.greenlight.greenlight.service.EmailService;
+import am.greenlight.greenlight.service.RatingService;
 import am.greenlight.greenlight.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,9 +39,9 @@ public class UserController {
 
 
     @GetMapping("")
-    public ResponseEntity<UserGetDto> getUser(@AuthenticationPrincipal CurrentUser currentUser) {
+    public ResponseEntity<UserResDto> getUser(@AuthenticationPrincipal CurrentUser currentUser) {
         User user = currentUser.getUser();
-        UserGetDto userGetDto = modelMapper.map(user, UserGetDto.class);
+        UserResDto userGetDto = modelMapper.map(user, UserResDto.class);
         return ResponseEntity.ok(userGetDto);
     }
 
@@ -132,8 +133,7 @@ public class UserController {
     @PutMapping("")
     public ResponseEntity.BodyBuilder change(
             @AuthenticationPrincipal CurrentUser currentUser,
-            @ModelAttribute UserChangeDto userChangeDto,
-            BindingResult result) {
+            @RequestBody UserChangeDto userChangeDto, BindingResult result) {
 
         if (!result.hasErrors()) {
             User userTmp = modelMapper.map(userChangeDto, User.class);

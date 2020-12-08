@@ -17,20 +17,18 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserGetDto {
+public class UserResDto {
+    private long id;
     private String name;
     private String surname;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate age;
-    private String password;
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
     private String picUrl;
-    private String aboutMe;
+    private String about;
     @ManyToOne
     private Preference preference;
-    private LocalDate createdDate;
-
 }

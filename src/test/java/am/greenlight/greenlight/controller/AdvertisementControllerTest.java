@@ -1,11 +1,8 @@
 package am.greenlight.greenlight.controller;
 
 import am.greenlight.greenlight.service.AdvertisementService;
-import am.greenlight.greenlight.service.CarService;
-import am.greenlight.greenlight.service.ItemService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;

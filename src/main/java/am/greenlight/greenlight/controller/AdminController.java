@@ -18,11 +18,12 @@ import java.util.List;
 public class AdminController {
 
     private final UserService userService;
-    private final ItemService itemService;
 
-    @GetMapping("find")
-    public ResponseEntity<List<User>> findUserByNameAndSurname(@ModelAttribute User user) {
-        List<User> users = userService.findByNameAndSurname(user.getName(), user.getSurname());
+    @GetMapping("find/{name}/{surname}")
+    public ResponseEntity<List<User>> findUserByNameAndSurname(
+            @PathVariable("name") String name,
+            @PathVariable("surname") String surname) {
+        List<User> users = userService.findByNameAndSurname(name, surname);
         return ResponseEntity.ok(users);
     }
 
