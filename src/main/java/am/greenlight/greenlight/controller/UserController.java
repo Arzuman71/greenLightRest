@@ -25,7 +25,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -45,7 +45,7 @@ public class UserController {
         return ResponseEntity.ok(userGetDto);
     }
 
-    @PostMapping("auth")
+    @PostMapping("/auth")
     public ResponseEntity<Object> auth(@RequestBody AuthRequestDto authRequest) {
         Optional<User> byEmail = userService.findByEmail(authRequest.getEmail());
 
@@ -95,7 +95,7 @@ public class UserController {
 
 
     //TODO test
-    @GetMapping("/user/activate")
+    @GetMapping("/activate")
     public ResponseEntity<String> activate(@RequestParam("email") String email,
                                            @RequestParam("otp") String otp) {
 
@@ -112,7 +112,7 @@ public class UserController {
         return ResponseEntity.badRequest().body("Something went wrong.Please try again");
     }
 
-    @PutMapping("about")
+    @PutMapping("/about")
     public ResponseEntity<String> changeAbout(@AuthenticationPrincipal CurrentUser currentUser,
                                               @RequestBody AboutChangeDto aboutDto) {
         User user = currentUser.getUser();
@@ -145,7 +145,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED);
     }
 
-    @PutMapping("password/change")
+    @PutMapping("/password/change")
     public ResponseEntity<String> passwordChange(@Valid @RequestBody PasswordChangeDto pasChange, BindingResult result,
                                                  @AuthenticationPrincipal CurrentUser currentUser) {
         User user = currentUser.getUser();
@@ -169,7 +169,7 @@ public class UserController {
 
     }
 
-    @GetMapping("forgotPassword")
+    @GetMapping("/forgotPassword")
     public ResponseEntity<String> forgotPass(@RequestParam("email") String email) {
         Optional<User> byEmail = userService.findByEmail(email);
         if (byEmail.isPresent() && byEmail.get().getStatus() == Status.ACTIVE) {
@@ -184,7 +184,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("this email not existent");
     }
 
-    @GetMapping("forgotPassword/reset")
+    @GetMapping("/forgotPassword/reset")
     public ResponseEntity<ConfirmEmailDto> reset(@RequestParam("email") String email,
                                                  @RequestParam("otp") String otp) {
         ConfirmEmailDto confirmEmail = new ConfirmEmailDto();
@@ -199,7 +199,7 @@ public class UserController {
     }
 
     // front end-ը պետք է տա օտպը ու էմաիլը
-    @PostMapping("forgotPassword/change")
+    @PostMapping("/forgotPassword/change")
     public ResponseEntity.BodyBuilder changePass(@RequestBody ForgotPasswordDto forgotPass) {
 
         Optional<User> byEmail = userService.findByEmail(forgotPass.getEmail());

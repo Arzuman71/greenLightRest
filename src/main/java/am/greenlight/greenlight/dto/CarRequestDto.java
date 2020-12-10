@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder
 public class CarRequestDto {
-
+    private long id;
     private CarType carType;
     @NotBlank(message = "Brand is required")
     private String carBrand;

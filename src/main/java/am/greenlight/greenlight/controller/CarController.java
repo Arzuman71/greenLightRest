@@ -1,6 +1,7 @@
 package am.greenlight.greenlight.controller;
 
 import am.greenlight.greenlight.dto.CarRequestDto;
+import am.greenlight.greenlight.dto.CarRes;
 import am.greenlight.greenlight.model.Car;
 import am.greenlight.greenlight.model.User;
 import am.greenlight.greenlight.model.enumForUser.Status;
@@ -8,6 +9,7 @@ import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.service.CarService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
@@ -18,7 +20,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/car")
@@ -36,8 +38,15 @@ public class CarController {
     }
 
     @GetMapping("{carId}")
-    public ResponseEntity<Optional<Car>> getOne(@PathVariable("carId") int id) {
-        return ResponseEntity.ok(carService.findById(id));
+    public ResponseEntity<CarRes> getOne(@PathVariable("carId") int id) {
+        Optional<Car> car = carService.findById(id);
+        CarRes carRes = new CarRes();
+        if (car.isPresent()) {
+            carRes = modelMapper.map(car.get(), CarRes.class);
+        }
+
+        return ResponseEntity.ok(carRes);
+
     }
 
     @PostMapping("")
@@ -46,6 +55,7 @@ public class CarController {
         if (!result.hasErrors()) {
             Car car = modelMapper.map(carReq, Car.class);
             car.setUser(currentUser.getUser());
+            car.setId(0);
             car = carService.save(car);
             return ResponseEntity.ok(car);
         }
@@ -60,12 +70,19 @@ public class CarController {
         return ResponseEntity.ok();
     }
 
-    //ToDo test, CurrentUser
+    //ToDo test,
     @PutMapping("")
-    public ResponseEntity.BodyBuilder changeCarData(@RequestBody Car car) {
-        carService.save(car);
-        return ResponseEntity.ok();
+    public ResponseEntity<Integer> changeCarData(
+            @Valid @RequestBody CarRequestDto carReqDto,
+            BindingResult result, @AuthenticationPrincipal CurrentUser currentUser) {
 
+        if (!result.hasErrors()) {
+            Car car = modelMapper.map(carReqDto, Car.class);
+            car.setUser(currentUser.getUser());
+            carService.save(car);
+            return ResponseEntity.ok(0);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result.getFieldErrorCount());
     }
 
     @DeleteMapping("/{id}")

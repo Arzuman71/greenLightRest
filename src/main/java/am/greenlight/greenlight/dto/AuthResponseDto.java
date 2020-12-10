@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class AuthResponseDto {
 
-    private String otp;
+    private String token;
 }
