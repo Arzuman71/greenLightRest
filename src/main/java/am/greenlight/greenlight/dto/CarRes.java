@@ -2,6 +2,7 @@ package am.greenlight.greenlight.dto;
 
 import am.greenlight.greenlight.model.enumForCar.CarType;
 import am.greenlight.greenlight.model.enumForCar.Color;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

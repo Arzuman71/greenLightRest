@@ -2,6 +2,7 @@ package am.greenlight.greenlight.dto;
 
 import am.greenlight.greenlight.model.enumForCar.CarType;
 import am.greenlight.greenlight.model.enumForCar.Color;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,7 +26,8 @@ public class CarRequestDto {
     @NotBlank(message = "Number is required")
     private String carNumber;
     private Color color;
-    @NotNull(message = "Parameter Date Unadjusted can not be blank or null")
+    @NotNull(message = "Parameter Date Unadjusted can not be null")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate year;
     private String picCar;
 }

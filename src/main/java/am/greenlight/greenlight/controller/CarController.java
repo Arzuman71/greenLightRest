@@ -8,7 +8,6 @@ import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.service.CarService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
@@ -19,6 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/car")
@@ -58,14 +58,23 @@ public class CarController {
         Car car = carService.getOne(id);
         carService.save(car, file);
         return ResponseEntity.ok();
+    }
+
+    //ToDo test, CurrentUser
+    @PutMapping("")
+    public ResponseEntity.BodyBuilder changeCarData(@RequestBody Car car) {
+        carService.save(car);
+        return ResponseEntity.ok();
 
     }
 
-    @DeleteMapping("")
-    public ResponseEntity.BodyBuilder deleteCar(@RequestParam("id") int id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity.BodyBuilder deleteCar(@PathVariable("id") int id) {
         Car car = carService.getOne(id);
-        car.setStatus(Status.ARCHIVED);
-        carService.save(car);
+        if (car != null) {
+            car.setStatus(Status.ARCHIVED);
+            carService.save(car);
+        }
         return ResponseEntity.ok();
     }
 

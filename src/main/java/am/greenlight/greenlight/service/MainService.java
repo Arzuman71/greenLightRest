@@ -20,6 +20,9 @@ public class MainService {
 
 
     public byte[] getImageOrNull(String imageName) {
+        if(imageName == null){
+            imageName = "17.png";
+        }
         InputStream in = null;
         try {
             in = new FileInputStream(uploadDir + File.separator + imageName);
