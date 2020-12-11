@@ -6,7 +6,6 @@ import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.security.JwtTokenUtil;
 import am.greenlight.greenlight.service.EmailService;
-import am.greenlight.greenlight.service.RatingService;
 import am.greenlight.greenlight.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -94,7 +93,7 @@ public class UserController {
     }
 
 
-    //TODO test
+    //TODO test  localhost:8080/user/activate?email=
     @GetMapping("/activate")
     public ResponseEntity<String> activate(@RequestParam("email") String email,
                                            @RequestParam("otp") String otp) {
@@ -200,7 +199,7 @@ public class UserController {
 
     // front end-ը պետք է տա օտպը ու էմաիլը
     @PostMapping("/forgotPassword/change")
-    public ResponseEntity.BodyBuilder changePass(@RequestBody ForgotPasswordDto forgotPass) {
+    public ResponseEntity<String> changePass(@RequestBody ForgotPasswordDto forgotPass) {
 
         Optional<User> byEmail = userService.findByEmail(forgotPass.getEmail());
         if (byEmail.isPresent()) {
@@ -210,9 +209,9 @@ public class UserController {
 
                 user.setPassword(passwordEncoder.encode(forgotPass.getPassword()));
                 userService.save(user);
-                return ResponseEntity.ok();
+                return ResponseEntity.ok("Ok");
             }
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
     }
 }

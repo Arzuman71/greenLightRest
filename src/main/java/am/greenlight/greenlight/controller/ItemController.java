@@ -1,6 +1,7 @@
 package am.greenlight.greenlight.controller;
 
-import am.greenlight.greenlight.dto.*;
+import am.greenlight.greenlight.dto.ItemReqDto;
+import am.greenlight.greenlight.dto.ItemResDto;
 import am.greenlight.greenlight.model.Car;
 import am.greenlight.greenlight.model.Item;
 import am.greenlight.greenlight.model.enumForUser.Status;
@@ -92,17 +93,17 @@ public class ItemController {
 
     //getOne or findById
     @DeleteMapping("{itemId}")
-    public ResponseEntity.BodyBuilder delete(
+    public ResponseEntity<String> delete(
             @PathVariable("itemId") long id,
             CurrentUser currentUser) {
 
         Item item = itemService.getOne(id);
         if (!(item.getUser().equals(currentUser.getUser()))) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
         }
         item.setStatus(Status.DELETED);
         itemService.save(item);
-        return ResponseEntity.ok();
+        return ResponseEntity.ok("Ok");
     }
 
 

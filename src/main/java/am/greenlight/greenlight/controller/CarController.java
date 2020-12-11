@@ -72,27 +72,27 @@ public class CarController {
 
     //ToDo test,
     @PutMapping("")
-    public ResponseEntity<Integer> changeCarData(
-            @Valid @RequestBody CarRequestDto carReqDto,
-            BindingResult result, @AuthenticationPrincipal CurrentUser currentUser) {
+    public ResponseEntity<Car> changeCarData(@Valid @RequestBody CarRequestDto carReqDto,
+                                             BindingResult result, @AuthenticationPrincipal CurrentUser currentUser) {
 
         if (!result.hasErrors()) {
             Car car = modelMapper.map(carReqDto, Car.class);
             car.setUser(currentUser.getUser());
             carService.save(car);
-            return ResponseEntity.ok(0);
+            return ResponseEntity.ok(car);
         }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result.getFieldErrorCount());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity.BodyBuilder deleteCar(@PathVariable("id") int id) {
+    public ResponseEntity<String> deleteCar(@PathVariable("id") int id, @AuthenticationPrincipal CurrentUser currentUser) {
         Car car = carService.getOne(id);
-        if (car != null) {
+        if (car != null && currentUser.getUser().equals(car.getUser())) {
             car.setStatus(Status.ARCHIVED);
             carService.save(car);
+            return ResponseEntity.ok("Ok");
         }
-        return ResponseEntity.ok();
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
     }
 
 }

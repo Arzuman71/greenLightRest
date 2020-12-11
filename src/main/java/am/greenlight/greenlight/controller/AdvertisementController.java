@@ -35,11 +35,11 @@ public class AdvertisementController {
     }
 
     @DeleteMapping("/advertisement/{id}")
-    public ResponseEntity.BodyBuilder delete(@PathVariable("id") int id) {
+    public ResponseEntity<String> delete(@PathVariable("id") int id) {
         Advertisement advertisement = advertisementService.getOne(id);
         advertisement.setStatus(Status.ARCHIVED);
         advertisementService.save(advertisement);
-        return ResponseEntity.ok();
+        return ResponseEntity.ok("Ok");
 
     }
 
