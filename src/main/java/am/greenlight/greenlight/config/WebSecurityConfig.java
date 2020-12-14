@@ -41,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(HttpMethod.GET, "/user", "/item/my/{id}", "/item/active", "/item/archived", "/cars", "/car/{id}", "/preference").hasAnyAuthority("USER")
                 .antMatchers(HttpMethod.POST, "/rating", "/preference", "/item", "/car", "/user/avatar").hasAnyAuthority("USER")
-                .antMatchers(HttpMethod.PUT, "/user/password/change", "/user/about", "/user", "/item/change", "/item/change/status/{id}", "/item/change/archived/{id}", "/car/image", "/car").hasAnyAuthority("USER")
+                .antMatchers(HttpMethod.PUT, "/user/password/change", "/user/about", "/user", "/item/change", "/item/change/active/{id}", "/item/change/archived/{id}", "/car/image", "/car").hasAnyAuthority("USER")
                 .antMatchers(HttpMethod.DELETE, "/user", "/item/{id}", "/car/{id}").hasAnyAuthority("USER")
 
                 .antMatchers(HttpMethod.GET, "/user/find").hasAnyAuthority("ADMIN")

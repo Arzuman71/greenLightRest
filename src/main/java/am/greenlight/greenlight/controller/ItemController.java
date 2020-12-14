@@ -74,8 +74,8 @@ public class ItemController {
         return ResponseEntity.ok(itemDto);
     }
 
-    // TODO: 12.12.2020  ?//
-    @GetMapping("active")
+
+    @GetMapping("/active")
     public ResponseEntity<List<ItemResDtoForMe>> getItemsActive(@AuthenticationPrincipal CurrentUser currentUser) {
         List<ItemResDtoForMe> itemsDto = new ArrayList();
         long id = currentUser.getUser().getId();
@@ -86,7 +86,7 @@ public class ItemController {
         return ResponseEntity.ok(itemsDto);
     }
 
-    @GetMapping("archived")
+    @GetMapping("/archived")
     public ResponseEntity<List<ItemResDtoForMe>> getItemsArchived(@AuthenticationPrincipal CurrentUser currentUser) {
         List<ItemResDtoForMe> itemsDto = new ArrayList();
         long id = currentUser.getUser().getId();
@@ -117,21 +117,7 @@ public class ItemController {
         return ResponseEntity.ok(itemDto);
     }
 
-    //getOne or findById
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable("id") long id,
-                                         @AuthenticationPrincipal CurrentUser currentUser) {
-
-        Item item = itemService.getOne(id);
-        if (!(item.getUser().equals(currentUser.getUser()))) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
-        }
-        item.setStatus(Status.DELETED);
-        itemService.save(item);
-        return ResponseEntity.ok("Ok");
-    }
-
-    @PutMapping("/change/status/{id}")
+    @PutMapping("/change/active/{id}")
     public ResponseEntity<String> changeStatus(@PathVariable("id") long id,
                                                @AuthenticationPrincipal CurrentUser currentUser) {
 
@@ -147,12 +133,23 @@ public class ItemController {
     @PutMapping("/change/archived/{id}")
     public ResponseEntity<String> changeStatusArchived(@PathVariable("id") long id,
                                                        @AuthenticationPrincipal CurrentUser currentUser) {
-
         Item item = itemService.getOne(id);
         if (!(item.getUser().equals(currentUser.getUser()))) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
         }
         item.setStatus(Status.ARCHIVED);
+        itemService.save(item);
+        return ResponseEntity.ok("Ok");
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable("id") long id,
+                                         @AuthenticationPrincipal CurrentUser currentUser) {
+        Item item = itemService.getOne(id);
+        if (!(item.getUser().equals(currentUser.getUser()))) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
+        }
+        item.setStatus(Status.DELETED);
         itemService.save(item);
         return ResponseEntity.ok("Ok");
     }
