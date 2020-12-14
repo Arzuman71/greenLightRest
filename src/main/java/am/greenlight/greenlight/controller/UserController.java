@@ -24,7 +24,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 
-//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -111,6 +111,7 @@ public class UserController {
         return ResponseEntity.badRequest().body("Something went wrong.Please try again");
     }
 
+    // es ek@ petq chi ga petq e jnjel testeri het
     @PutMapping("/about")
     public ResponseEntity<String> changeAbout(@AuthenticationPrincipal CurrentUser currentUser,
                                               @RequestBody AboutChangeDto aboutDto) {
@@ -120,7 +121,7 @@ public class UserController {
         return ResponseEntity.ok("ok");
     }
 
-    @PostMapping("avatar")
+    @PostMapping("/avatar")
     public ResponseEntity<String> changeAvatar(@AuthenticationPrincipal CurrentUser currentUser,
                                                @RequestParam MultipartFile file) {
         if (userService.saveUserImg(currentUser.getUser(), file)) {
@@ -130,18 +131,17 @@ public class UserController {
     }
 
     @PutMapping("")
-    public ResponseEntity.BodyBuilder change(
-            @AuthenticationPrincipal CurrentUser currentUser,
-            @RequestBody UserChangeDto userChangeDto, BindingResult result) {
+    public ResponseEntity<String> change(@AuthenticationPrincipal CurrentUser currentUser,
+                                         @RequestBody UserChangeDto userDto, BindingResult result) {
 
         if (!result.hasErrors()) {
-            User userTmp = modelMapper.map(userChangeDto, User.class);
+            User userTmp = modelMapper.map(userDto, User.class);
             User user = currentUser.getUser();
             user.userChange(userTmp);
             userService.save(user);
-            return ResponseEntity.ok();
+            return ResponseEntity.ok("Ok");
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
     }
 
     @PutMapping("/password/change")
@@ -164,21 +164,21 @@ public class UserController {
         User user = currentUser.getUser();
         user.setStatus(Status.ARCHIVED);
         userService.save(user);
-        return ResponseEntity.ok("you have deleted your account");
+        return ResponseEntity.ok("your account deleted");
 
     }
 
-    @GetMapping("/forgotPassword")
-    public ResponseEntity<String> forgotPass(@RequestParam("email") String email) {
+    @GetMapping("/forgotPassword/{email}")
+    public ResponseEntity<String> forgotPass(@PathVariable("email") String email) {
         Optional<User> byEmail = userService.findByEmail(email);
         if (byEmail.isPresent() && byEmail.get().getStatus() == Status.ACTIVE) {
             User user = byEmail.get();
             user.setOtp(UUID.randomUUID().toString());
             userService.save(user);
-            String link = "http://localhost:8080/user/forgotPassword/reset?email=" + user.getEmail() + "&token=" + user.getOtp();
-            emailService.send(user.getEmail(), "Welcome", "Dear " + user.getName() + ' ' + user.getSurname() + "activate your account by clicking on:" + link);
+            String link = "http://localhost:3000/user/forgotPassword/reset?email=" + user.getEmail() + "&otp=" + user.getOtp();
+            emailService.send(user.getEmail(), "Welcome", "Dear " + user.getName() + ' ' + user.getSurname() + "activate your account by clicking on: " + link);
 
-            return ResponseEntity.ok("Your password changed");
+            return ResponseEntity.ok("ok");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("this email not existent");
     }
@@ -191,21 +191,21 @@ public class UserController {
         Optional<User> byUsername = userService.findByEmail(email);
         if (byUsername.isPresent() && byUsername.get().getOtp().equals(otp)) {
             confirmEmail.setEmail(byUsername.get().getEmail());
-            confirmEmail.setToken(byUsername.get().getOtp());
+            confirmEmail.setOtp(byUsername.get().getOtp());
             return ResponseEntity.ok(confirmEmail);
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(confirmEmail);
     }
 
     // front end-ը պետք է տա օտպը ու էմաիլը
-    @PostMapping("/forgotPassword/change")
+    @PutMapping("/forgotPassword/change")
     public ResponseEntity<String> changePass(@RequestBody ForgotPasswordDto forgotPass) {
 
         Optional<User> byEmail = userService.findByEmail(forgotPass.getEmail());
         if (byEmail.isPresent()) {
             User user = byEmail.get();
             if (user.getOtp().equals(forgotPass.getOtp())
-                    && forgotPass.getPassword().equals(forgotPass.getRepeatPassword())) {
+                    && forgotPass.getPassword().equals(forgotPass.getConfirmPassword())) {
 
                 user.setPassword(passwordEncoder.encode(forgotPass.getPassword()));
                 userService.save(user);

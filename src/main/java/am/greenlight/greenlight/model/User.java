@@ -57,6 +57,6 @@ public class User {
         this.surname = user.getSurname();
         this.gender = user.getGender();
         this.age = user.getAge();
-        this.preference = user.getPreference();
+        this.about = user.getAbout();
     }
 }

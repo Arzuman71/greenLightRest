@@ -2,7 +2,6 @@ package am.greenlight.greenlight.dto;
 
 import am.greenlight.greenlight.model.enumForItem.Type;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,7 +13,6 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class ItemReqDto {
 
     private long id;
@@ -22,7 +20,7 @@ public class ItemReqDto {
     private String outset;
     @NotBlank(message = "end is required")
     private String end;
-    @NotNull(message = "Parameter Date Unadjusted can not be blank or null")
+    @NotNull(message = "Parameter Date Unadjusted can not be null")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime startDate;
     private Type type;

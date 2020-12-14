@@ -86,7 +86,8 @@ class CarControllerTest {
             e.printStackTrace();
         }
     }
-@Test
+
+    @Test
     @WithUserDetails("arzuman.@mail.ru")
     void save_ClientError() {
         ObjectNode objectNode = new ObjectMapper().createObjectNode();

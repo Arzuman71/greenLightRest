@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/preference")
@@ -29,5 +30,11 @@ public class PreferenceController {
         user.setPreference(newPreference);
         userService.save(user);
         return ResponseEntity.ok("OK");
+    }
+
+    @GetMapping("")
+    public ResponseEntity<Preference> getPreference(@AuthenticationPrincipal CurrentUser currentUser) {
+        Preference preference = currentUser.getUser().getPreference();
+        return ResponseEntity.ok(preference);
     }
 }

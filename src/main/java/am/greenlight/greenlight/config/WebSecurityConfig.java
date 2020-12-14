@@ -35,13 +35,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/user/forgotPassword", "/user/forgotPassword/reset", "/rating/{id}", "/image/{name}", "/item/{itemId}", "/advertisements", "/user/activate").permitAll()
+                .antMatchers(HttpMethod.GET, "/user/forgotPassword/{email}", "/user/forgotPassword/reset", "/rating/{id}", "/image/{name}", "/item/{itemId}", "/advertisements", "/user/activate").permitAll()
                 .antMatchers(HttpMethod.POST, "/", "/user/auth", "/user").permitAll()
-                .antMatchers(HttpMethod.PUT, "/user/forgotPassword/reset").permitAll()
+                .antMatchers(HttpMethod.PUT, "/user/forgotPassword/change").permitAll()
 
-                .antMatchers(HttpMethod.GET, "/user", "/item/active", "/item/archived", "/cars", "/car/{id}").hasAnyAuthority("USER")
+                .antMatchers(HttpMethod.GET, "/user", "/item/my/{id}", "/item/active", "/item/archived", "/cars", "/car/{id}", "/preference").hasAnyAuthority("USER")
                 .antMatchers(HttpMethod.POST, "/rating", "/preference", "/item", "/car", "/user/avatar").hasAnyAuthority("USER")
-                .antMatchers(HttpMethod.PUT, "/user/password/change", "/user/about", "/user", "/item/change", "/car/image", "/car").hasAnyAuthority("USER")
+                .antMatchers(HttpMethod.PUT, "/user/password/change", "/user/about", "/user", "/item/change", "/item/change/status/{id}", "/item/change/archived/{id}", "/car/image", "/car").hasAnyAuthority("USER")
                 .antMatchers(HttpMethod.DELETE, "/user", "/item/{id}", "/car/{id}").hasAnyAuthority("USER")
 
                 .antMatchers(HttpMethod.GET, "/user/find").hasAnyAuthority("ADMIN")

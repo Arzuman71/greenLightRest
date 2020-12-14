@@ -2,8 +2,10 @@ package am.greenlight.greenlight.controller;
 
 import am.greenlight.greenlight.dto.ItemReqDto;
 import am.greenlight.greenlight.dto.ItemResDto;
+import am.greenlight.greenlight.dto.ItemResDtoForMe;
 import am.greenlight.greenlight.model.Car;
 import am.greenlight.greenlight.model.Item;
+import am.greenlight.greenlight.model.User;
 import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.service.CarService;
@@ -18,6 +20,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,46 +65,94 @@ public class ItemController {
         return ResponseEntity.ok(itemResDto);
     }
 
+    //ToDo test
+    @GetMapping("/my/{id}")
+    public ResponseEntity<ItemResDtoForMe> myItemById(@PathVariable("id") Long id) {
+        Optional<Item> item = itemService.findById(id);
+        ItemResDtoForMe itemDto = new ItemResDtoForMe();
+        item.ifPresent(value -> modelMapper.map(value, itemDto));
+        return ResponseEntity.ok(itemDto);
+    }
+
+    // TODO: 12.12.2020  ?//
     @GetMapping("active")
-    public ResponseEntity<List<Item>> getItemsActive(@AuthenticationPrincipal CurrentUser currentUser) {
+    public ResponseEntity<List<ItemResDtoForMe>> getItemsActive(@AuthenticationPrincipal CurrentUser currentUser) {
+        List<ItemResDtoForMe> itemsDto = new ArrayList();
         long id = currentUser.getUser().getId();
         List<Item> items = itemService.findAllByUserIdAndStatus(id, Status.ACTIVE);
-        return ResponseEntity.ok(items);
+        items.forEach(i -> {
+            itemsDto.add(modelMapper.map(i, ItemResDtoForMe.class));
+        });
+        return ResponseEntity.ok(itemsDto);
     }
 
     @GetMapping("archived")
-    public ResponseEntity<List<Item>> getItemsArchived(@AuthenticationPrincipal CurrentUser currentUser) {
+    public ResponseEntity<List<ItemResDtoForMe>> getItemsArchived(@AuthenticationPrincipal CurrentUser currentUser) {
+        List<ItemResDtoForMe> itemsDto = new ArrayList();
         long id = currentUser.getUser().getId();
         List<Item> items = itemService.findAllByUserIdAndStatus(id, Status.ARCHIVED);
-        return ResponseEntity.ok(items);
+        items.forEach(i -> {
+            itemsDto.add(modelMapper.map(i, ItemResDtoForMe.class));
+        });
+        return ResponseEntity.ok(itemsDto);
     }
 
-    @PutMapping("change")
-    public ResponseEntity<ItemReqDto> changeItem(@RequestBody ItemReqDto itemReqDto,
+    //todo tests
+    @PutMapping("/change")
+    public ResponseEntity<ItemReqDto> changeItem(@RequestBody ItemReqDto itemDto,
                                                  @AuthenticationPrincipal CurrentUser currentUser) {
-        long carId = itemReqDto.getCarId();
-        if (carId != 0) {
-            Car car = carService.getOne(carId);
-            if (!(car.getUser().equals(currentUser.getUser()))) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(itemReqDto);
+        long id = itemDto.getCarId();
+        User user = currentUser.getUser();
+        Car car = null;
+        if (id > 0) {
+            car = carService.getOne(id);
+            if (!(car.getUser().equals(user))) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(itemDto);
             }
         }
-        Item item = modelMapper.map(itemReqDto, Item.class);
+        Item item = modelMapper.map(itemDto, Item.class);
+        item.setUser(user);
+        item.setCar(car);
         itemService.save(item);
-        return ResponseEntity.ok(itemReqDto);
+        return ResponseEntity.ok(itemDto);
     }
 
     //getOne or findById
-    @DeleteMapping("{itemId}")
-    public ResponseEntity<String> delete(
-            @PathVariable("itemId") long id,
-            CurrentUser currentUser) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable("id") long id,
+                                         @AuthenticationPrincipal CurrentUser currentUser) {
 
         Item item = itemService.getOne(id);
         if (!(item.getUser().equals(currentUser.getUser()))) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
         }
         item.setStatus(Status.DELETED);
+        itemService.save(item);
+        return ResponseEntity.ok("Ok");
+    }
+
+    @PutMapping("/change/status/{id}")
+    public ResponseEntity<String> changeStatus(@PathVariable("id") long id,
+                                               @AuthenticationPrincipal CurrentUser currentUser) {
+
+        Item item = itemService.getOne(id);
+        if (!(item.getUser().equals(currentUser.getUser()))) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
+        }
+        item.setStatus(Status.ACTIVE);
+        itemService.save(item);
+        return ResponseEntity.ok("Ok");
+    }
+
+    @PutMapping("/change/archived/{id}")
+    public ResponseEntity<String> changeStatusArchived(@PathVariable("id") long id,
+                                                       @AuthenticationPrincipal CurrentUser currentUser) {
+
+        Item item = itemService.getOne(id);
+        if (!(item.getUser().equals(currentUser.getUser()))) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
+        }
+        item.setStatus(Status.ARCHIVED);
         itemService.save(item);
         return ResponseEntity.ok("Ok");
     }

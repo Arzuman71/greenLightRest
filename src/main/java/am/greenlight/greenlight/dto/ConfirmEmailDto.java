@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class ConfirmEmailDto {
 
     private String email;
-    private String token;
+    private String otp;
 
 }
