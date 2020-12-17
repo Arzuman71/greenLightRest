@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -121,9 +122,12 @@ public class UserController {
         return ResponseEntity.ok("ok");
     }
 
-    @PostMapping("/avatar")
+    @PostMapping(
+            path = "/avatar",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> changeAvatar(@AuthenticationPrincipal CurrentUser currentUser,
-                                               @RequestParam MultipartFile file) {
+                                               @RequestParam("file") MultipartFile file) {
         if (userService.saveUserImg(currentUser.getUser(), file)) {
             return ResponseEntity.ok("ok");
         }

@@ -19,16 +19,15 @@ public class AdminController {
 
     private final UserService userService;
 
-    @GetMapping("find/{name}/{surname}")
-    public ResponseEntity<List<User>> findUserByNameAndSurname(
-            @PathVariable("name") String name,
-            @PathVariable("surname") String surname) {
+    @GetMapping("/find/{name}/{surname}")
+    public ResponseEntity<List<User>> findUserByNameAndSurname(@PathVariable("name") String name,
+                                                               @PathVariable("surname") String surname) {
         List<User> users = userService.findByNameAndSurname(name, surname);
         return ResponseEntity.ok(users);
     }
 
 
-    @DeleteMapping("{userId}")
+    @DeleteMapping("/{userId}")
     public ResponseEntity<String> deleteUserByAdmin(@PathVariable("userId") long id) {
         User userDelete = userService.getOne(id);
         userDelete.setStatus(Status.DELETED);
