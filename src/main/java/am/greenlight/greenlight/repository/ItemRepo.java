@@ -14,9 +14,10 @@ public interface ItemRepo extends JpaRepository<Item, Long> {
 
     List<Item> findAllByUserIdAndStatus(long id, Status status);
 
-    @Query("SELECT i FROM Item i" +
-            " WHERE i.outset like %?1% AND i.end like %?2% AND" +
-            " i.type = ?3 AND i.startDate > ?4 AND i.startDate < ?5")
+    @Query("SELECT i FROM Item i WHERE i.status = 'ACTIVE' " +
+            "AND i.outset like %?1% " +
+            "AND i.end like %?2% AND i.type = ?3 " +
+            "AND (i.startDate > ?4 AND i.startDate < ?5) OR i.startDate IS NULL")
     List<Item> itemSearch(String outset, String end, Type type, LocalDateTime date1, LocalDateTime date2);
 
 }

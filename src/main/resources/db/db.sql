@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `advertisement`;
 
 CREATE TABLE `advertisement` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `link` varchar(255) CHARACTER SET dec8 NOT NULL,
+  `link` varchar(150) CHARACTER SET dec8 NOT NULL,
   `pic_url` varchar(255) CHARACTER SET dec8 NOT NULL,
   `deadline` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `description` text NOT NULL,
@@ -45,12 +45,12 @@ DROP TABLE IF EXISTS `car`;
 
 CREATE TABLE `car` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `car_brand` varchar(255) NOT NULL,
+  `car_brand` varchar(50) NOT NULL,
   `car_type` enum('CAR','BUS','TRUCK') NOT NULL,
-  `car_number` varchar(255) DEFAULT NULL,
+  `car_number` varchar(50) DEFAULT NULL,
   `pic_url` varchar(255) DEFAULT NULL,
   `year` date DEFAULT NULL,
-  `car_model` varchar(255) DEFAULT NULL,
+  `car_model` varchar(50) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `color` enum('BLACK','WHITE','DARK_GREY','GREY','BURGUNDY','RED','DARK_BLUE','BLUE','DARK_GREEN','GREEN','BROWN','BEIGE','ORANGE','YELLOW','PURPLE','PINK') NOT NULL,
   `status` enum('ACTIVE','ARCHIVED','DELETED') NOT NULL,
@@ -60,9 +60,11 @@ CREATE TABLE `car` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `car_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `car` */
+
+insert  into `car`(`id`,`car_brand`,`car_type`,`car_number`,`pic_url`,`year`,`car_model`,`user_id`,`color`,`status`,`created_date`,`updated_date`,`deleted_date`) values (2,'vv','CAR','22',NULL,'2020-10-28','tt',22,'BLACK','ACTIVE','2020-10-28 18:10:18','2020-10-28 18:10:35',NULL),(3,'ok','BUS','44417171717',NULL,'2020-12-17','29 October',46,'BEIGE','ARCHIVED','2020-12-11 12:44:27','2020-12-11 13:14:18',NULL),(4,'carBrand','CAR','17777',NULL,'1717-10-10','carModel',50,'BLUE','ACTIVE','2020-12-10 23:24:16',NULL,NULL),(5,'29 October','TRUCK','18',NULL,'2020-12-17','29 October',46,'BLUE','ARCHIVED','2020-12-10 21:17:48','2020-12-11 13:02:37',NULL),(6,'29 October','TRUCK','18',NULL,'2020-12-17','29 October',46,'BLUE','ACTIVE','2020-12-10 21:16:49','2020-12-11 13:14:12',NULL);
 
 /*Table structure for table `images` */
 
@@ -85,16 +87,16 @@ DROP TABLE IF EXISTS `item`;
 
 CREATE TABLE `item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `from` varchar(255) NOT NULL,
-  `where` varchar(255) NOT NULL,
-  `start_date` timestamp NULL DEFAULT NULL,
-  `price` varchar(255) DEFAULT NULL,
+  `outset` varchar(50) NOT NULL,
+  `end` varchar(50) NOT NULL,
+  `start_date` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `price` varchar(50) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `parcel_type` enum('DOCUMENT','PARCEL','ALIVE','GLASS','OTHER') DEFAULT 'PARCEL',
   `car_id` int(11) DEFAULT NULL,
-  `type` enum('CAR_DRIVER','TRUCK_DRIVER','PASSENGER','SEEKER_TRUCK') NOT NULL,
-  `number_of_passengers` int(3) DEFAULT NULL,
-  `status` enum('ACTIVE','ARCHIVED','DELETED') NOT NULL DEFAULT 'ACTIVE',
+  `type` enum('CAR_DRIVER','TRUCK_DRIVER') NOT NULL,
+  `number_of_passengers` int(3) DEFAULT '0',
+  `status` enum('ACTIVE','ARCHIVED','DELETED') NOT NULL,
   `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_date` timestamp NULL DEFAULT NULL,
@@ -103,27 +105,11 @@ CREATE TABLE `item` (
   KEY `car_id` (`car_id`),
   CONSTRAINT `item_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `item_ibfk_2` FOREIGN KEY (`car_id`) REFERENCES `car` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `item` */
 
-insert  into `item`(`id`,`from`,`where`,`start_date`,`price`,`user_id`,`parcel_type`,`car_id`,`type`,`number_of_passengers`,`status`,`created_date`,`updated_date`,`deleted_date`) values (3,'test','test','2020-09-29 17:07:25','11',22,'OTHER',NULL,'SEEKER_TRUCK',1,'ACTIVE','2020-09-29 17:08:00','2020-09-29 17:11:45',NULL),(4,'test','test','2020-09-30 17:08:48',NULL,22,'PARCEL',NULL,'SEEKER_TRUCK',2,'ACTIVE','2020-09-28 17:08:11','2020-09-29 17:11:48',NULL);
-
-/*Table structure for table `massage` */
-
-DROP TABLE IF EXISTS `massage`;
-
-CREATE TABLE `massage` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `massage` text NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `massage_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-/*Data for the table `massage` */
+insert  into `item`(`id`,`outset`,`end`,`start_date`,`price`,`user_id`,`parcel_type`,`car_id`,`type`,`number_of_passengers`,`status`,`created_date`,`updated_date`,`deleted_date`) values (3,'test','test','2021-01-09 23:16:00','11',22,'OTHER',NULL,'CAR_DRIVER',1,'ACTIVE','2020-09-29 17:08:00','2020-09-29 17:11:45',NULL),(4,'test','test','2021-01-09 16:25:08',NULL,22,'PARCEL',NULL,'CAR_DRIVER',2,'ARCHIVED','2020-09-28 17:08:11','2020-09-29 17:11:48',NULL),(5,'fr','wh','2020-12-08 14:26:18','0.0',22,NULL,NULL,'CAR_DRIVER',0,'ACTIVE','2020-11-18 18:02:28','2020-11-18 18:02:28',NULL),(6,'fr','wh','2020-12-08 14:26:20','0.0',22,NULL,NULL,'CAR_DRIVER',0,'ACTIVE','2020-11-19 01:19:58','2020-11-19 01:19:58',NULL),(7,'out','end','2020-12-17 23:16:00','171771',46,NULL,NULL,'CAR_DRIVER',7,'ACTIVE','2020-12-14 23:16:45','2020-12-14 23:16:45',NULL),(8,'test','test','2021-01-09 18:22:06','33',22,'PARCEL',NULL,'CAR_DRIVER',0,'ACTIVE','2021-01-09 15:41:44','2021-01-09 15:41:44',NULL);
 
 /*Table structure for table `preference` */
 
@@ -136,11 +122,11 @@ CREATE TABLE `preference` (
   `with_animals` enum('AGAINST','SOMETIMES','AGREE') NOT NULL DEFAULT 'SOMETIMES',
   `music` enum('AGAINST','SOMETIMES','AGREE') NOT NULL DEFAULT 'SOMETIMES',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `preference` */
 
-insert  into `preference`(`id`,`speak`,`smoke`,`with_animals`,`music`) values (1,'SOMETIMES','SOMETIMES','SOMETIMES','SOMETIMES');
+insert  into `preference`(`id`,`speak`,`smoke`,`with_animals`,`music`) values (1,'SOMETIMES','SOMETIMES','SOMETIMES','SOMETIMES'),(2,'AGREE','AGREE','SOMETIMES','SOMETIMES'),(3,'SOMETIMES','SOMETIMES','SOMETIMES','SOMETIMES'),(4,'SOMETIMES','SOMETIMES','SOMETIMES','SOMETIMES');
 
 /*Table structure for table `rating` */
 
@@ -188,11 +174,11 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   KEY `preference_id` (`preference_id`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`preference_id`) REFERENCES `preference` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`name`,`surname`,`age`,`password`,`phone_number`,`email`,`gender`,`pic_url`,`about`,`preference_id`,`role`,`status`,`phone_active`,`otp`,`created_date`,`updated_date`,`deleted_date`) values (22,'Arzuman','Kochoyan','2020-08-07','$2a$10$7V3q9ojVeUdQslZRMrHlWue0LOX/DoNar4W3ABBwP3WAh.MrX8kZ2','0','arzuman.@mail.ru','MALE',NULL,NULL,1,'USER','ACTIVE','','','2020-09-17 23:58:37',NULL,NULL),(23,'pokpok','okpokp','2020-07-27','$2a$10$TmN6RSHSrr54YGH09LDXtuRcpbOOYIKFim1PJkI1PKvQjHbw.nAXa','0','opjpojpo.jijij@mail.yfbnn','MALE',NULL,NULL,1,'USER','ACTIVE','\0','91853bb6-9cec-4d86-a0ce-c460191a2104','2020-09-17 23:58:37',NULL,NULL),(39,'Arzuman','Arzuman','2020-07-27','$2a$10$0C.v0sW2KPRpr1al4odc4um08oLM9exAvkRprUomVhdjw1WWv2QYy','0','arzuman.kochoyan@mail.ru','MALE',NULL,'jjjjm,lnjlnl',1,'USER','ACTIVE','','','2020-10-23 16:27:22','2020-10-23 16:27:22',NULL),(40,'poxosyan','poxosyan',NULL,'$2a$10$Z7aNbwnJCUmmLQ0Tir6p7O0iJgk7mMttiSKz51f01JWB0aRcDt2Hi',NULL,'poxosyan.poxo@mail.ru','MALE',NULL,NULL,1,'USER','ARCHIVED','\0','2360ca8a-3a34-45bd-a29a-39afe6a83cfe','2020-10-23 16:06:52',NULL,NULL),(46,'poxos','poxosya',NULL,'$2a$10$zTwYkG4oswkSGCeMUjPWqe/LwdYUoeU0.rOLpPD6YeoJTsTlf5Koa',NULL,'arzuman.kochoyan98@mail.ru','MALE',NULL,NULL,1,'USER','ACTIVE','\0','ee4c6a21-6593-48da-81fc-32acdd3bc180','2020-10-23 18:18:26','2020-10-23 18:18:26',NULL);
+insert  into `user`(`id`,`name`,`surname`,`age`,`password`,`phone_number`,`email`,`gender`,`pic_url`,`about`,`preference_id`,`role`,`status`,`phone_active`,`otp`,`created_date`,`updated_date`,`deleted_date`) values (22,'Arzuman','Kochoyan','2020-08-07','$2a$10$7V3q9ojVeUdQslZRMrHlWue0LOX/DoNar4W3ABBwP3WAh.MrX8kZ2','0','arzuman.@mail.ru','MALE',NULL,NULL,2,'USER','ACTIVE','','','2020-12-08 14:10:35','2020-12-08 14:10:35',NULL),(23,'pokpok','okpokp','2020-07-27','$2a$10$TmN6RSHSrr54YGH09LDXtuRcpbOOYIKFim1PJkI1PKvQjHbw.nAXa','0','opjpojpo.jijij@mail.yfbnn','MALE',NULL,NULL,1,'USER','ACTIVE','\0','91853bb6-9cec-4d86-a0ce-c460191a2104','2020-09-17 23:58:37',NULL,NULL),(39,'Arzuman','Arzuman','2020-07-27','$2a$10$0C.v0sW2KPRpr1al4odc4um08oLM9exAvkRprUomVhdjw1WWv2QYy','0','arzuman.kochoyan@mail.ru','MALE',NULL,'jjjjm,lnjlnl',2,'USER','ACTIVE','','','2020-10-23 16:27:22','2020-10-23 16:27:22',NULL),(40,'poxosyan','poxosyan',NULL,'$2a$10$Z7aNbwnJCUmmLQ0Tir6p7O0iJgk7mMttiSKz51f01JWB0aRcDt2Hi',NULL,'poxosyan.poxo@mail.ru','MALE',NULL,NULL,1,'USER','ACTIVE','\0','2360ca8a-3a34-45bd-a29a-39afe6a83cfe','2020-12-10 23:08:54','2020-12-10 23:08:54',NULL),(46,'poxos','poxosya','2020-12-15','$2a$10$zTwYkG4oswkSGCeMUjPWqe/LwdYUoeU0.rOLpPD6YeoJTsTlf5Koa',NULL,'arzuman.kochoyan98@mail.ru','MALE',NULL,'text',4,'USER','ACTIVE','\0','41fb48cc-8938-4149-a1b1-79c4e2cf7057','2020-12-15 13:48:56','2020-12-15 13:48:56',NULL),(50,'Arzuman','Kochoyan',NULL,'$2a$10$QbwPIdhaYAAdQLR7iCgFf.PmcJu0u.dEzlrx/L4bbNaVUsramRiFK',NULL,'arzuman.k@mail.ru','MALE',NULL,NULL,1,'USER','ACTIVE','\0','d96d38b6-8cd8-4031-ab0b-e63268bd585c','2020-12-15 13:48:50','2020-12-15 13:48:50',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

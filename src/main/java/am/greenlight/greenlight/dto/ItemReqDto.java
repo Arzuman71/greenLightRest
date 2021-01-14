@@ -25,6 +25,7 @@ public class ItemReqDto {
     private LocalDateTime startDate;
     private Type type;
     private String price;
+    @NotBlank(message = "car is required")
     private long carId;
     private int numberOfPassengers;
 

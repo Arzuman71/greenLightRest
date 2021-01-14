@@ -40,9 +40,9 @@ class MainControllerTest {
     @Test
     void items_Ok() throws Exception {
         ObjectNode objectNode = new ObjectMapper().createObjectNode();
-        objectNode.put("outset", "fr");
-        objectNode.put("end", "wh");
-        objectNode.put("dateFrom", String.valueOf(LocalDate.now()));
+        objectNode.put("outset", "t");
+        objectNode.put("end", "t");
+        objectNode.put("dateFrom", "2021-01-09");
         objectNode.put("type", "CAR_DRIVER");
         mvc.perform(MockMvcRequestBuilders.post("/")
                 .contentType(MediaType.APPLICATION_JSON)

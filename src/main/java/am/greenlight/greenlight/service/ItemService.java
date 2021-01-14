@@ -62,8 +62,7 @@ public class ItemService {
         itemSearchDto.setDateTo(from.plusDays(1));
 
         List<Item> items = itemRepo.itemSearch(itemSearchDto.getOutset(),
-                itemSearchDto.getEnd(),
-                itemSearchDto.getType(),
+                itemSearchDto.getEnd(), itemSearchDto.getType(),
                 from, itemSearchDto.getDateTo());
 
         return getItemDtoFromItem(items);

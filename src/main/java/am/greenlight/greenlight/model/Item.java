@@ -1,6 +1,5 @@
 package am.greenlight.greenlight.model;
 
-import am.greenlight.greenlight.config.I18nConfig;
 import am.greenlight.greenlight.model.enumForItem.Type;
 import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.model.forTheFuture.ParcelType;

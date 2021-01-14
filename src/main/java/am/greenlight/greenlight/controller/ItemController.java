@@ -40,14 +40,13 @@ public class ItemController {
 
         if (!result.hasErrors()) {
             Optional<Car> car = carService.findById(itemReqDto.getCarId());
-            Item item = modelMapper.map(itemReqDto, Item.class);
-            item.setCar(null);
             if (car.isPresent() && (car.get().getUser().equals(currentUser.getUser()))) {
+                Item item = modelMapper.map(itemReqDto, Item.class);
                 item.setCar(car.get());
+                item.setUser(currentUser.getUser());
+                item = itemService.save(item);
+                return ResponseEntity.ok(item);
             }
-            item.setUser(currentUser.getUser());
-            item = itemService.save(item);
-            return ResponseEntity.ok(item);
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
 
