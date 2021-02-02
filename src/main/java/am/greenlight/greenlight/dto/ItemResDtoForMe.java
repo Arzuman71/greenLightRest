@@ -18,6 +18,7 @@ public class ItemResDtoForMe {
     private String price;
     private Type type;
     private int numberOfPassengers;
+    private String parcelType;
     private LocalDateTime createdDate;
     private CarRes car;
 }

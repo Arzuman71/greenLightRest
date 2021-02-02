@@ -1,5 +1,6 @@
 package am.greenlight.greenlight.model;
 
+import am.greenlight.greenlight.dto.UserChangeDto;
 import am.greenlight.greenlight.model.enumForUser.Gender;
 import am.greenlight.greenlight.model.enumForUser.Role;
 import am.greenlight.greenlight.model.enumForUser.Status;
@@ -34,7 +35,6 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
     private String picUrl;
-    private String about;
     @ManyToOne
     private Preference preference;
 
@@ -52,11 +52,10 @@ public class User {
     private LocalDateTime deletedDate;
 
 
-    public void userChange(User user) {
-        this.name = user.getName();
-        this.surname = user.getSurname();
-        this.gender = user.getGender();
-        this.age = user.getAge();
-        this.about = user.getAbout();
+    public void userChange(UserChangeDto userDto) {
+        this.name = userDto.getName();
+        this.surname = userDto.getSurname();
+        this.gender = userDto.getGender();
+        this.age = userDto.getAge();
     }
 }

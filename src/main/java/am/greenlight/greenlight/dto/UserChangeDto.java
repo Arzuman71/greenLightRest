@@ -27,7 +27,5 @@ public class UserChangeDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull(message = "Parameter Date Unadjusted can not be null")
     private LocalDate age;
-    @NotNull(message = "text is required")
-    private String about;
 
 }

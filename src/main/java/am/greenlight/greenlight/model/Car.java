@@ -3,17 +3,18 @@ package am.greenlight.greenlight.model;
 import am.greenlight.greenlight.model.enumForCar.CarType;
 import am.greenlight.greenlight.model.enumForCar.Color;
 import am.greenlight.greenlight.model.enumForUser.Status;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 
-@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -35,6 +36,9 @@ public class Car {
     private User user;
     @Enumerated(value = EnumType.STRING)
     private Color color;
+    @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
+    @JoinColumn(name = "car_id")
+    private Set<Images> images;
 
     @Enumerated(value = EnumType.STRING)
     private Status status = Status.ACTIVE;
@@ -45,4 +49,23 @@ public class Car {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime deletedDate;
 
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", carBrand='" + carBrand + '\'' +
+                ", carType=" + carType +
+                ", carNumber='" + carNumber + '\'' +
+                ", picUrl='" + picUrl + '\'' +
+                ", year=" + year +
+                ", carModel='" + carModel + '\'' +
+                ", user=" + user +
+                ", color=" + color +
+            //    ", images=" + images +
+                ", status=" + status +
+                ", createdDate=" + createdDate +
+                ", updatedDate=" + updatedDate +
+                ", deletedDate=" + deletedDate +
+                '}';
+    }
 }

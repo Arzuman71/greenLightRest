@@ -2,12 +2,12 @@ package am.greenlight.greenlight.dto;
 
 import am.greenlight.greenlight.model.enumForCar.CarType;
 import am.greenlight.greenlight.model.enumForCar.Color;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -21,4 +21,5 @@ public class CarRes {
     private Color color;
     private LocalDate year;
     private String picUrl;
+    private Set<ImagesDto> images;
 }

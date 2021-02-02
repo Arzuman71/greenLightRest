@@ -17,7 +17,6 @@ import java.util.Arrays;
 import java.util.Locale;
 
 @Service
-
 public class EmailService {
 
     @Autowired
@@ -40,7 +39,7 @@ public class EmailService {
     }
 
     @Async
-    public void sendHtmlEmil(String to, String subject, User user, String link, String templateName, Locale locale) throws MessagingException, MessagingException {
+    public void sendHtmlEmil(String to, String subject, User user, String link, String templateName, Locale locale) {
         final Context ctx = new Context(locale);
         ctx.setVariable("user", user);
         ctx.setVariable("url", link);
@@ -48,17 +47,22 @@ public class EmailService {
         //    ctx.setVariable("imageResourceName", imageResourceName); // so that we can reference it from HTML
 
         final String htmlContent = this.templateEngine.process(templateName, ctx);
-
         // Prepare message using a Spring helper
         final MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-        final MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8"); // true = multipart
-        message.setSubject(subject);
-        message.setFrom("thymeleaf@example.com");
-        message.setTo(to);
+        final MimeMessageHelper message; // true = multipart
+        try {
+            message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 
-        message.setText(htmlContent, true); // true = isHtml
+            message.setSubject(subject);
+            message.setFrom("infogreenlight7@gmail.com");
+            message.setTo(to);
 
-        // Send mail
-        this.javaMailSender.send(mimeMessage);
+            message.setText(htmlContent, true); // true = isHtml
+
+            // Send mail
+            this.javaMailSender.send(mimeMessage);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 }

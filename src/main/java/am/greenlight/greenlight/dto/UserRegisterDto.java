@@ -23,7 +23,6 @@ public class UserRegisterDto {
     private String surname;
     @Size(min = 6, message = "Password length sold be at least 6 symbol")
     private String password;
-    private String confirmPassword;
     @NotBlank(message = "Email is  required")
     @Email(regexp = "^(?:[a-zA-Z0-9_'^&/+-])+(?:\\.(?:[a-zA-Z0-9_'^&/+-])+)" +
             "*@(?:(?:\\[?(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\\.)" +

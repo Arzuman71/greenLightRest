@@ -18,5 +18,4 @@ public class PasswordChangeDto {
     private String oldPassword;
     @Size(min = 6, max = 25, message= "Password length sold be at least 6 symbol")
     private String password;
-    private String confirmPassword;
 }

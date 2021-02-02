@@ -2,7 +2,6 @@ package am.greenlight.greenlight.model;
 
 import am.greenlight.greenlight.model.enumForItem.Type;
 import am.greenlight.greenlight.model.enumForUser.Status;
-import am.greenlight.greenlight.model.forTheFuture.ParcelType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,9 +30,7 @@ public class Item {
     private String price;
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
-    // for the future
-    @Enumerated(value = EnumType.STRING)
-    private ParcelType parcelType;
+    private String parcelType;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Car car;

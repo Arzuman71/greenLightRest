@@ -7,25 +7,29 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import am.greenlight.greenlight.model.User;
+import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.security.JwtTokenUtil;
 import am.greenlight.greenlight.service.EmailService;
 import am.greenlight.greenlight.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import lombok.NonNull;
-import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.context.support.WithUserDetails;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -39,6 +43,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -48,6 +53,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 //@ContextConfiguration
 class UserControllerTest {
 
@@ -62,6 +68,8 @@ class UserControllerTest {
     private ModelMapper modelMapper;
     @Autowired
     private JwtTokenUtil tokenUtil;
+    @Autowired
+    private UserController userController;
     @Autowired
     private EmailService emailService;
     @Autowired
@@ -159,7 +167,7 @@ class UserControllerTest {
     @Test
     void activate_Ok() {
         try {
-            mvc.perform(MockMvcRequestBuilders.get("/user/activate?email=arzuman.kochoyan98@mail.ru&otp=0eace02f-9e10-4106-a01f-86a9550f01b3")
+            mvc.perform(get("/user/activate?email=arzuman.kochoyan98@mail.ru&otp=0eace02f-9e10-4106-a01f-86a9550f01b3")
                     .contentType(MediaType.APPLICATION_JSON))
                     .andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print());
@@ -176,6 +184,7 @@ class UserControllerTest {
                 .andDo(MockMvcResultHandlers.print());
     }
 
+    //petq e poxel tip@ zaprosi rexuest param
     @Test
     void forgotPass_Ok() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/user/forgotPassword?email=arzuman.kochoyan98@mail.ru")
@@ -196,7 +205,7 @@ class UserControllerTest {
 
     @Test
     void reset_Ok() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/user/forgotPassword/reset?email=arzuman.kochoyan98@mail.ru&otp=6b1bad5e-2198-4dd7-be38-4799c3661049")
+        mvc.perform(MockMvcRequestBuilders.get("/user/forgotPassword/reset?email=poxostest@mail.ru&otp=e570c78e-81b8-40a5-bdcc-98fe790f6464")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
@@ -211,14 +220,14 @@ class UserControllerTest {
     }
 
     @Test
-    @WithUserDetails("arzuman.kochoyan@mail.ru")
+    @WithUserDetails("poxostest@mail.ru")
     void passwordChange_Ok() {
         ObjectNode objectNode = new ObjectMapper().createObjectNode();
-        objectNode.put("oldPassword", "passwordChange");
-        objectNode.put("password", "Arzuman");
-        objectNode.put("confirmPassword", "Arzuman");
+        objectNode.put("oldPassword", "arzuman");
+        objectNode.put("password", "newPassword");
+        objectNode.put("confirmPassword", "newPassword");
         try {
-            mvc2.perform(MockMvcRequestBuilders.put("/user/password/change")
+            mvc2.perform(put("/user/password/change")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectNode.toString()))
                     .andExpect(MockMvcResultMatchers.status().isOk())
@@ -266,36 +275,6 @@ class UserControllerTest {
 
     @Test
     @WithUserDetails("arzuman.kochoyan@mail.ru")
-    void changeAbout_Ok() {
-        ObjectNode objectNode = new ObjectMapper().createObjectNode();
-        objectNode.put("about", "aboutTest");
-        try {
-            mvc2.perform(MockMvcRequestBuilders.put("/user/about")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectNode.toString()))
-                    .andExpect(MockMvcResultMatchers.status().isOk())
-                    .andDo(MockMvcResultHandlers.print());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    @WithUserDetails("arzuman.kochoyan@mail.ru")
-    void changeAbout_ClientError() {
-        try {
-            mvc2.perform(MockMvcRequestBuilders.put("/user/about")
-                    .contentType(MediaType.APPLICATION_JSON))
-                    .andExpect(MockMvcResultMatchers.status().is4xxClientError())
-                    .andDo(MockMvcResultHandlers.print());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    @Test
-    @WithUserDetails("arzuman.kochoyan@mail.ru")
     void changeAvatar_Ok() {
         try {
             File f = new File("C:\\Users\\Arzuman\\Desktop\\Folder\\rest\\greenLightRest\\upload\\17.png");
@@ -309,7 +288,19 @@ class UserControllerTest {
             e.printStackTrace();
         }
     }
-
-
-
+    @Test
+    @WithUserDetails("arzuman.kochoyan@mail.ru")
+    void savePhoneNumber_Ok() {
+        ObjectNode objectNode = new ObjectMapper().createObjectNode();
+        objectNode.put("number", "171717");
+        try {
+            mvc2.perform(MockMvcRequestBuilders.put("/user/phone")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(objectNode.toString()))
+                    .andExpect(MockMvcResultMatchers.status().isOk())
+                    .andDo(MockMvcResultHandlers.print());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

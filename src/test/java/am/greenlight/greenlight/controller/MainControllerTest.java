@@ -1,7 +1,5 @@
 package am.greenlight.greenlight.controller;
 
-import am.greenlight.greenlight.service.ItemService;
-import am.greenlight.greenlight.service.MainService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,31 +8,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 class MainControllerTest {
 
     private MockMvc mvc;
     @Autowired
-    private MainService mainService;
-    @Autowired
-    private ItemService itemService;
+    private MainController mainController;
 
     @BeforeEach
     public void setUp() {
-        mvc = MockMvcBuilders.standaloneSetup(new MainController(mainService, itemService)).build();
+        mvc = MockMvcBuilders.standaloneSetup(mainController).build();
     }
 
     @Test
@@ -54,7 +49,7 @@ class MainControllerTest {
 
     @Test
     void getImage_Ok() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/image?name=17.png")
+        mvc.perform(MockMvcRequestBuilders.get("/image/17.png")
                 .contentType(MediaType.IMAGE_JPEG_VALUE))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());

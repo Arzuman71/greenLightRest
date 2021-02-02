@@ -28,7 +28,6 @@ public class UserResDto {
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
     private String picUrl;
-    private String about;
     @ManyToOne
     private Preference preference;
 }

@@ -45,7 +45,7 @@ class CarServiceTest {
 
     @Test
     void getOne_Ok() {
-        long id = 11;
+       long id = 11;
         given(carRepo.getOne(id)).willReturn(car);
         Car carResponse = carService.getOne(id);
         assertThat(carResponse).isEqualTo(car);

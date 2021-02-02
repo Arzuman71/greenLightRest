@@ -38,18 +38,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/user/forgotPassword/{email}", "/user/forgotPassword/reset", "/rating/{id}", "/image/{name}", "/item/{itemId}", "/advertisements", "/user/activate").permitAll()
-                .antMatchers(HttpMethod.POST, "/", "/user/auth", "/user").permitAll()
+                .antMatchers(HttpMethod.POST, "/", "/user/auth", "/user", "/user/contactUs").permitAll()
                 .antMatchers(HttpMethod.PUT, "/user/forgotPassword/change").permitAll()
 
                 .antMatchers(HttpMethod.GET, "/user", "/item/my/{id}", "/item/active", "/item/archived", "/cars", "/car/{id}", "/preference").hasAnyAuthority("USER")
                 .antMatchers(HttpMethod.POST, "/rating", "/preference", "/item", "/car", "/user/avatar").hasAnyAuthority("USER")
-                .antMatchers(HttpMethod.PUT, "/user/password/change", "/user/about", "/user", "/item/change", "/item/change/active/{id}", "/item/change/archived/{id}", "/car/image", "/car").hasAnyAuthority("USER")
+                .antMatchers(HttpMethod.PUT, "/user/password/change", "/user/about", "/user", "/item/change", "/item/change/active/{id}", "/item/change/archived/{id}", "/car/image", "/car", "user/phone").hasAnyAuthority("USER")
                 .antMatchers(HttpMethod.DELETE, "/user", "/item/{id}", "/car/{id}").hasAnyAuthority("USER")
 
                 .antMatchers(HttpMethod.GET, "/user/find/{name}/{surname}").hasAnyAuthority("ADMIN")
                 .antMatchers(HttpMethod.POST, "/advertisement", "/user/find").hasAnyAuthority("ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/advertisement/{id}", "/user/{id}").hasAnyAuthority("ADMIN")
                 .anyRequest().permitAll();
+        //mnacac zaprosner@ pakelu hamar petq e stugvi  permitAll em tvel swageri hamar
+
+        // .anyRequest().hasAnyAuthority()
 
         // Custom JWT based security filter
         http
@@ -57,6 +60,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // disable page caching
         http.headers().cacheControl();
+        // for http://localhost:8080/h2-console . you need change scope in runtime
+        // http.headers().frameOptions().disable();
     }
 
     @Override

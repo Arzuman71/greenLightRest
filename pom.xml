@@ -67,6 +67,14 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -116,17 +124,6 @@
             </exclusions>
         </dependency>
     </dependencies>
-    <profiles>
-        <profile>
-            <id>Arzuman</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <spring.proparties.active>Arzuman</spring.proparties.active>
-            </properties>
-        </profile>
-    </profiles>
 
     <build>
         <plugins>

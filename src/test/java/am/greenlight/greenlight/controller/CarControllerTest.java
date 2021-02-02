@@ -1,16 +1,16 @@
 package am.greenlight.greenlight.controller;
 
-import am.greenlight.greenlight.service.CarService;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithUserDetails;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -23,14 +23,14 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 class CarControllerTest {
 
     private MockMvc mvc;
     private MockMvc mvc2;
     @Autowired
-    private CarService carService;
-    @Autowired
-    private ModelMapper modelMapper;
+    private CarController carController;
+
 
 
     @Autowired
@@ -39,7 +39,7 @@ class CarControllerTest {
     @BeforeEach
     public void setUp() {
         mvc = MockMvcBuilders
-                .standaloneSetup(new CarController(carService, modelMapper))
+                .standaloneSetup(carController)
                 .build();
         mvc2 = MockMvcBuilders
                 .webAppContextSetup(context)
@@ -48,9 +48,9 @@ class CarControllerTest {
     }
 
     @Test
-    @WithUserDetails("arzuman.@mail.ru")
+    @WithUserDetails("arzuman.kochoyan@mail.ru")
     void cars_Ok() throws Exception {
-        mvc2.perform(MockMvcRequestBuilders.get("/car/cars")
+        mvc2.perform(get("/car/cars")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
@@ -58,7 +58,7 @@ class CarControllerTest {
 
     @Test
     void getOne_Ok() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/car/1")
+        mvc.perform(MockMvcRequestBuilders.get("/car/3")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());

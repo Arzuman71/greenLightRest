@@ -10,6 +10,7 @@ import am.greenlight.greenlight.service.CarService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,10 +33,12 @@ public class CarController {
 
 
     @GetMapping("cars")
-    public ResponseEntity<List<Car>> cars(@AuthenticationPrincipal CurrentUser currentUser) {
+    public ResponseEntity<List<CarRes>> cars(@AuthenticationPrincipal CurrentUser currentUser) {
         User user = currentUser.getUser();
         List<Car> cars = carService.findCarByUserIdAndStatus(user.getId(), Status.ACTIVE);
-        return ResponseEntity.ok(cars);
+        List<CarRes> carRes = new ArrayList<>();
+        cars.forEach(c -> carRes.add(modelMapper.map(c, CarRes.class)));
+        return ResponseEntity.ok(carRes);
     }
 
     @GetMapping("{carId}")
@@ -46,10 +50,9 @@ public class CarController {
         }
 
         return ResponseEntity.ok(carRes);
-
     }
 
-    @PostMapping("")
+    @PostMapping(path = "/")
     public ResponseEntity<Car> save(@Valid @RequestBody CarRequestDto carReq,
                                     BindingResult result, @AuthenticationPrincipal CurrentUser currentUser) {
         if (!result.hasErrors()) {
@@ -62,9 +65,10 @@ public class CarController {
         return ResponseEntity.status(403).body(null);
     }
 
-    @PutMapping("image")
+    @PutMapping(path = "image",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity.BodyBuilder changeCarImg(@RequestParam("id") int id,
-                                                   @RequestParam("img") MultipartFile file) {
+                                                   @RequestParam(value = "image", required = false) MultipartFile file) {
         Car car = carService.getOne(id);
         carService.save(car, file);
         return ResponseEntity.ok();

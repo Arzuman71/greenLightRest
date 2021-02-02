@@ -19,6 +19,7 @@ public class ItemResDto {
     private Type type;
     private int numberOfPassengers;
     private LocalDateTime createdDate;
+    private String parcelType;
 
     private UserResDto user;
     private CarRes car;

@@ -1,5 +1,6 @@
 package am.greenlight.greenlight.dto;
 
+import am.greenlight.greenlight.model.Images;
 import am.greenlight.greenlight.model.enumForCar.CarType;
 import am.greenlight.greenlight.model.enumForCar.Color;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -30,4 +32,7 @@ public class CarRequestDto {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate year;
     private String picCar;
+
+    private Set<Images> images;
+
 }
