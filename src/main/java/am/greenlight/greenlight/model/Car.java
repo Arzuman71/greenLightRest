@@ -36,8 +36,7 @@ public class Car {
     private User user;
     @Enumerated(value = EnumType.STRING)
     private Color color;
-    @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
-    @JoinColumn(name = "car_id")
+    @OneToMany(mappedBy = "car")
     private Set<Images> images;
 
     @Enumerated(value = EnumType.STRING)
@@ -61,7 +60,7 @@ public class Car {
                 ", carModel='" + carModel + '\'' +
                 ", user=" + user +
                 ", color=" + color +
-            //    ", images=" + images +
+                ", images=" + images +
                 ", status=" + status +
                 ", createdDate=" + createdDate +
                 ", updatedDate=" + updatedDate +
