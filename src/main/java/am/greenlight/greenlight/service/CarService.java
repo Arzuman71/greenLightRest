@@ -29,14 +29,16 @@ public class CarService {
     }
 
     public Car save(Car car, MultipartFile file) {
-        try {
+        if (!file.isEmpty()) {
             String name = UUID.randomUUID().toString().replace("-", "") + file.getOriginalFilename();
             File picCar = new File(uploadDir, name);
-            file.transferTo(picCar);
-            car.setPicUrl(name);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
+            try {
+                file.transferTo(picCar);
+                car.setPicUrl(name);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
         }
         return carRepository.save(car);
     }

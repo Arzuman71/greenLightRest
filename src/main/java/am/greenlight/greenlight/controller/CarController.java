@@ -48,36 +48,39 @@ public class CarController {
         if (car.isPresent()) {
             carRes = modelMapper.map(car.get(), CarRes.class);
         }
-
         return ResponseEntity.ok(carRes);
     }
 
-    @PostMapping(path = "/")
+    @PostMapping(path = "/",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Car> save(@Valid @RequestBody CarRequestDto carReq,
-                                    BindingResult result, @AuthenticationPrincipal CurrentUser currentUser) {
+                                    BindingResult result, @AuthenticationPrincipal CurrentUser currentUser,
+                                    @RequestParam(value = "image", required = false) MultipartFile file) {
+
         if (!result.hasErrors()) {
             Car car = modelMapper.map(carReq, Car.class);
             car.setUser(currentUser.getUser());
             car.setId(0);
-            car = carService.save(car);
+            car = carService.save(car, file);
             return ResponseEntity.ok(car);
         }
         return ResponseEntity.status(403).body(null);
     }
 
-    @PutMapping(path = "image",
+    @PutMapping(path = "/mainPicture",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity.BodyBuilder changeCarImg(@RequestParam("id") int id,
-                                                   @RequestParam(value = "image", required = false) MultipartFile file) {
+    public ResponseEntity<String> changeCarImg(@RequestParam("id") int id,
+                                                   @RequestParam(value = "image") MultipartFile file) {
         Car car = carService.getOne(id);
         carService.save(car, file);
-        return ResponseEntity.ok();
+        return ResponseEntity.ok().body("Ok");
     }
 
     //ToDo test,
     @PutMapping("")
     public ResponseEntity<Car> changeCarData(@Valid @RequestBody CarRequestDto carReqDto,
-                                             BindingResult result, @AuthenticationPrincipal CurrentUser currentUser) {
+                                             BindingResult result,
+                                             @AuthenticationPrincipal CurrentUser currentUser) {
 
         if (!result.hasErrors()) {
             Car car = modelMapper.map(carReqDto, Car.class);
