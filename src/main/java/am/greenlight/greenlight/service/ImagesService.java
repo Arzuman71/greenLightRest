@@ -12,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -21,18 +20,18 @@ public class ImagesService {
     private final ImagesRepo imagesRepo;
     private final CarRepo carRepo;
 
-    @Value("${file.upload.dir}")
-    private String uploadDir;
+    @Value("${file.upload.carPicture.dir}")
+    private String carPictureDir;
 
     public Images getOne(long id) {
         return imagesRepo.getOne(id);
     }
 
-    public Set<Images> save(long CarId, MultipartFile file) {
+    public void save(long CarId, MultipartFile file) {
         Optional<Car> car = carRepo.findById(CarId);
         if (car.isPresent()) {
             String name = UUID.randomUUID().toString().replace("-", "") + file.getOriginalFilename();
-            File picCar = new File(uploadDir, name);
+            File picCar = new File(carPictureDir, name);
             Images images = Images.builder()
                     .name(name)
                     .car(car.get())
@@ -42,17 +41,15 @@ public class ImagesService {
                 imagesRepo.save(images);
             } catch (IOException e) {
                 e.printStackTrace();
-                return null;
             }
         }
-        return car.get().getImages();
     }
 
     public void change(long pictureId, MultipartFile file) {
         Optional<Images> images = imagesRepo.findById(pictureId);
         if (images.isPresent()) {
             String name = UUID.randomUUID().toString().replace("-", "") + file.getOriginalFilename();
-            File picCar = new File(uploadDir, name);
+            File picCar = new File(carPictureDir, name);
             images.get().setName(name);
             try {
                 file.transferTo(picCar);
@@ -61,7 +58,9 @@ public class ImagesService {
                 e.printStackTrace();
             }
         }
+    }
 
-
+    public void deleteById(long id) {
+        imagesRepo.deleteById(id);
     }
 }

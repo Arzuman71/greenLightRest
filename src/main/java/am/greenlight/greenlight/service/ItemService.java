@@ -1,12 +1,15 @@
 package am.greenlight.greenlight.service;
 
 
+import am.greenlight.greenlight.controller.MainController;
 import am.greenlight.greenlight.dto.ItemSearchDto;
 import am.greenlight.greenlight.dto.ItemSearchResDto;
 import am.greenlight.greenlight.model.Item;
 import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.repository.ItemRepo;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -21,6 +24,8 @@ import java.util.Optional;
 public class ItemService {
     private final ItemRepo itemRepo;
     private final RatingService ratingService;
+    private static final Logger log = LoggerFactory.getLogger(MainController.class);
+
 
     public Item save(Item item) {
         return itemRepo.save(item);
@@ -48,6 +53,8 @@ public class ItemService {
 
 
     public List<ItemSearchResDto> itemSearch(ItemSearchDto itemSearchDto) {
+        log.info("searching outset {}, end {}, type {}", itemSearchDto.getOutset(), itemSearchDto.getEnd(), itemSearchDto.getType());
+
         LocalDateTime from = LocalDateTime.now();
 
         if (itemSearchDto.getOutset().equals("")) {

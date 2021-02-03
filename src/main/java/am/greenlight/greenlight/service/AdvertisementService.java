@@ -15,8 +15,9 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class AdvertisementService {
-    @Value("${file.upload.dir}")
-    private String uploadDir;
+    @Value("${file.upload.AdvertisementPic.dir}")
+    private String AdvertisementPicDir;
+
     private final AdvertisementRepo advertisementRepo;
 
 
@@ -26,10 +27,9 @@ public class AdvertisementService {
     }
 
     public Advertisement save(Advertisement advertisement, MultipartFile file) {
-
         try {
             String name = UUID.randomUUID().toString().replace("-", "") + file.getOriginalFilename();
-            File picUrl = new File(uploadDir, name);
+            File picUrl = new File(AdvertisementPicDir, name);
 
             file.transferTo(picUrl);
             advertisement.setPicUrl(name);

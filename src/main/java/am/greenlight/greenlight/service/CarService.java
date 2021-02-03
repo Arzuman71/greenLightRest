@@ -19,8 +19,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CarService {
 
-    @Value("${file.upload.dir}")
-    private String uploadDir;
+    @Value("${file.upload.carPicture.dir}")
+    private String carPictureDir;
 
     private final CarRepo carRepository;
 
@@ -31,7 +31,7 @@ public class CarService {
     public Car save(Car car, MultipartFile file) {
         if (!file.isEmpty()) {
             String name = UUID.randomUUID().toString().replace("-", "") + file.getOriginalFilename();
-            File picCar = new File(uploadDir, name);
+            File picCar = new File(carPictureDir, name);
             try {
                 file.transferTo(picCar);
                 car.setPicUrl(name);

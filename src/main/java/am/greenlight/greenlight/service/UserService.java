@@ -18,8 +18,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserService {
 
-    @Value("${file.upload.dir}")
-    private String uploadDir;
+    @Value("${file.upload.userAvatar.dir}")
+    private String userAvatarDir;
 
     private final UserRepo userRepo;
     private final PreferenceService prefService;
@@ -41,7 +41,7 @@ public class UserService {
 
         try {
             String name = UUID.randomUUID().toString().replace("-", "") + file.getOriginalFilename();
-            File picUrl = new File(uploadDir, name);
+            File picUrl = new File(userAvatarDir, name);
             file.transferTo(picUrl);
             user.setPicUrl(name);
         } catch (IOException e) {

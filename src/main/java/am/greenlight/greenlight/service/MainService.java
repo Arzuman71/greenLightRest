@@ -15,17 +15,33 @@ import java.io.InputStream;
 @RequiredArgsConstructor
 public class MainService {
 
-    @Value("${file.upload.dir}")
-    private String uploadDir;
+    @Value("${file.upload.userAvatar.dir}")
+    private String userAvatarDir;
+    @Value("${file.upload.carPicture.dir}")
+    private String carPictureDir;
+    @Value("${file.upload.AdvertisementPic.dir}")
+    private String AdvertisementPicDir;
 
 
-    public byte[] getImageOrNull(String imageName) {
-        if(imageName == null){
+    public byte[] getUserAvatarOrNull(String imageName) {
+        return getBytes(imageName, userAvatarDir);
+    }
+
+    public byte[] getCarImageOrNull(String imageName) {
+        return getBytes(imageName, carPictureDir);
+    }
+
+    public byte[] getAdvertisementImageOrNull(String imageName) {
+
+        return getBytes(imageName, AdvertisementPicDir);
+    }
+
+    private byte[] getBytes(String imageName, String uploadDir) {
+        if (imageName.equals("str")) {
             imageName = "17.png";
         }
-        InputStream in = null;
         try {
-            in = new FileInputStream(uploadDir + File.separator + imageName);
+            InputStream in = new FileInputStream(uploadDir + File.separator + imageName);
 
             return IOUtils.toByteArray(in);
         } catch (IOException e) {
