@@ -25,16 +25,8 @@ public class RatingController {
     public ResponseEntity<String>  addOrChangeRating(@AuthenticationPrincipal CurrentUser currentUser,
                                                      @RequestBody RatingRequestDto ratingReq) {
 
-        long fromId = currentUser.getUser().getId();
-        Rating rating = ratingService.getByToIdAndFromId(ratingReq.getToId(), fromId);
 
-        if (rating == null) {
-            rating = new Rating();
-            rating.setTo(userService.getOne(ratingReq.getToId()));
-            rating.setFrom(currentUser.getUser());
-        }
-        rating.setNumber(ratingReq.getNumber());
-        ratingService.save(rating);
+        ratingService.addOrChangeRating(currentUser.getUser(),ratingReq);
         return ResponseEntity.ok("ok");
     }
 

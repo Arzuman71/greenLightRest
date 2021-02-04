@@ -6,6 +6,7 @@ import am.greenlight.greenlight.repository.ItemRepo;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
@@ -25,6 +26,8 @@ class ItemServiceTest {
     private PageRequest pageRequest;
     @Mock
     private Page<Item> itemPage;
+    @Mock
+    private ModelMapper modelMapper;
 
     private ItemService itemService;
     private RatingService ratingService;
@@ -32,13 +35,13 @@ class ItemServiceTest {
 
     ItemServiceTest() {
         MockitoAnnotations.initMocks(this);
-        this.itemService = new ItemService(itemRepo, ratingService);
+        this.itemService = new ItemService(itemRepo, ratingService, modelMapper);
     }
 
     @Test
     void save_Ok() {
         given(itemRepo.save(item)).willReturn(item);
-        item = itemService.save(item);
+        item = itemService.save(item, Status.ACTIVE);
         assertThat(item).isNotNull();
     }
 

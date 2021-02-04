@@ -18,12 +18,14 @@ class RatingServiceTest {
     private RatingRepo ratingRepo;
     @Mock
     Rating rating;
+
     private RatingService ratingService;
+    private UserService userService;
 
 
     RatingServiceTest() {
         MockitoAnnotations.initMocks(this);
-        this.ratingService = new RatingService(ratingRepo);
+        this.ratingService = new RatingService(ratingRepo, userService);
     }
 
 

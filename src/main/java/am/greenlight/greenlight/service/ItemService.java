@@ -2,12 +2,16 @@ package am.greenlight.greenlight.service;
 
 
 import am.greenlight.greenlight.controller.MainController;
+import am.greenlight.greenlight.dto.ItemReqDto;
 import am.greenlight.greenlight.dto.ItemSearchDto;
 import am.greenlight.greenlight.dto.ItemSearchResDto;
+import am.greenlight.greenlight.model.Car;
 import am.greenlight.greenlight.model.Item;
+import am.greenlight.greenlight.model.User;
 import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.repository.ItemRepo;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -24,10 +28,18 @@ import java.util.Optional;
 public class ItemService {
     private final ItemRepo itemRepo;
     private final RatingService ratingService;
+    private final ModelMapper modelMapper;
     private static final Logger log = LoggerFactory.getLogger(MainController.class);
 
+    public Item save(ItemReqDto itemDto, User user, Car car) {
+        Item item = modelMapper.map(itemDto, Item.class);
+        item.setUser(user);
+        item.setCar(car);
+        return itemRepo.save(item);
+    }
 
-    public Item save(Item item) {
+    public Item save(Item item, Status status) {
+        item.setStatus(status);
         return itemRepo.save(item);
     }
 

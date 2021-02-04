@@ -35,21 +35,35 @@ public class ItemController {
     private final RatingService ratingService;
 
     @PostMapping("")
-    public ResponseEntity<Object> save(@Valid @RequestBody ItemReqDto itemReqDto, BindingResult result,
-                                       @AuthenticationPrincipal CurrentUser currentUser) {
+    public ResponseEntity<ItemReqDto> save(@Valid @RequestBody ItemReqDto itemDto, BindingResult result,
+                                           @AuthenticationPrincipal CurrentUser currentUser) {
 
         if (!result.hasErrors()) {
-            Optional<Car> car = carService.findById(itemReqDto.getCarId());
-            if (car.isPresent() && (car.get().getUser().equals(currentUser.getUser()))) {
-                Item item = modelMapper.map(itemReqDto, Item.class);
-                item.setCar(car.get());
-                item.setUser(currentUser.getUser());
-                item = itemService.save(item);
-                return ResponseEntity.ok(item);
+            User user = currentUser.getUser();
+            Optional<Car> car = carService.findById(itemDto.getCarId());
+            if (car.isPresent() && (car.get().getUser().equals(user))) {
+                Item item = itemService.save(itemDto, user, car.get());
+                return ResponseEntity.ok(itemDto);
             }
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(itemDto);
 
+    }
+
+    //todo tests
+    @PutMapping("/change")
+    public ResponseEntity<ItemReqDto> changeItem(@Valid @RequestBody ItemReqDto itemDto, BindingResult result,
+                                                 @AuthenticationPrincipal CurrentUser currentUser) {
+
+        if (!result.hasErrors()) {
+            User user = currentUser.getUser();
+            Optional<Car> car = carService.findById(itemDto.getCarId());
+            if (car.isPresent() && (car.get().getUser().equals(user))) {
+                itemService.save(itemDto, user, car.get());
+                return ResponseEntity.ok(itemDto);
+            }
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(itemDto);
     }
 
     @GetMapping("/{itemId}")
@@ -79,9 +93,7 @@ public class ItemController {
         List<ItemResDtoForMe> itemsDto = new ArrayList();
         long id = currentUser.getUser().getId();
         List<Item> items = itemService.findAllByUserIdAndStatus(id, Status.ACTIVE);
-        items.forEach(i -> {
-            itemsDto.add(modelMapper.map(i, ItemResDtoForMe.class));
-        });
+        items.forEach(i -> itemsDto.add(modelMapper.map(i, ItemResDtoForMe.class)));
         return ResponseEntity.ok(itemsDto);
     }
 
@@ -90,67 +102,45 @@ public class ItemController {
         List<ItemResDtoForMe> itemsDto = new ArrayList();
         long id = currentUser.getUser().getId();
         List<Item> items = itemService.findAllByUserIdAndStatus(id, Status.ARCHIVED);
-        items.forEach(i -> {
-            itemsDto.add(modelMapper.map(i, ItemResDtoForMe.class));
-        });
+        items.forEach(i -> itemsDto.add(modelMapper.map(i, ItemResDtoForMe.class)));
         return ResponseEntity.ok(itemsDto);
     }
 
-    //todo tests
-    @PutMapping("/change")
-    public ResponseEntity<ItemReqDto> changeItem(@RequestBody ItemReqDto itemDto,
-                                                 @AuthenticationPrincipal CurrentUser currentUser) {
-        long id = itemDto.getCarId();
-        User user = currentUser.getUser();
-        Car car = null;
-        if (id > 0) {
-            car = carService.getOne(id);
-            if (!(car.getUser().equals(user))) {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(itemDto);
-            }
-        }
-        Item item = modelMapper.map(itemDto, Item.class);
-        item.setUser(user);
-        item.setCar(car);
-        itemService.save(item);
-        return ResponseEntity.ok(itemDto);
-    }
 
     @PutMapping("/change/active/{id}")
     public ResponseEntity<String> changeStatus(@PathVariable("id") long id,
                                                @AuthenticationPrincipal CurrentUser currentUser) {
 
         Item item = itemService.getOne(id);
-        if (!(item.getUser().equals(currentUser.getUser()))) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
+        if (item.getUser().equals(currentUser.getUser())) {
+
+            itemService.save(item, Status.ACTIVE);
+            return ResponseEntity.ok("Ok");
         }
-        item.setStatus(Status.ACTIVE);
-        itemService.save(item);
-        return ResponseEntity.ok("Ok");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
     }
 
     @PutMapping("/change/archived/{id}")
     public ResponseEntity<String> changeStatusArchived(@PathVariable("id") long id,
                                                        @AuthenticationPrincipal CurrentUser currentUser) {
         Item item = itemService.getOne(id);
-        if (!(item.getUser().equals(currentUser.getUser()))) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
+        if (item.getUser().equals(currentUser.getUser())) {
+            itemService.save(item, Status.ARCHIVED);
+            return ResponseEntity.ok("Ok");
         }
-        item.setStatus(Status.ARCHIVED);
-        itemService.save(item);
-        return ResponseEntity.ok("Ok");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
+
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") long id,
                                          @AuthenticationPrincipal CurrentUser currentUser) {
         Item item = itemService.getOne(id);
-        if (!(item.getUser().equals(currentUser.getUser()))) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
+        if (item.getUser().equals(currentUser.getUser())) {
+            itemService.save(item, Status.DELETED);
+            return ResponseEntity.ok("Ok");
         }
-        item.setStatus(Status.DELETED);
-        itemService.save(item);
-        return ResponseEntity.ok("Ok");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
     }
 
 

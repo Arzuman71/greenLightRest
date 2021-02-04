@@ -76,7 +76,7 @@ public class CarController {
         return ResponseEntity.ok().body("Ok");
     }
 
-    //ToDo test,
+    //ToDo test, petq e stugel
     @PutMapping("")
     public ResponseEntity<Car> changeCarData(@Valid @RequestBody CarRequestDto carReqDto,
                                              BindingResult result,

@@ -1,6 +1,7 @@
 package am.greenlight.greenlight.service;
 
 import am.greenlight.greenlight.model.Preference;
+import am.greenlight.greenlight.model.User;
 import am.greenlight.greenlight.repository.PreferenceRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,8 @@ public class PreferenceService {
     private final PreferenceRepo PrefRepository;
 
 
-    public Preference save(Preference newPreference, Preference preference) {
+    public User save(Preference newPreference, User user) {
+        Preference preference = user.getPreference();
 
         if (newPreference.getSpeak() == null) {
             newPreference.setSpeak(preference.getSpeak());
@@ -29,7 +31,8 @@ public class PreferenceService {
         if (preference.getId() != 1) {
             newPreference.setId(preference.getId());
         }
-        return PrefRepository.save(newPreference);
+        user.setPreference(PrefRepository.save(newPreference) );
+        return user;
     }
 
 

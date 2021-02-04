@@ -25,9 +25,7 @@ public class PreferenceController {
             @AuthenticationPrincipal CurrentUser currentUser,
             @RequestBody Preference newPreference) {
 
-        User user = currentUser.getUser();
-        prefService.save(newPreference, user.getPreference());
-        user.setPreference(newPreference);
+        User user = prefService.save(newPreference, currentUser.getUser());
         userService.save(user);
         return ResponseEntity.ok("OK");
     }

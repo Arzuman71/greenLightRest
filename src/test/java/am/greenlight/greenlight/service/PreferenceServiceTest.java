@@ -1,6 +1,11 @@
 package am.greenlight.greenlight.service;
 
 import am.greenlight.greenlight.model.Preference;
+import am.greenlight.greenlight.model.User;
+import am.greenlight.greenlight.model.enumPreferance.Music;
+import am.greenlight.greenlight.model.enumPreferance.Smoke;
+import am.greenlight.greenlight.model.enumPreferance.Speak;
+import am.greenlight.greenlight.model.enumPreferance.WithAnimals;
 import am.greenlight.greenlight.repository.PreferenceRepo;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -18,6 +23,7 @@ class PreferenceServiceTest {
     private Preference preference;
 
 
+
     private PreferenceService preferenceService;
 
     public PreferenceServiceTest() {
@@ -27,9 +33,18 @@ class PreferenceServiceTest {
 
     @Test
     void save_Ok() {
+        User user = new User();
+        user.setPreference(Preference.builder().id(12)
+                .smoke(Smoke.AGAINST)
+                .withAnimals(WithAnimals.AGAINST)
+                .speak(Speak.AGAINST)
+                .music(Music.AGAINST)
+                .build());
         given(preferenceRepo.save(preference)).willReturn(preference);
-        preference = preferenceService.save(preference, preference);
-        assertThat(preference).isNotNull();
+        user = preferenceService.save(preference, user);
+        assertThat(user).isNotNull();
+        assertThat(user).isEqualTo(user);
+        assertThat(user.getPreference()).isNotNull();
     }
 
     @Test
