@@ -21,13 +21,15 @@ class UserServiceTest {
     @Mock
     private PreferenceService prefService;
     @Mock
+    private  EmailService emailService;
+    @Mock
     private User user;
 
     private UserService userService;
 
     public UserServiceTest() {
         MockitoAnnotations.initMocks(this);
-        this.userService = new UserService(userRepo, prefService);
+        this.userService = new UserService(userRepo, prefService, emailService);
     }
 
     @Test

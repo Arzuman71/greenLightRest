@@ -48,7 +48,7 @@ CREATE TABLE `car` (
   `car_brand` varchar(50) NOT NULL,
   `car_type` enum('CAR','BUS','TRUCK') NOT NULL,
   `car_number` varchar(50) DEFAULT NULL,
-  `pic_url` varchar(255) DEFAULT NULL,
+  `pic_url` varchar(255) DEFAULT 'str',
   `year` date DEFAULT NULL,
   `car_model` varchar(50) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
@@ -72,16 +72,16 @@ DROP TABLE IF EXISTS `images`;
 
 CREATE TABLE `images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `car_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL DEFAULT 'str',
+  `car_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `car_id` (`car_id`),
   CONSTRAINT `images_ibfk_1` FOREIGN KEY (`car_id`) REFERENCES `car` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `images` */
 
-insert  into `images`(`id`,`name`,`car_id`) values (2,'18test.jpg',8);
+insert  into `images`(`id`,`name`,`car_id`) values (2,'18test.jpg',8),(3,'test',NULL),(5,'test',2);
 
 /*Table structure for table `item` */
 
@@ -163,7 +163,7 @@ CREATE TABLE `user` (
   `phone_number` varchar(50) DEFAULT '0',
   `email` varchar(50) DEFAULT NULL,
   `gender` enum('MALE','FEMALE') NOT NULL,
-  `pic_url` varchar(255) DEFAULT NULL,
+  `pic_url` varchar(255) DEFAULT 'str',
   `preference_id` int(11) DEFAULT NULL,
   `role` enum('USER','ADMIN') NOT NULL,
   `status` enum('ACTIVE','ARCHIVED','DELETED') NOT NULL DEFAULT 'ACTIVE',

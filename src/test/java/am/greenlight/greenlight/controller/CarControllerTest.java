@@ -1,6 +1,7 @@
 package am.greenlight.greenlight.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,9 +31,6 @@ class CarControllerTest {
     private MockMvc mvc2;
     @Autowired
     private CarController carController;
-
-
-
     @Autowired
     private WebApplicationContext context;
 

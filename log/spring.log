@@ -1,376 +1,1092 @@
-2021-02-03 00:03:24 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m52s552ms220µs892ns).
-2021-02-03 00:03:24 - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: No converter found for return value of type: class org.springframework.http.ResponseEntity$DefaultBuilder]
-2021-02-03 00:03:24 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-02-03 00:03:24 - Shutting down ExecutorService 'taskScheduler'
-2021-02-03 00:03:24 - Shutting down ExecutorService 'applicationTaskExecutor'
-2021-02-03 00:03:24 - HikariPool-1 - Shutdown initiated...
-2021-02-03 00:03:24 - HikariPool-1 - Shutdown completed.
-2021-02-03 00:05:42 - Starting ImagesControllerTest on WIN-74REM537BGC with PID 8028 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
-2021-02-03 00:05:42 - No active profile set, falling back to default profiles: default
-2021-02-03 00:05:45 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2021-02-03 00:05:45 - Finished Spring Data repository scanning in 299ms. Found 7 JPA repository interfaces.
-2021-02-03 00:05:49 - Initializing ExecutorService 'applicationTaskExecutor'
-2021-02-03 00:05:49 - Initializing ExecutorService 'taskScheduler'
-2021-02-03 00:05:49 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-02-03 00:05:49 - HHH000412: Hibernate ORM core version 5.4.18.Final
-2021-02-03 00:05:49 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-02-03 00:05:50 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2021-02-03 00:05:51 - HikariPool-1 - Starting...
-2021-02-03 00:05:52 - HikariPool-1 - Start completed.
-2021-02-03 00:05:52 - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-2021-02-03 00:05:52 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
-2021-02-03 00:05:53 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2021-02-03 00:05:54 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6728370a, org.springframework.security.web.context.SecurityContextPersistenceFilter@71139e77, org.springframework.security.web.header.HeaderWriterFilter@1b94c789, org.springframework.security.web.authentication.logout.LogoutFilter@5403431a, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@75d97e18, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2404abe2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2aac8ad7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2b5f8e61, org.springframework.security.web.session.SessionManagementFilter@43755e2f, org.springframework.security.web.access.ExceptionTranslationFilter@6fced25c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@55e42684]
-2021-02-03 00:05:57 - Initializing Spring TestDispatcherServlet ''
-2021-02-03 00:05:58 - Initializing Servlet ''
-2021-02-03 00:05:58 - Completed initialization in 80 ms
-2021-02-03 00:05:58 - Context refreshed
-2021-02-03 00:05:58 - Found 1 custom documentation plugin(s)
-2021-02-03 00:05:58 - Scanning for api listing references
-2021-02-03 00:05:58 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-02-03 00:05:58 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-02-03 00:05:59 - Generating unique operation named: saveUsingPOST_1
-2021-02-03 00:05:59 - Generating unique operation named: deleteUsingDELETE_1
-2021-02-03 00:05:59 - Generating unique operation named: saveUsingPOST_2
-2021-02-03 00:05:59 - Generating unique operation named: saveUsingPOST_3
-2021-02-03 00:05:59 - Triggering deferred initialization of Spring Data repositories…
-2021-02-03 00:06:01 - Spring Data repositories initialized!
-2021-02-03 00:06:01 - Started ImagesControllerTest in 21.949 seconds (JVM running for 25.856)
-2021-02-03 00:06:02 - Initializing Spring TestDispatcherServlet ''
-2021-02-03 00:06:02 - Initializing Servlet ''
-2021-02-03 00:06:02 - Completed initialization in 1 ms
-2021-02-03 00:14:15 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8m22s891ms508µs877ns).
-2021-02-03 00:14:59 - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: No converter found for return value of type: class org.springframework.http.ResponseEntity$DefaultBuilder]
-2021-02-03 00:15:00 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-02-03 00:15:00 - Shutting down ExecutorService 'taskScheduler'
-2021-02-03 00:15:00 - Shutting down ExecutorService 'applicationTaskExecutor'
-2021-02-03 00:15:00 - HikariPool-1 - Shutdown initiated...
-2021-02-03 00:15:00 - HikariPool-1 - Shutdown completed.
-2021-02-03 00:18:13 - Starting ImagesControllerTest on WIN-74REM537BGC with PID 7292 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
-2021-02-03 00:18:13 - No active profile set, falling back to default profiles: default
-2021-02-03 00:18:17 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2021-02-03 00:18:17 - Finished Spring Data repository scanning in 429ms. Found 7 JPA repository interfaces.
-2021-02-03 00:18:21 - Initializing ExecutorService 'applicationTaskExecutor'
-2021-02-03 00:18:21 - Initializing ExecutorService 'taskScheduler'
-2021-02-03 00:18:21 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-02-03 00:18:21 - HHH000412: Hibernate ORM core version 5.4.18.Final
-2021-02-03 00:18:22 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-02-03 00:18:22 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2021-02-03 00:18:24 - HikariPool-1 - Starting...
-2021-02-03 00:18:26 - HikariPool-1 - Start completed.
-2021-02-03 00:18:26 - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-2021-02-03 00:18:26 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
-2021-02-03 00:18:27 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2021-02-03 00:18:28 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4fea5ee0, org.springframework.security.web.context.SecurityContextPersistenceFilter@37806be6, org.springframework.security.web.header.HeaderWriterFilter@6591f8ea, org.springframework.security.web.authentication.logout.LogoutFilter@3568ea59, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@a120b9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1d2046bb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3c71cf3e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@65f5cae3, org.springframework.security.web.session.SessionManagementFilter@7aa3857b, org.springframework.security.web.access.ExceptionTranslationFilter@238ad211, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1171ba7e]
-2021-02-03 00:18:33 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-02-03 00:18:33 - Initializing Spring TestDispatcherServlet ''
-2021-02-03 00:18:33 - Initializing Servlet ''
-2021-02-03 00:18:33 - Completed initialization in 48 ms
-2021-02-03 00:18:33 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-02-03 00:18:33 - Context refreshed
-2021-02-03 00:18:33 - Found 1 custom documentation plugin(s)
-2021-02-03 00:18:33 - Scanning for api listing references
-2021-02-03 00:18:34 - Generating unique operation named: saveUsingPOST_1
-2021-02-03 00:18:34 - Generating unique operation named: deleteUsingDELETE_1
-2021-02-03 00:18:35 - Generating unique operation named: saveUsingPOST_2
-2021-02-03 00:18:35 - Generating unique operation named: saveUsingPOST_3
-2021-02-03 00:18:35 - Triggering deferred initialization of Spring Data repositories…
-2021-02-03 00:18:37 - Spring Data repositories initialized!
-2021-02-03 00:18:37 - Started ImagesControllerTest in 25.717 seconds (JVM running for 30.253)
-2021-02-03 00:18:37 - Initializing Spring TestDispatcherServlet ''
-2021-02-03 00:18:37 - Initializing Servlet ''
-2021-02-03 00:18:37 - Completed initialization in 0 ms
-2021-02-03 00:18:52 - SQL Error: 1048, SQLState: 23000
-2021-02-03 00:18:52 - Column 'car_id' cannot be null
-2021-02-03 00:18:56 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-02-03 00:18:56 - Shutting down ExecutorService 'taskScheduler'
-2021-02-03 00:18:56 - Shutting down ExecutorService 'applicationTaskExecutor'
-2021-02-03 00:18:56 - HikariPool-1 - Shutdown initiated...
-2021-02-03 00:18:56 - HikariPool-1 - Shutdown completed.
-2021-02-03 00:19:47 - Starting ImagesControllerTest on WIN-74REM537BGC with PID 6812 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
-2021-02-03 00:19:47 - No active profile set, falling back to default profiles: default
-2021-02-03 00:19:50 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2021-02-03 00:19:50 - Finished Spring Data repository scanning in 307ms. Found 7 JPA repository interfaces.
-2021-02-03 00:19:54 - Initializing ExecutorService 'applicationTaskExecutor'
-2021-02-03 00:19:54 - Initializing ExecutorService 'taskScheduler'
-2021-02-03 00:19:54 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-02-03 00:19:54 - HHH000412: Hibernate ORM core version 5.4.18.Final
-2021-02-03 00:19:54 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-02-03 00:19:55 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2021-02-03 00:19:57 - HikariPool-1 - Starting...
-2021-02-03 00:19:58 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
-2021-02-03 00:19:58 - HikariPool-1 - Start completed.
-2021-02-03 00:19:58 - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-2021-02-03 00:19:58 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2021-02-03 00:19:59 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@58cda03f, org.springframework.security.web.context.SecurityContextPersistenceFilter@4be12f6c, org.springframework.security.web.header.HeaderWriterFilter@30d15e4a, org.springframework.security.web.authentication.logout.LogoutFilter@efe49ab, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@30c01c37, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1d1c37d5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5c839677, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7757a37f, org.springframework.security.web.session.SessionManagementFilter@59a2d756, org.springframework.security.web.access.ExceptionTranslationFilter@5df64b2a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@f4f843f]
-2021-02-03 00:20:02 - Initializing Spring TestDispatcherServlet ''
-2021-02-03 00:20:02 - Initializing Servlet ''
-2021-02-03 00:20:02 - Completed initialization in 42 ms
-2021-02-03 00:20:02 - Context refreshed
-2021-02-03 00:20:02 - Found 1 custom documentation plugin(s)
-2021-02-03 00:20:03 - Scanning for api listing references
-2021-02-03 00:20:03 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-02-03 00:20:03 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-02-03 00:20:03 - Generating unique operation named: saveUsingPOST_1
-2021-02-03 00:20:04 - Generating unique operation named: deleteUsingDELETE_1
-2021-02-03 00:20:04 - Generating unique operation named: saveUsingPOST_2
-2021-02-03 00:20:04 - Generating unique operation named: saveUsingPOST_3
-2021-02-03 00:20:04 - Triggering deferred initialization of Spring Data repositories…
-2021-02-03 00:20:06 - Spring Data repositories initialized!
-2021-02-03 00:20:06 - Started ImagesControllerTest in 20.664 seconds (JVM running for 26.322)
-2021-02-03 00:20:07 - Initializing Spring TestDispatcherServlet ''
-2021-02-03 00:20:07 - Initializing Servlet ''
-2021-02-03 00:20:07 - Completed initialization in 0 ms
-2021-02-03 00:20:44 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=46s9ms446µs554ns).
-2021-02-03 00:20:51 - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: No converter found for return value of type: class org.springframework.http.ResponseEntity$DefaultBuilder]
-2021-02-03 00:20:51 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-02-03 00:20:51 - Shutting down ExecutorService 'taskScheduler'
-2021-02-03 00:20:51 - Shutting down ExecutorService 'applicationTaskExecutor'
-2021-02-03 00:20:51 - HikariPool-1 - Shutdown initiated...
-2021-02-03 00:20:51 - HikariPool-1 - Shutdown completed.
-2021-02-03 00:24:31 - Starting ImagesControllerTest on WIN-74REM537BGC with PID 2620 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
-2021-02-03 00:24:31 - No active profile set, falling back to default profiles: default
-2021-02-03 00:24:34 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2021-02-03 00:24:34 - Finished Spring Data repository scanning in 282ms. Found 7 JPA repository interfaces.
-2021-02-03 00:24:37 - Initializing ExecutorService 'applicationTaskExecutor'
-2021-02-03 00:24:37 - Initializing ExecutorService 'taskScheduler'
-2021-02-03 00:24:38 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-02-03 00:24:38 - HHH000412: Hibernate ORM core version 5.4.18.Final
-2021-02-03 00:24:38 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-02-03 00:24:38 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2021-02-03 00:24:40 - HikariPool-1 - Starting...
-2021-02-03 00:24:41 - HikariPool-1 - Start completed.
-2021-02-03 00:24:41 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
-2021-02-03 00:24:41 - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-2021-02-03 00:24:41 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2021-02-03 00:24:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5158a9f7, org.springframework.security.web.context.SecurityContextPersistenceFilter@7645b7d, org.springframework.security.web.header.HeaderWriterFilter@71b3ba5a, org.springframework.security.web.authentication.logout.LogoutFilter@3caf5c96, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@59f3426f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3ea84e01, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@24eecabf, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7c8f047a, org.springframework.security.web.session.SessionManagementFilter@1b8d20e6, org.springframework.security.web.access.ExceptionTranslationFilter@1c43df76, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@b841713]
-2021-02-03 00:24:46 - Initializing Spring TestDispatcherServlet ''
-2021-02-03 00:24:46 - Initializing Servlet ''
-2021-02-03 00:24:46 - Completed initialization in 45 ms
-2021-02-03 00:24:46 - Context refreshed
-2021-02-03 00:24:46 - Found 1 custom documentation plugin(s)
-2021-02-03 00:24:46 - Scanning for api listing references
-2021-02-03 00:24:46 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-02-03 00:24:47 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-02-03 00:24:47 - Generating unique operation named: saveUsingPOST_1
-2021-02-03 00:24:47 - Generating unique operation named: deleteUsingDELETE_1
-2021-02-03 00:24:47 - Generating unique operation named: saveUsingPOST_2
-2021-02-03 00:24:47 - Generating unique operation named: saveUsingPOST_3
-2021-02-03 00:24:48 - Triggering deferred initialization of Spring Data repositories…
-2021-02-03 00:24:50 - Spring Data repositories initialized!
-2021-02-03 00:24:50 - Started ImagesControllerTest in 20.827 seconds (JVM running for 25.345)
-2021-02-03 00:24:50 - Initializing Spring TestDispatcherServlet ''
-2021-02-03 00:24:50 - Initializing Servlet ''
-2021-02-03 00:24:50 - Completed initialization in 0 ms
-2021-02-03 00:27:06 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m51s974ms15µs133ns).
-2021-02-03 00:27:06 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-02-03 00:27:06 - Shutting down ExecutorService 'taskScheduler'
-2021-02-03 00:27:06 - Shutting down ExecutorService 'applicationTaskExecutor'
-2021-02-03 00:27:06 - HikariPool-1 - Shutdown initiated...
-2021-02-03 00:27:06 - HikariPool-1 - Shutdown completed.
-2021-02-03 00:27:20 - Starting ImagesControllerTest on WIN-74REM537BGC with PID 4452 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
-2021-02-03 00:27:20 - No active profile set, falling back to default profiles: default
-2021-02-03 00:27:23 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2021-02-03 00:27:23 - Finished Spring Data repository scanning in 281ms. Found 7 JPA repository interfaces.
-2021-02-03 00:27:27 - Initializing ExecutorService 'applicationTaskExecutor'
-2021-02-03 00:27:27 - Initializing ExecutorService 'taskScheduler'
-2021-02-03 00:27:27 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-02-03 00:27:27 - HHH000412: Hibernate ORM core version 5.4.18.Final
-2021-02-03 00:27:28 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-02-03 00:27:28 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2021-02-03 00:27:29 - HikariPool-1 - Starting...
-2021-02-03 00:27:30 - HikariPool-1 - Start completed.
-2021-02-03 00:27:30 - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-2021-02-03 00:27:31 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
-2021-02-03 00:27:31 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2021-02-03 00:27:32 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2c674d58, org.springframework.security.web.context.SecurityContextPersistenceFilter@782cc5fa, org.springframework.security.web.header.HeaderWriterFilter@1573e8a5, org.springframework.security.web.authentication.logout.LogoutFilter@5c8b10b4, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@2d2fc130, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@ae3c140, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5d84e363, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3c07e830, org.springframework.security.web.session.SessionManagementFilter@26d028f7, org.springframework.security.web.access.ExceptionTranslationFilter@41d20f06, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4403bff8]
-2021-02-03 00:27:35 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-02-03 00:27:35 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-02-03 00:27:36 - Initializing Spring TestDispatcherServlet ''
-2021-02-03 00:27:36 - Initializing Servlet ''
-2021-02-03 00:27:36 - Completed initialization in 41 ms
-2021-02-03 00:27:36 - Context refreshed
-2021-02-03 00:27:36 - Found 1 custom documentation plugin(s)
-2021-02-03 00:27:36 - Scanning for api listing references
-2021-02-03 00:27:37 - Generating unique operation named: saveUsingPOST_1
-2021-02-03 00:27:37 - Generating unique operation named: deleteUsingDELETE_1
-2021-02-03 00:27:37 - Generating unique operation named: saveUsingPOST_2
-2021-02-03 00:27:37 - Generating unique operation named: saveUsingPOST_3
-2021-02-03 00:27:37 - Triggering deferred initialization of Spring Data repositories…
-2021-02-03 00:27:39 - Spring Data repositories initialized!
-2021-02-03 00:27:39 - Started ImagesControllerTest in 21.591 seconds (JVM running for 25.712)
-2021-02-03 00:27:40 - Initializing Spring TestDispatcherServlet ''
-2021-02-03 00:27:40 - Initializing Servlet ''
-2021-02-03 00:27:40 - Completed initialization in 0 ms
-2021-02-03 00:27:59 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-02-03 00:27:59 - Shutting down ExecutorService 'taskScheduler'
-2021-02-03 00:27:59 - Shutting down ExecutorService 'applicationTaskExecutor'
-2021-02-03 00:27:59 - HikariPool-1 - Shutdown initiated...
-2021-02-03 00:27:59 - HikariPool-1 - Shutdown completed.
-2021-02-03 00:55:32 - Starting GreenLightApplication on WIN-74REM537BGC with PID 4116 (C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest\target\classes started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
-2021-02-03 00:55:32 - The following profiles are active: Arzuman
-2021-02-03 00:55:32 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-02-03 00:55:32 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-02-03 00:55:34 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2021-02-03 00:55:35 - Finished Spring Data repository scanning in 157ms. Found 7 JPA repository interfaces.
-2021-02-03 00:55:36 - Tomcat initialized with port(s): 8080 (http)
-2021-02-03 00:55:36 - Starting service [Tomcat]
-2021-02-03 00:55:36 - Starting Servlet engine: [Apache Tomcat/9.0.37]
-2021-02-03 00:55:36 - Initializing Spring embedded WebApplicationContext
-2021-02-03 00:55:36 - Root WebApplicationContext: initialization completed in 3838 ms
-2021-02-03 00:55:36 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-02-03 00:55:36 - Initializing ExecutorService 'applicationTaskExecutor'
-2021-02-03 00:55:36 - Initializing ExecutorService 'taskScheduler'
-2021-02-03 00:55:36 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-02-03 00:55:37 - HHH000412: Hibernate ORM core version 5.4.18.Final
-2021-02-03 00:55:37 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2021-02-03 00:55:37 - HikariPool-1 - Starting...
-2021-02-03 00:55:37 - HikariPool-1 - Start completed.
-2021-02-03 00:55:38 - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-2021-02-03 00:55:38 - [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
-2021-02-03 00:55:38 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2021-02-03 00:55:38 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@48dc58f5, org.springframework.security.web.context.SecurityContextPersistenceFilter@ced67ae, org.springframework.security.web.header.HeaderWriterFilter@30483d9a, org.springframework.security.web.authentication.logout.LogoutFilter@5966fd00, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@5ecbc630, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5591eec7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@60c8e1d9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5d8453ca, org.springframework.security.web.session.SessionManagementFilter@56d546a7, org.springframework.security.web.access.ExceptionTranslationFilter@66c63caa, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@62deb133]
-2021-02-03 00:55:38 - LiveReload server is running on port 35729
-2021-02-03 00:55:39 - Tomcat started on port(s): 8080 (http) with context path ''
-2021-02-03 00:55:39 - Context refreshed
-2021-02-03 00:55:39 - Found 1 custom documentation plugin(s)
-2021-02-03 00:55:39 - Scanning for api listing references
-2021-02-03 00:55:39 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-02-03 00:55:39 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-02-03 00:55:39 - Generating unique operation named: saveUsingPOST_1
-2021-02-03 00:55:40 - Generating unique operation named: deleteUsingDELETE_1
-2021-02-03 00:55:40 - Generating unique operation named: saveUsingPOST_2
-2021-02-03 00:55:40 - Generating unique operation named: saveUsingPOST_3
-2021-02-03 00:55:40 - Triggering deferred initialization of Spring Data repositories…
-2021-02-03 00:55:41 - Spring Data repositories initialized!
-2021-02-03 00:55:41 - Started GreenLightApplication in 10.706 seconds (JVM running for 12.725)
-2021-02-03 15:02:03 - Starting GreenLightApplication on WIN-74REM537BGC with PID 6888 (C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest\target\classes started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
-2021-02-03 15:02:03 - The following profiles are active: Arzuman
-2021-02-03 15:02:03 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-02-03 15:02:03 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-02-03 15:02:06 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2021-02-03 15:02:06 - Finished Spring Data repository scanning in 215ms. Found 7 JPA repository interfaces.
-2021-02-03 15:02:08 - Tomcat initialized with port(s): 8080 (http)
-2021-02-03 15:02:08 - Starting service [Tomcat]
-2021-02-03 15:02:08 - Starting Servlet engine: [Apache Tomcat/9.0.37]
-2021-02-03 15:02:08 - Initializing Spring embedded WebApplicationContext
-2021-02-03 15:02:08 - Root WebApplicationContext: initialization completed in 4860 ms
-2021-02-03 15:02:08 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-02-03 15:02:08 - Initializing ExecutorService 'applicationTaskExecutor'
-2021-02-03 15:02:08 - Initializing ExecutorService 'taskScheduler'
-2021-02-03 15:02:09 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-02-03 15:02:09 - HHH000412: Hibernate ORM core version 5.4.18.Final
-2021-02-03 15:02:09 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2021-02-03 15:02:10 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'carController' defined in file [C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest\target\classes\am\greenlight\greenlight\controller\CarController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'carService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'file.upload.dir' in value "${file.upload.dir}"
-2021-02-03 15:02:10 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-02-03 15:02:10 - HikariPool-1 - Starting...
-2021-02-03 15:02:10 - HikariPool-1 - Start completed.
-2021-02-03 15:02:10 - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-2021-02-03 15:02:13 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-02-03 15:02:13 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-02-03 15:02:13 - Shutting down ExecutorService 'taskScheduler'
-2021-02-03 15:02:13 - Shutting down ExecutorService 'applicationTaskExecutor'
-2021-02-03 15:02:13 - HikariPool-1 - Shutdown initiated...
-2021-02-03 15:02:13 - HikariPool-1 - Shutdown completed.
-2021-02-03 15:02:13 - Stopping service [Tomcat]
-2021-02-03 15:02:13 - 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2021-02-03 15:02:13 - Application run failed
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'carController' defined in file [C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest\target\classes\am\greenlight\greenlight\controller\CarController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'carService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'file.upload.dir' in value "${file.upload.dir}"
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:797)
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:227)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1356)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1203)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:556)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:897)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:879)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:551)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:758)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:750)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
-	at am.greenlight.greenlight.GreenLightApplication.main(GreenLightApplication.java:16)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'carService': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'file.upload.dir' in value "${file.upload.dir}"
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:405)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1420)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:324)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:226)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1307)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1227)
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:884)
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:788)
-	... 25 common frames omitted
-Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'file.upload.dir' in value "${file.upload.dir}"
-	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:178)
-	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:124)
-	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239)
-	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210)
-	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:175)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:918)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1248)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1227)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:130)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
-	... 37 common frames omitted
-2021-02-03 15:05:30 - Starting GreenLightApplication on WIN-74REM537BGC with PID 5940 (C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest\target\classes started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
-2021-02-03 15:05:30 - The following profiles are active: Arzuman
-2021-02-03 15:05:31 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-02-03 15:05:31 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-02-03 15:05:34 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2021-02-03 15:05:34 - Finished Spring Data repository scanning in 323ms. Found 7 JPA repository interfaces.
-2021-02-03 15:05:36 - Tomcat initialized with port(s): 8080 (http)
-2021-02-03 15:05:36 - Starting service [Tomcat]
-2021-02-03 15:05:36 - Starting Servlet engine: [Apache Tomcat/9.0.37]
-2021-02-03 15:05:36 - Initializing Spring embedded WebApplicationContext
-2021-02-03 15:05:36 - Root WebApplicationContext: initialization completed in 5891 ms
-2021-02-03 15:05:37 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-02-03 15:05:37 - Initializing ExecutorService 'applicationTaskExecutor'
-2021-02-03 15:05:37 - Initializing ExecutorService 'taskScheduler'
-2021-02-03 15:05:37 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-02-03 15:05:37 - HHH000412: Hibernate ORM core version 5.4.18.Final
-2021-02-03 15:05:38 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2021-02-03 15:05:38 - HikariPool-1 - Starting...
-2021-02-03 15:05:39 - HikariPool-1 - Start completed.
-2021-02-03 15:05:39 - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-2021-02-03 15:05:40 - [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
-2021-02-03 15:05:40 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2021-02-03 15:05:41 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7e7911ec, org.springframework.security.web.context.SecurityContextPersistenceFilter@55fb82d1, org.springframework.security.web.header.HeaderWriterFilter@144254cd, org.springframework.security.web.authentication.logout.LogoutFilter@1f1cc0e5, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@5182b3ad, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4bc0ad10, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@32b60c48, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7181c294, org.springframework.security.web.session.SessionManagementFilter@1d981236, org.springframework.security.web.access.ExceptionTranslationFilter@6d8dc734, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5e45f09c]
-2021-02-03 15:05:42 - LiveReload server is running on port 35729
-2021-02-03 15:05:43 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-02-03 15:05:43 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-02-03 15:05:43 - Tomcat started on port(s): 8080 (http) with context path ''
-2021-02-03 15:05:43 - Context refreshed
-2021-02-03 15:05:43 - Found 1 custom documentation plugin(s)
-2021-02-03 15:05:43 - Scanning for api listing references
-2021-02-03 15:05:44 - Generating unique operation named: saveUsingPOST_1
-2021-02-03 15:05:45 - Generating unique operation named: deleteUsingDELETE_1
-2021-02-03 15:05:45 - Generating unique operation named: saveUsingPOST_2
-2021-02-03 15:05:45 - Generating unique operation named: saveUsingPOST_3
-2021-02-03 15:05:45 - Triggering deferred initialization of Spring Data repositories…
-2021-02-03 15:05:48 - Spring Data repositories initialized!
-2021-02-03 15:05:48 - Started GreenLightApplication in 19.209 seconds (JVM running for 22.972)
-2021-02-03 15:09:54 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-02-03 15:09:54 - Shutting down ExecutorService 'taskScheduler'
-2021-02-03 15:09:54 - Shutting down ExecutorService 'applicationTaskExecutor'
-2021-02-03 15:09:54 - HikariPool-1 - Shutdown initiated...
-2021-02-03 15:09:54 - HikariPool-1 - Shutdown completed.
+2021-02-04 13:05:50 - Starting UserControllerTest on WIN-74REM537BGC with PID 5700 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 13:05:50 - The following profiles are active: test
+2021-02-04 13:05:54 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 13:05:54 - Finished Spring Data repository scanning in 319ms. Found 7 JPA repository interfaces.
+2021-02-04 13:05:57 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 13:05:57 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 13:05:57 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 13:05:58 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 13:05:58 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 13:05:59 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 13:06:01 - HikariPool-1 - Starting...
+2021-02-04 13:06:02 - HikariPool-1 - Start completed.
+2021-02-04 13:06:02 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 13:06:02 - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-02-04 13:06:02 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 13:06:05 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5b251fb9, org.springframework.security.web.context.SecurityContextPersistenceFilter@40bf4386, org.springframework.security.web.header.HeaderWriterFilter@d3e3085, org.springframework.security.web.authentication.logout.LogoutFilter@d54d0f5, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@52f6900a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@51c65a43, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4e80a001, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@67d4c48d, org.springframework.security.web.session.SessionManagementFilter@4c731956, org.springframework.security.web.access.ExceptionTranslationFilter@2180e789, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@46320c9a]
+2021-02-04 13:06:09 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:~'
+2021-02-04 13:06:10 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 13:06:10 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 13:06:10 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:10 - Initializing Servlet ''
+2021-02-04 13:06:10 - Completed initialization in 31 ms
+2021-02-04 13:06:10 - Context refreshed
+2021-02-04 13:06:10 - Found 1 custom documentation plugin(s)
+2021-02-04 13:06:10 - Scanning for api listing references
+2021-02-04 13:06:11 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 13:06:11 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 13:06:11 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 13:06:11 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 13:06:12 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 13:06:14 - Spring Data repositories initialized!
+2021-02-04 13:06:14 - Started UserControllerTest in 26.451 seconds (JVM running for 34.819)
+2021-02-04 13:06:15 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:15 - Initializing Servlet ''
+2021-02-04 13:06:15 - Completed initialization in 1 ms
+2021-02-04 13:06:15 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:15 - Initializing Servlet ''
+2021-02-04 13:06:15 - Completed initialization in 5 ms
+2021-02-04 13:06:15 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:15 - Initializing Servlet ''
+2021-02-04 13:06:15 - Completed initialization in 3 ms
+2021-02-04 13:06:16 - user with email - arzuman.kochoyan@mail.ru don't can change its password
+2021-02-04 13:06:16 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:16 - Initializing Servlet ''
+2021-02-04 13:06:16 - Completed initialization in 0 ms
+2021-02-04 13:06:16 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:16 - Initializing Servlet ''
+2021-02-04 13:06:16 - Completed initialization in 4 ms
+2021-02-04 13:06:16 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:16 - Initializing Servlet ''
+2021-02-04 13:06:16 - Completed initialization in 4 ms
+2021-02-04 13:06:16 - No mapping for GET /user/forgotPassword
+2021-02-04 13:06:16 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:16 - Initializing Servlet ''
+2021-02-04 13:06:16 - Completed initialization in 0 ms
+2021-02-04 13:06:16 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:16 - Initializing Servlet ''
+2021-02-04 13:06:16 - Completed initialization in 10 ms
+2021-02-04 13:06:16 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:16 - Initializing Servlet ''
+2021-02-04 13:06:16 - Completed initialization in 33 ms
+2021-02-04 13:06:17 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:17 - Initializing Servlet ''
+2021-02-04 13:06:17 - Completed initialization in 1 ms
+2021-02-04 13:06:17 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:17 - Initializing Servlet ''
+2021-02-04 13:06:17 - Completed initialization in 4 ms
+2021-02-04 13:06:17 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:17 - Initializing Servlet ''
+2021-02-04 13:06:17 - Completed initialization in 5 ms
+2021-02-04 13:06:17 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:17 - Initializing Servlet ''
+2021-02-04 13:06:17 - Completed initialization in 0 ms
+2021-02-04 13:06:17 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:17 - Initializing Servlet ''
+2021-02-04 13:06:17 - Completed initialization in 4 ms
+2021-02-04 13:06:17 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:17 - Initializing Servlet ''
+2021-02-04 13:06:17 - Completed initialization in 7 ms
+2021-02-04 13:06:17 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:17 - Initializing Servlet ''
+2021-02-04 13:06:17 - Completed initialization in 0 ms
+2021-02-04 13:06:17 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:17 - Initializing Servlet ''
+2021-02-04 13:06:17 - Completed initialization in 4 ms
+2021-02-04 13:06:17 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:17 - Initializing Servlet ''
+2021-02-04 13:06:17 - Completed initialization in 3 ms
+2021-02-04 13:06:18 - user with email - arzuman.kochoyan@mail.ru successful authentication
+2021-02-04 13:06:18 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:18 - Initializing Servlet ''
+2021-02-04 13:06:18 - Completed initialization in 0 ms
+2021-02-04 13:06:18 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:18 - Initializing Servlet ''
+2021-02-04 13:06:18 - Completed initialization in 3 ms
+2021-02-04 13:06:18 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:18 - Initializing Servlet ''
+2021-02-04 13:06:18 - Completed initialization in 3 ms
+2021-02-04 13:06:18 -  email - poxostest@mail.ru used reset method
+2021-02-04 13:06:18 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:18 - Initializing Servlet ''
+2021-02-04 13:06:18 - Completed initialization in 0 ms
+2021-02-04 13:06:18 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:18 - Initializing Servlet ''
+2021-02-04 13:06:18 - Completed initialization in 12 ms
+2021-02-04 13:06:18 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:18 - Initializing Servlet ''
+2021-02-04 13:06:18 - Completed initialization in 4 ms
+2021-02-04 13:06:19 - user with email - user.user@mail.ru was registered
+2021-02-04 13:06:19 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:19 - Initializing Servlet ''
+2021-02-04 13:06:19 - Completed initialization in 1 ms
+2021-02-04 13:06:19 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:19 - Initializing Servlet ''
+2021-02-04 13:06:19 - Completed initialization in 4 ms
+2021-02-04 13:06:19 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:19 - Initializing Servlet ''
+2021-02-04 13:06:19 - Completed initialization in 3 ms
+2021-02-04 13:06:19 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:19 - Initializing Servlet ''
+2021-02-04 13:06:19 - Completed initialization in 0 ms
+2021-02-04 13:06:19 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:19 - Initializing Servlet ''
+2021-02-04 13:06:19 - Completed initialization in 3 ms
+2021-02-04 13:06:19 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:19 - Initializing Servlet ''
+2021-02-04 13:06:19 - Completed initialization in 4 ms
+2021-02-04 13:06:19 - No mapping for GET /user/forgotPassword
+2021-02-04 13:06:19 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:19 - Initializing Servlet ''
+2021-02-04 13:06:19 - Completed initialization in 0 ms
+2021-02-04 13:06:19 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:19 - Initializing Servlet ''
+2021-02-04 13:06:19 - Completed initialization in 3 ms
+2021-02-04 13:06:19 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:19 - Initializing Servlet ''
+2021-02-04 13:06:19 - Completed initialization in 4 ms
+2021-02-04 13:06:19 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:19 - Initializing Servlet ''
+2021-02-04 13:06:19 - Completed initialization in 0 ms
+2021-02-04 13:06:19 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:19 - Initializing Servlet ''
+2021-02-04 13:06:19 - Completed initialization in 5 ms
+2021-02-04 13:06:19 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:19 - Initializing Servlet ''
+2021-02-04 13:06:19 - Completed initialization in 4 ms
+2021-02-04 13:06:19 - user with email - arzuman.kochoyan@mail.ru get its data
+2021-02-04 13:06:20 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:20 - Initializing Servlet ''
+2021-02-04 13:06:20 - Completed initialization in 0 ms
+2021-02-04 13:06:20 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:20 - Initializing Servlet ''
+2021-02-04 13:06:20 - Completed initialization in 6 ms
+2021-02-04 13:06:20 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:20 - Initializing Servlet ''
+2021-02-04 13:06:20 - Completed initialization in 9 ms
+2021-02-04 13:06:20 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:20 - Initializing Servlet ''
+2021-02-04 13:06:20 - Completed initialization in 0 ms
+2021-02-04 13:06:20 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:20 - Initializing Servlet ''
+2021-02-04 13:06:20 - Completed initialization in 5 ms
+2021-02-04 13:06:20 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:20 - Initializing Servlet ''
+2021-02-04 13:06:20 - Completed initialization in 3 ms
+2021-02-04 13:06:20 - user with email - arzuman.kochoyan@mail.ru save its PhoneNumber
+2021-02-04 13:06:20 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:20 - Initializing Servlet ''
+2021-02-04 13:06:20 - Completed initialization in 1 ms
+2021-02-04 13:06:20 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:20 - Initializing Servlet ''
+2021-02-04 13:06:20 - Completed initialization in 4 ms
+2021-02-04 13:06:20 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:20 - Initializing Servlet ''
+2021-02-04 13:06:20 - Completed initialization in 3 ms
+2021-02-04 13:06:21 - user with email - poxostest@mail.ru change its password
+2021-02-04 13:06:21 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:21 - Initializing Servlet ''
+2021-02-04 13:06:21 - Completed initialization in 0 ms
+2021-02-04 13:06:21 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:21 - Initializing Servlet ''
+2021-02-04 13:06:21 - Completed initialization in 3 ms
+2021-02-04 13:06:21 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:06:21 - Initializing Servlet ''
+2021-02-04 13:06:21 - Completed initialization in 3 ms
+2021-02-04 13:06:21 - user with email - arzuman.kochoyan@mail.ru change its password
+2021-02-04 13:06:21 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 13:06:21 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 13:06:21 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 13:06:21 - HikariPool-1 - Shutdown initiated...
+2021-02-04 13:06:21 - HikariPool-1 - Shutdown completed.
+2021-02-04 13:08:16 - Starting UserControllerTest on WIN-74REM537BGC with PID 6112 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 13:08:16 - The following profiles are active: test
+2021-02-04 13:08:20 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 13:08:20 - Finished Spring Data repository scanning in 362ms. Found 7 JPA repository interfaces.
+2021-02-04 13:08:23 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 13:08:23 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 13:08:24 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 13:08:24 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 13:08:24 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 13:08:25 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 13:08:27 - HikariPool-1 - Starting...
+2021-02-04 13:08:28 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 13:08:28 - HikariPool-1 - Start completed.
+2021-02-04 13:08:28 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 13:08:29 - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-02-04 13:08:32 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@186481d4, org.springframework.security.web.context.SecurityContextPersistenceFilter@7b3a6e95, org.springframework.security.web.header.HeaderWriterFilter@682266d8, org.springframework.security.web.authentication.logout.LogoutFilter@1ad1be5d, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@47fa3671, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3386ed8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6d3ad37a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@24eecabf, org.springframework.security.web.session.SessionManagementFilter@608b35fa, org.springframework.security.web.access.ExceptionTranslationFilter@45707f76, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7645b7d]
+2021-02-04 13:08:36 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:~'
+2021-02-04 13:08:37 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 13:08:37 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 13:08:37 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:08:37 - Initializing Servlet ''
+2021-02-04 13:08:37 - Completed initialization in 42 ms
+2021-02-04 13:08:37 - Context refreshed
+2021-02-04 13:08:37 - Found 1 custom documentation plugin(s)
+2021-02-04 13:08:37 - Scanning for api listing references
+2021-02-04 13:08:38 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 13:08:38 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 13:08:38 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 13:08:39 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 13:08:39 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 13:08:42 - Spring Data repositories initialized!
+2021-02-04 13:08:42 - Started UserControllerTest in 27.31 seconds (JVM running for 36.081)
+2021-02-04 13:08:42 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:08:42 - Initializing Servlet ''
+2021-02-04 13:08:42 - Completed initialization in 0 ms
+2021-02-04 13:08:42 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:08:42 - Initializing Servlet ''
+2021-02-04 13:08:42 - Completed initialization in 5 ms
+2021-02-04 13:08:42 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:08:42 - Initializing Servlet ''
+2021-02-04 13:08:42 - Completed initialization in 4 ms
+2021-02-04 13:08:52 - No mapping for GET /user/forgotPassword
+2021-02-04 13:11:01 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m32s94ms105µs352ns).
+2021-02-04 13:11:01 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 13:11:01 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 13:11:01 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 13:11:01 - HikariPool-1 - Shutdown initiated...
+2021-02-04 13:11:01 - HikariPool-1 - Shutdown completed.
+2021-02-04 13:11:23 - Starting UserControllerTest on WIN-74REM537BGC with PID 6320 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 13:11:23 - The following profiles are active: test
+2021-02-04 13:11:26 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 13:11:27 - Finished Spring Data repository scanning in 404ms. Found 7 JPA repository interfaces.
+2021-02-04 13:11:30 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 13:11:30 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 13:11:30 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 13:11:31 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 13:11:31 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 13:11:32 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 13:11:33 - HikariPool-1 - Starting...
+2021-02-04 13:11:35 - HikariPool-1 - Start completed.
+2021-02-04 13:11:35 - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-02-04 13:11:35 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 13:11:35 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 13:11:37 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2e40fdbd, org.springframework.security.web.context.SecurityContextPersistenceFilter@312f3050, org.springframework.security.web.header.HeaderWriterFilter@478530cb, org.springframework.security.web.authentication.logout.LogoutFilter@43ab9ae9, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@2ffb0d10, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@52856ff9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@54daf8f9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@246de37e, org.springframework.security.web.session.SessionManagementFilter@23321be7, org.springframework.security.web.access.ExceptionTranslationFilter@3c346c45, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@21a9f95b]
+2021-02-04 13:11:41 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 13:11:41 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:~'
+2021-02-04 13:11:41 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 13:11:42 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:11:42 - Initializing Servlet ''
+2021-02-04 13:11:42 - Completed initialization in 55 ms
+2021-02-04 13:11:42 - Context refreshed
+2021-02-04 13:11:42 - Found 1 custom documentation plugin(s)
+2021-02-04 13:11:42 - Scanning for api listing references
+2021-02-04 13:11:43 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 13:11:43 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 13:11:44 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 13:11:44 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 13:11:44 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 13:11:47 - Spring Data repositories initialized!
+2021-02-04 13:11:47 - Started UserControllerTest in 25.063 seconds (JVM running for 32.666)
+2021-02-04 13:11:47 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:11:47 - Initializing Servlet ''
+2021-02-04 13:11:47 - Completed initialization in 0 ms
+2021-02-04 13:11:47 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:11:47 - Initializing Servlet ''
+2021-02-04 13:11:47 - Completed initialization in 5 ms
+2021-02-04 13:11:47 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:11:47 - Initializing Servlet ''
+2021-02-04 13:11:47 - Completed initialization in 5 ms
+2021-02-04 13:12:55 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 13:12:55 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 13:12:55 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 13:12:55 - HikariPool-1 - Shutdown initiated...
+2021-02-04 13:12:55 - HikariPool-1 - Shutdown completed.
+2021-02-04 13:13:55 - Starting UserControllerTest on WIN-74REM537BGC with PID 5564 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 13:13:55 - The following profiles are active: test
+2021-02-04 13:13:58 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 13:13:58 - Finished Spring Data repository scanning in 350ms. Found 7 JPA repository interfaces.
+2021-02-04 13:14:02 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 13:14:02 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 13:14:02 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 13:14:02 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 13:14:03 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 13:14:04 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 13:14:06 - HikariPool-1 - Starting...
+2021-02-04 13:14:07 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 13:14:07 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 13:14:08 - HikariPool-1 - Start completed.
+2021-02-04 13:14:08 - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-02-04 13:14:09 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6fbe4800, org.springframework.security.web.context.SecurityContextPersistenceFilter@4813d0, org.springframework.security.web.header.HeaderWriterFilter@7ff6804a, org.springframework.security.web.authentication.logout.LogoutFilter@5ba184fc, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@29c59b6e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@702096ef, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@66ab924, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3f3c5ecd, org.springframework.security.web.session.SessionManagementFilter@64757d56, org.springframework.security.web.access.ExceptionTranslationFilter@7e2c6fd6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6ec3d8e4]
+2021-02-04 13:14:13 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:~'
+2021-02-04 13:14:14 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:14:14 - Initializing Servlet ''
+2021-02-04 13:14:14 - Completed initialization in 65 ms
+2021-02-04 13:14:14 - Context refreshed
+2021-02-04 13:14:14 - Found 1 custom documentation plugin(s)
+2021-02-04 13:14:14 - Scanning for api listing references
+2021-02-04 13:14:15 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 13:14:15 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 13:14:15 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 13:14:15 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 13:14:16 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 13:14:16 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 13:14:16 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 13:14:18 - Spring Data repositories initialized!
+2021-02-04 13:14:18 - Started UserControllerTest in 25.23 seconds (JVM running for 31.304)
+2021-02-04 13:14:19 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:14:19 - Initializing Servlet ''
+2021-02-04 13:14:19 - Completed initialization in 1 ms
+2021-02-04 13:14:19 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:14:19 - Initializing Servlet ''
+2021-02-04 13:14:19 - Completed initialization in 4 ms
+2021-02-04 13:14:19 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:14:19 - Initializing Servlet ''
+2021-02-04 13:14:19 - Completed initialization in 4 ms
+2021-02-04 13:14:53 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=45s201ms703µs522ns).
+2021-02-04 13:14:54 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 13:14:54 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 13:14:54 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 13:14:54 - HikariPool-1 - Shutdown initiated...
+2021-02-04 13:14:54 - HikariPool-1 - Shutdown completed.
+2021-02-04 13:23:24 - Starting UserControllerTest on WIN-74REM537BGC with PID 3996 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 13:23:24 - The following profiles are active: test
+2021-02-04 13:23:27 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 13:23:27 - Finished Spring Data repository scanning in 258ms. Found 7 JPA repository interfaces.
+2021-02-04 13:23:30 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 13:23:30 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 13:23:30 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 13:23:30 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 13:23:30 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 13:23:31 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 13:23:32 - HikariPool-1 - Starting...
+2021-02-04 13:23:33 - HikariPool-1 - Start completed.
+2021-02-04 13:23:33 - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-02-04 13:23:33 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 13:23:33 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 13:23:34 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@61e86192, org.springframework.security.web.context.SecurityContextPersistenceFilter@59845579, org.springframework.security.web.header.HeaderWriterFilter@aa61e4e, org.springframework.security.web.authentication.logout.LogoutFilter@40bf4386, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@1a1ccaaf, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4e375bba, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@bd3eff4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@34330f77, org.springframework.security.web.session.SessionManagementFilter@79a201cf, org.springframework.security.web.access.ExceptionTranslationFilter@2e7af36e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2eb60c71]
+2021-02-04 13:23:37 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:~'
+2021-02-04 13:23:38 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 13:23:38 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 13:23:38 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:23:38 - Initializing Servlet ''
+2021-02-04 13:23:38 - Completed initialization in 36 ms
+2021-02-04 13:23:38 - Context refreshed
+2021-02-04 13:23:38 - Found 1 custom documentation plugin(s)
+2021-02-04 13:23:38 - Scanning for api listing references
+2021-02-04 13:23:39 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 13:23:39 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 13:23:39 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 13:23:39 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 13:23:39 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 13:23:41 - Spring Data repositories initialized!
+2021-02-04 13:23:41 - Started UserControllerTest in 18.779 seconds (JVM running for 23.417)
+2021-02-04 13:23:41 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:23:41 - Initializing Servlet ''
+2021-02-04 13:23:41 - Completed initialization in 0 ms
+2021-02-04 13:23:41 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:23:41 - Initializing Servlet ''
+2021-02-04 13:23:41 - Completed initialization in 5 ms
+2021-02-04 13:23:41 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:23:41 - Initializing Servlet ''
+2021-02-04 13:23:41 - Completed initialization in 3 ms
+2021-02-04 13:23:41 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 13:23:41 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 13:23:41 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 13:23:41 - HikariPool-1 - Shutdown initiated...
+2021-02-04 13:23:41 - HikariPool-1 - Shutdown completed.
+2021-02-04 13:24:09 - Starting GreenLightApplication on WIN-74REM537BGC with PID 7764 (C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest\target\classes started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 13:24:09 - The following profiles are active: Arzuman
+2021-02-04 13:24:09 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-02-04 13:24:09 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-02-04 13:24:12 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 13:24:12 - Finished Spring Data repository scanning in 227ms. Found 7 JPA repository interfaces.
+2021-02-04 13:24:15 - Tomcat initialized with port(s): 8080 (http)
+2021-02-04 13:24:15 - Starting service [Tomcat]
+2021-02-04 13:24:15 - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-02-04 13:24:16 - Initializing Spring embedded WebApplicationContext
+2021-02-04 13:24:16 - Root WebApplicationContext: initialization completed in 6619 ms
+2021-02-04 13:24:16 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 13:24:16 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 13:24:16 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 13:24:16 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 13:24:17 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 13:24:17 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 13:24:17 - HikariPool-1 - Starting...
+2021-02-04 13:24:19 - HikariPool-1 - Start completed.
+2021-02-04 13:24:19 - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2021-02-04 13:24:19 - [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 13:24:19 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 13:24:19 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@65889a5f, org.springframework.security.web.context.SecurityContextPersistenceFilter@654d6af6, org.springframework.security.web.header.HeaderWriterFilter@236aee21, org.springframework.security.web.authentication.logout.LogoutFilter@a738e1d, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@7267bac0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3268bbfc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@45317e5c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@405390b2, org.springframework.security.web.session.SessionManagementFilter@315f5d76, org.springframework.security.web.access.ExceptionTranslationFilter@6afe9599, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@734536b2]
+2021-02-04 13:24:20 - LiveReload server is running on port 35729
+2021-02-04 13:24:21 - Tomcat started on port(s): 8080 (http) with context path ''
+2021-02-04 13:24:21 - Context refreshed
+2021-02-04 13:24:21 - Found 1 custom documentation plugin(s)
+2021-02-04 13:24:21 - Scanning for api listing references
+2021-02-04 13:24:21 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 13:24:21 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 13:24:21 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 13:24:21 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 13:24:22 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 13:24:22 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 13:24:22 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 13:24:23 - Spring Data repositories initialized!
+2021-02-04 13:24:23 - Started GreenLightApplication in 15.818 seconds (JVM running for 21.237)
+2021-02-04 13:26:06 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-02-04 13:26:06 - Initializing Servlet 'dispatcherServlet'
+2021-02-04 13:26:06 - Completed initialization in 18 ms
+2021-02-04 13:26:06 - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'email' is not present]
+2021-02-04 13:26:30 - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'email' is not present]
+2021-02-04 13:26:32 - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'email' is not present]
+2021-02-04 13:26:33 - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'email' is not present]
+2021-02-04 13:26:33 - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'email' is not present]
+2021-02-04 13:27:31 - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'email' is not present]
+2021-02-04 13:27:46 - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'email' is not present]
+2021-02-04 13:27:50 - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2021-02-04 13:29:43 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=54s40ms931µs161ns).
+2021-02-04 13:32:41 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=54s926ms392µs443ns).
+2021-02-04 13:32:57 - user with email - arzuman.kochoyan98@mail.ru used forgotPass method
+2021-02-04 13:34:32 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=51s856ms216µs104ns).
+2021-02-04 13:36:25 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m52s755ms443µs310ns).
+2021-02-04 13:37:28 - user with email - arzuman.kochoyan98@mail.ru used forgotPass method
+2021-02-04 13:38:08 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=59s427ms919µs899ns).
+2021-02-04 13:42:18 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m39s727ms847µs33ns).
+2021-02-04 13:42:48 - user with email - arzuman.kochoyan98@mail.ru used forgotPass method
+2021-02-04 13:49:00 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 13:49:00 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 13:49:00 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 13:49:00 - HikariPool-1 - Shutdown initiated...
+2021-02-04 13:49:00 - HikariPool-1 - Shutdown completed.
+2021-02-04 13:49:32 - Starting UserControllerTest on WIN-74REM537BGC with PID 6488 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 13:49:32 - The following profiles are active: test
+2021-02-04 13:49:36 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 13:49:37 - Finished Spring Data repository scanning in 345ms. Found 7 JPA repository interfaces.
+2021-02-04 13:49:40 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 13:49:40 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 13:49:40 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 13:49:41 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 13:49:41 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 13:49:42 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 13:49:43 - HikariPool-1 - Starting...
+2021-02-04 13:49:44 - HikariPool-1 - Start completed.
+2021-02-04 13:49:45 - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-02-04 13:49:45 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 13:49:45 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 13:49:47 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7e50eeb9, org.springframework.security.web.context.SecurityContextPersistenceFilter@1fc1c7e, org.springframework.security.web.header.HeaderWriterFilter@5ca22e19, org.springframework.security.web.authentication.logout.LogoutFilter@4ad1a276, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@6ed51944, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@75cacb3e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@37e55819, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@34cb0e49, org.springframework.security.web.session.SessionManagementFilter@278de2b2, org.springframework.security.web.access.ExceptionTranslationFilter@44aed6a4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1cc9bd9b]
+2021-02-04 13:49:51 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:~'
+2021-02-04 13:49:51 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 13:49:51 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 13:49:52 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:49:52 - Initializing Servlet ''
+2021-02-04 13:49:52 - Completed initialization in 54 ms
+2021-02-04 13:49:52 - Context refreshed
+2021-02-04 13:49:52 - Found 1 custom documentation plugin(s)
+2021-02-04 13:49:52 - Scanning for api listing references
+2021-02-04 13:49:53 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 13:49:53 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 13:49:53 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 13:49:53 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 13:49:54 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 13:49:56 - Spring Data repositories initialized!
+2021-02-04 13:49:56 - Started UserControllerTest in 26.044 seconds (JVM running for 32.543)
+2021-02-04 13:49:57 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:49:57 - Initializing Servlet ''
+2021-02-04 13:49:57 - Completed initialization in 0 ms
+2021-02-04 13:49:57 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:49:57 - Initializing Servlet ''
+2021-02-04 13:49:57 - Completed initialization in 5 ms
+2021-02-04 13:49:57 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 13:49:57 - Initializing Servlet ''
+2021-02-04 13:49:57 - Completed initialization in 4 ms
+2021-02-04 13:50:18 - user with email - arzuman.kochoyan@mail.ru used forgotPass method
+2021-02-04 13:50:24 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 13:50:24 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 13:50:24 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 13:50:24 - HikariPool-1 - Shutdown initiated...
+2021-02-04 13:50:24 - HikariPool-1 - Shutdown completed.
+2021-02-04 15:33:20 - Starting UserControllerTest on WIN-74REM537BGC with PID 2356 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 15:33:20 - The following profiles are active: test
+2021-02-04 15:33:23 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 15:33:23 - Finished Spring Data repository scanning in 280ms. Found 7 JPA repository interfaces.
+2021-02-04 15:33:26 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 15:33:26 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 15:33:26 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 15:33:27 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 15:33:27 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 15:33:27 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 15:33:29 - HikariPool-1 - Starting...
+2021-02-04 15:33:30 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 15:33:30 - HikariPool-1 - Start completed.
+2021-02-04 15:33:30 - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-02-04 15:33:30 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 15:33:32 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4b033eac, org.springframework.security.web.context.SecurityContextPersistenceFilter@ab2e6d2, org.springframework.security.web.header.HeaderWriterFilter@741ac284, org.springframework.security.web.authentication.logout.LogoutFilter@740dcae3, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@388c519, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4d4436d0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5348d83c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@69c532af, org.springframework.security.web.session.SessionManagementFilter@59845579, org.springframework.security.web.access.ExceptionTranslationFilter@aa61e4e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@10177794]
+2021-02-04 15:33:37 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:~'
+2021-02-04 15:33:37 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 15:33:37 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 15:33:38 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:33:38 - Initializing Servlet ''
+2021-02-04 15:33:38 - Completed initialization in 41 ms
+2021-02-04 15:33:38 - Context refreshed
+2021-02-04 15:33:38 - Found 1 custom documentation plugin(s)
+2021-02-04 15:33:38 - Scanning for api listing references
+2021-02-04 15:33:39 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 15:33:39 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 15:33:39 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 15:33:39 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 15:33:40 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 15:33:42 - Spring Data repositories initialized!
+2021-02-04 15:33:42 - Started UserControllerTest in 23.55 seconds (JVM running for 28.564)
+2021-02-04 15:33:42 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:33:42 - Initializing Servlet ''
+2021-02-04 15:33:42 - Completed initialization in 0 ms
+2021-02-04 15:33:42 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:33:42 - Initializing Servlet ''
+2021-02-04 15:33:42 - Completed initialization in 6 ms
+2021-02-04 15:33:42 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:33:42 - Initializing Servlet ''
+2021-02-04 15:33:42 - Completed initialization in 5 ms
+2021-02-04 15:33:43 - user with email - arzuman.kochoyan@mail.ru used forgotPass method
+2021-02-04 15:33:43 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 15:33:43 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 15:33:43 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 15:33:43 - HikariPool-1 - Shutdown initiated...
+2021-02-04 15:33:43 - HikariPool-1 - Shutdown completed.
+2021-02-04 15:35:55 - Starting UserControllerTest on WIN-74REM537BGC with PID 6928 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 15:35:55 - The following profiles are active: test
+2021-02-04 15:35:57 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 15:35:58 - Finished Spring Data repository scanning in 237ms. Found 7 JPA repository interfaces.
+2021-02-04 15:36:00 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 15:36:00 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 15:36:00 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 15:36:00 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 15:36:00 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 15:36:01 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 15:36:02 - HikariPool-1 - Starting...
+2021-02-04 15:36:03 - HikariPool-1 - Start completed.
+2021-02-04 15:36:03 - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-02-04 15:36:03 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 15:36:03 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 15:36:04 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4b033eac, org.springframework.security.web.context.SecurityContextPersistenceFilter@ab2e6d2, org.springframework.security.web.header.HeaderWriterFilter@741ac284, org.springframework.security.web.authentication.logout.LogoutFilter@740dcae3, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@388c519, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4d4436d0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5348d83c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@69c532af, org.springframework.security.web.session.SessionManagementFilter@59845579, org.springframework.security.web.access.ExceptionTranslationFilter@aa61e4e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@10177794]
+2021-02-04 15:36:07 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:~'
+2021-02-04 15:36:07 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 15:36:07 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 15:36:08 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:36:08 - Initializing Servlet ''
+2021-02-04 15:36:08 - Completed initialization in 41 ms
+2021-02-04 15:36:08 - Context refreshed
+2021-02-04 15:36:08 - Found 1 custom documentation plugin(s)
+2021-02-04 15:36:08 - Scanning for api listing references
+2021-02-04 15:36:09 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 15:36:09 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 15:36:09 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 15:36:09 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 15:36:09 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 15:36:11 - Spring Data repositories initialized!
+2021-02-04 15:36:11 - Started UserControllerTest in 19.397 seconds (JVM running for 23.313)
+2021-02-04 15:36:12 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:36:12 - Initializing Servlet ''
+2021-02-04 15:36:12 - Completed initialization in 1 ms
+2021-02-04 15:36:12 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:36:12 - Initializing Servlet ''
+2021-02-04 15:36:12 - Completed initialization in 5 ms
+2021-02-04 15:36:12 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:36:12 - Initializing Servlet ''
+2021-02-04 15:36:12 - Completed initialization in 5 ms
+2021-02-04 15:36:12 -  email - poxostest@mail.ru used reset method
+2021-02-04 15:36:12 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 15:36:12 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 15:36:12 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 15:36:12 - HikariPool-1 - Shutdown initiated...
+2021-02-04 15:36:12 - HikariPool-1 - Shutdown completed.
+2021-02-04 15:37:07 - Starting UserControllerTest on WIN-74REM537BGC with PID 3128 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 15:37:07 - The following profiles are active: test
+2021-02-04 15:37:11 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 15:37:12 - Finished Spring Data repository scanning in 473ms. Found 7 JPA repository interfaces.
+2021-02-04 15:37:15 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 15:37:15 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 15:37:16 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 15:37:16 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 15:37:16 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 15:37:17 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 15:37:18 - HikariPool-1 - Starting...
+2021-02-04 15:37:19 - HikariPool-1 - Start completed.
+2021-02-04 15:37:19 - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-02-04 15:37:19 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 15:37:19 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 15:37:21 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@61e86192, org.springframework.security.web.context.SecurityContextPersistenceFilter@59845579, org.springframework.security.web.header.HeaderWriterFilter@aa61e4e, org.springframework.security.web.authentication.logout.LogoutFilter@40bf4386, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@1a1ccaaf, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4e375bba, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@bd3eff4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@34330f77, org.springframework.security.web.session.SessionManagementFilter@79a201cf, org.springframework.security.web.access.ExceptionTranslationFilter@2e7af36e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2eb60c71]
+2021-02-04 15:37:23 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:~'
+2021-02-04 15:37:25 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:37:25 - Initializing Servlet ''
+2021-02-04 15:37:26 - Completed initialization in 99 ms
+2021-02-04 15:37:26 - Context refreshed
+2021-02-04 15:37:26 - Found 1 custom documentation plugin(s)
+2021-02-04 15:37:26 - Scanning for api listing references
+2021-02-04 15:37:26 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 15:37:26 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 15:37:29 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 15:37:29 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 15:37:29 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 15:37:29 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 15:37:30 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 15:37:32 - Spring Data repositories initialized!
+2021-02-04 15:37:32 - Started UserControllerTest in 25.771 seconds (JVM running for 31.01)
+2021-02-04 15:37:32 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:37:32 - Initializing Servlet ''
+2021-02-04 15:37:32 - Completed initialization in 1 ms
+2021-02-04 15:37:32 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:37:32 - Initializing Servlet ''
+2021-02-04 15:37:32 - Completed initialization in 5 ms
+2021-02-04 15:37:32 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:37:32 - Initializing Servlet ''
+2021-02-04 15:37:32 - Completed initialization in 5 ms
+2021-02-04 15:37:32 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 15:37:32 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 15:37:32 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 15:37:32 - HikariPool-1 - Shutdown initiated...
+2021-02-04 15:37:32 - HikariPool-1 - Shutdown completed.
+2021-02-04 15:39:41 - Starting UserControllerTest on WIN-74REM537BGC with PID 2500 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 15:39:41 - The following profiles are active: test
+2021-02-04 15:39:43 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 15:39:44 - Finished Spring Data repository scanning in 294ms. Found 7 JPA repository interfaces.
+2021-02-04 15:39:46 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 15:39:46 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 15:39:47 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 15:39:47 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 15:39:47 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 15:39:47 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 15:39:49 - HikariPool-1 - Starting...
+2021-02-04 15:39:50 - HikariPool-1 - Start completed.
+2021-02-04 15:39:50 - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-02-04 15:39:50 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 15:39:51 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 15:39:52 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@49edcb30, org.springframework.security.web.context.SecurityContextPersistenceFilter@1cbc5693, org.springframework.security.web.header.HeaderWriterFilter@1283ca23, org.springframework.security.web.authentication.logout.LogoutFilter@56826a75, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@43471a7e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@59845579, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2443abd6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@59303963, org.springframework.security.web.session.SessionManagementFilter@32227215, org.springframework.security.web.access.ExceptionTranslationFilter@4a058df8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3c19592c]
+2021-02-04 15:39:55 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:~'
+2021-02-04 15:39:55 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 15:39:56 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 15:39:56 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:39:56 - Initializing Servlet ''
+2021-02-04 15:39:56 - Completed initialization in 39 ms
+2021-02-04 15:39:56 - Context refreshed
+2021-02-04 15:39:56 - Found 1 custom documentation plugin(s)
+2021-02-04 15:39:56 - Scanning for api listing references
+2021-02-04 15:39:57 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 15:39:57 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 15:39:57 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 15:39:57 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 15:39:58 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 15:40:00 - Spring Data repositories initialized!
+2021-02-04 15:40:00 - Started UserControllerTest in 21.818 seconds (JVM running for 25.778)
+2021-02-04 15:40:01 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:40:01 - Initializing Servlet ''
+2021-02-04 15:40:01 - Completed initialization in 0 ms
+2021-02-04 15:40:01 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:40:01 - Initializing Servlet ''
+2021-02-04 15:40:01 - Completed initialization in 4 ms
+2021-02-04 15:40:01 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:40:01 - Initializing Servlet ''
+2021-02-04 15:40:01 - Completed initialization in 4 ms
+2021-02-04 15:40:03 - user with email - arzuman.kochoyan@mail.ru change its password
+2021-02-04 15:40:03 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 15:40:03 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 15:40:03 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 15:40:03 - HikariPool-1 - Shutdown initiated...
+2021-02-04 15:40:03 - HikariPool-1 - Shutdown completed.
+2021-02-04 15:40:39 - Starting UserControllerTest on WIN-74REM537BGC with PID 6084 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 15:40:39 - The following profiles are active: test
+2021-02-04 15:40:43 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 15:40:44 - Finished Spring Data repository scanning in 426ms. Found 7 JPA repository interfaces.
+2021-02-04 15:40:47 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 15:40:48 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 15:40:48 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 15:40:48 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 15:40:48 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 15:40:50 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 15:40:51 - HikariPool-1 - Starting...
+2021-02-04 15:40:52 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 15:40:52 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 15:40:53 - HikariPool-1 - Start completed.
+2021-02-04 15:40:54 - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-02-04 15:40:54 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@344f9467, org.springframework.security.web.context.SecurityContextPersistenceFilter@2a425cf5, org.springframework.security.web.header.HeaderWriterFilter@5d6b42cf, org.springframework.security.web.authentication.logout.LogoutFilter@702096ef, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@284d4885, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@17d76ebb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3b30eec5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3e98b933, org.springframework.security.web.session.SessionManagementFilter@299fc582, org.springframework.security.web.access.ExceptionTranslationFilter@49122853, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5a6f6cac]
+2021-02-04 15:40:58 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:~'
+2021-02-04 15:40:59 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:40:59 - Initializing Servlet ''
+2021-02-04 15:40:59 - Completed initialization in 71 ms
+2021-02-04 15:40:59 - Context refreshed
+2021-02-04 15:40:59 - Found 1 custom documentation plugin(s)
+2021-02-04 15:40:59 - Scanning for api listing references
+2021-02-04 15:41:00 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 15:41:01 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 15:41:01 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 15:41:01 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 15:41:01 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 15:41:02 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 15:41:02 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 15:41:04 - Spring Data repositories initialized!
+2021-02-04 15:41:04 - Started UserControllerTest in 26.666 seconds (JVM running for 34.998)
+2021-02-04 15:41:05 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:41:05 - Initializing Servlet ''
+2021-02-04 15:41:05 - Completed initialization in 1 ms
+2021-02-04 15:41:05 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:41:05 - Initializing Servlet ''
+2021-02-04 15:41:05 - Completed initialization in 6 ms
+2021-02-04 15:41:05 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:41:05 - Initializing Servlet ''
+2021-02-04 15:41:05 - Completed initialization in 4 ms
+2021-02-04 15:43:10 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m36s856ms439µs36ns).
+2021-02-04 15:43:17 - user with email - arzuman.kochoyan@mail.ru change its password
+2021-02-04 15:43:25 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 15:43:25 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 15:43:25 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 15:43:25 - HikariPool-1 - Shutdown initiated...
+2021-02-04 15:43:25 - HikariPool-1 - Shutdown completed.
+2021-02-04 15:44:18 - Starting UserControllerTest on WIN-74REM537BGC with PID 4404 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 15:44:18 - The following profiles are active: test
+2021-02-04 15:44:22 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 15:44:22 - Finished Spring Data repository scanning in 364ms. Found 7 JPA repository interfaces.
+2021-02-04 15:44:26 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 15:44:26 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 15:44:26 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 15:44:27 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 15:44:27 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 15:44:28 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 15:44:29 - HikariPool-1 - Starting...
+2021-02-04 15:44:31 - HikariPool-1 - Start completed.
+2021-02-04 15:44:31 - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-02-04 15:44:31 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 15:44:32 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 15:44:33 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@144ee8a7, org.springframework.security.web.context.SecurityContextPersistenceFilter@2b395581, org.springframework.security.web.header.HeaderWriterFilter@542c65d9, org.springframework.security.web.authentication.logout.LogoutFilter@75ed7512, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@1d3d76b4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1a2724d3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@68b7bdcb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@52b32b70, org.springframework.security.web.session.SessionManagementFilter@6ba060af, org.springframework.security.web.access.ExceptionTranslationFilter@166ce247, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@56d822dc]
+2021-02-04 15:44:37 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 15:44:37 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 15:44:38 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:~'
+2021-02-04 15:44:38 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:44:38 - Initializing Servlet ''
+2021-02-04 15:44:38 - Completed initialization in 43 ms
+2021-02-04 15:44:38 - Context refreshed
+2021-02-04 15:44:38 - Found 1 custom documentation plugin(s)
+2021-02-04 15:44:39 - Scanning for api listing references
+2021-02-04 15:44:40 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 15:44:40 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 15:44:40 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 15:44:40 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 15:44:40 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 15:44:43 - Spring Data repositories initialized!
+2021-02-04 15:44:43 - Started UserControllerTest in 26.754 seconds (JVM running for 33.118)
+2021-02-04 15:44:44 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:44:44 - Initializing Servlet ''
+2021-02-04 15:44:44 - Completed initialization in 0 ms
+2021-02-04 15:44:44 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:44:44 - Initializing Servlet ''
+2021-02-04 15:44:44 - Completed initialization in 6 ms
+2021-02-04 15:44:44 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:44:44 - Initializing Servlet ''
+2021-02-04 15:44:44 - Completed initialization in 4 ms
+2021-02-04 15:45:11 - user with email - poxostest@mail.ru change its password
+2021-02-04 15:45:11 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 15:45:11 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 15:45:11 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 15:45:11 - HikariPool-1 - Shutdown initiated...
+2021-02-04 15:45:11 - HikariPool-1 - Shutdown completed.
+2021-02-04 15:45:40 - Starting UserControllerTest on WIN-74REM537BGC with PID 1076 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 15:45:40 - The following profiles are active: test
+2021-02-04 15:45:42 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 15:45:43 - Finished Spring Data repository scanning in 249ms. Found 7 JPA repository interfaces.
+2021-02-04 15:45:45 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 15:45:45 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 15:45:45 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 15:45:45 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 15:45:45 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 15:45:46 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 15:45:47 - HikariPool-1 - Starting...
+2021-02-04 15:45:48 - HikariPool-1 - Start completed.
+2021-02-04 15:45:48 - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-02-04 15:45:48 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 15:45:48 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 15:45:49 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1320e68a, org.springframework.security.web.context.SecurityContextPersistenceFilter@4e375bba, org.springframework.security.web.header.HeaderWriterFilter@7fe07361, org.springframework.security.web.authentication.logout.LogoutFilter@51c65a43, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@3cc053, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@71664560, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5934ca1e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4b033eac, org.springframework.security.web.session.SessionManagementFilter@3d2f3dcb, org.springframework.security.web.access.ExceptionTranslationFilter@740fefc6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7e5b621b]
+2021-02-04 15:45:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 15:45:52 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 15:45:53 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:~'
+2021-02-04 15:45:53 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:45:53 - Initializing Servlet ''
+2021-02-04 15:45:53 - Completed initialization in 38 ms
+2021-02-04 15:45:53 - Context refreshed
+2021-02-04 15:45:53 - Found 1 custom documentation plugin(s)
+2021-02-04 15:45:53 - Scanning for api listing references
+2021-02-04 15:45:54 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 15:45:54 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 15:45:54 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 15:45:54 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 15:45:55 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 15:45:56 - Spring Data repositories initialized!
+2021-02-04 15:45:56 - Started UserControllerTest in 18.249 seconds (JVM running for 22.405)
+2021-02-04 15:45:57 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:45:57 - Initializing Servlet ''
+2021-02-04 15:45:57 - Completed initialization in 0 ms
+2021-02-04 15:45:57 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:45:57 - Initializing Servlet ''
+2021-02-04 15:45:57 - Completed initialization in 5 ms
+2021-02-04 15:45:57 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:45:57 - Initializing Servlet ''
+2021-02-04 15:45:57 - Completed initialization in 3 ms
+2021-02-04 15:45:58 - user with email - arzuman.kochoyan@mail.ru don't can change its password
+2021-02-04 15:45:58 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 15:45:58 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 15:45:58 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 15:45:58 - HikariPool-1 - Shutdown initiated...
+2021-02-04 15:45:58 - HikariPool-1 - Shutdown completed.
+2021-02-04 15:46:36 - Starting UserControllerTest on WIN-74REM537BGC with PID 6344 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 15:46:36 - The following profiles are active: test
+2021-02-04 15:46:39 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 15:46:40 - Finished Spring Data repository scanning in 417ms. Found 7 JPA repository interfaces.
+2021-02-04 15:46:43 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 15:46:43 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 15:46:43 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 15:46:44 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 15:46:44 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 15:46:45 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 15:46:46 - HikariPool-1 - Starting...
+2021-02-04 15:46:47 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 15:46:48 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 15:46:48 - HikariPool-1 - Start completed.
+2021-02-04 15:46:48 - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-02-04 15:46:50 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@386e9fd8, org.springframework.security.web.context.SecurityContextPersistenceFilter@1f0e2bdc, org.springframework.security.web.header.HeaderWriterFilter@145a821d, org.springframework.security.web.authentication.logout.LogoutFilter@432c0f1, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@352e5a82, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@44a93f8a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4cc7e3ad, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@618f627b, org.springframework.security.web.session.SessionManagementFilter@5efe5b25, org.springframework.security.web.access.ExceptionTranslationFilter@63dc3420, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@779228dc]
+2021-02-04 15:46:54 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:~'
+2021-02-04 15:46:55 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:46:55 - Initializing Servlet ''
+2021-02-04 15:46:55 - Completed initialization in 67 ms
+2021-02-04 15:46:55 - Context refreshed
+2021-02-04 15:46:55 - Found 1 custom documentation plugin(s)
+2021-02-04 15:46:55 - Scanning for api listing references
+2021-02-04 15:46:56 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 15:46:56 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 15:46:57 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 15:46:57 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 15:46:57 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 15:46:57 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 15:46:57 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 15:47:00 - Spring Data repositories initialized!
+2021-02-04 15:47:00 - Started UserControllerTest in 25.19 seconds (JVM running for 31.403)
+2021-02-04 15:47:01 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:47:01 - Initializing Servlet ''
+2021-02-04 15:47:01 - Completed initialization in 1 ms
+2021-02-04 15:47:01 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:47:01 - Initializing Servlet ''
+2021-02-04 15:47:01 - Completed initialization in 6 ms
+2021-02-04 15:47:01 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:47:01 - Initializing Servlet ''
+2021-02-04 15:47:01 - Completed initialization in 4 ms
+2021-02-04 15:47:26 - user with email - arzuman.kochoyan@mail.ru don't can change its password
+2021-02-04 15:47:35 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 15:47:35 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 15:47:35 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 15:47:35 - HikariPool-1 - Shutdown initiated...
+2021-02-04 15:47:35 - HikariPool-1 - Shutdown completed.
+2021-02-04 15:49:00 - Starting CarControllerTest on WIN-74REM537BGC with PID 1832 (started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 15:49:00 - The following profiles are active: test
+2021-02-04 15:49:03 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 15:49:03 - Finished Spring Data repository scanning in 280ms. Found 7 JPA repository interfaces.
+2021-02-04 15:49:06 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 15:49:06 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 15:49:07 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 15:49:07 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 15:49:07 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 15:49:07 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 15:49:09 - HikariPool-1 - Starting...
+2021-02-04 15:49:10 - HikariPool-1 - Start completed.
+2021-02-04 15:49:10 - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-02-04 15:49:10 - [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 15:49:10 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 15:49:11 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@34beadce, org.springframework.security.web.context.SecurityContextPersistenceFilter@70f4abc1, org.springframework.security.web.header.HeaderWriterFilter@395281c2, org.springframework.security.web.authentication.logout.LogoutFilter@4fa0ee7e, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@52909a97, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@a2df0d5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5086623f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@382d549a, org.springframework.security.web.session.SessionManagementFilter@59fea5f5, org.springframework.security.web.access.ExceptionTranslationFilter@4eb63dc8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@502c087e]
+2021-02-04 15:49:14 - H2 console available at '/h2-console'. Database available at 'jdbc:h2:~'
+2021-02-04 15:49:15 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:49:15 - Initializing Servlet ''
+2021-02-04 15:49:15 - Completed initialization in 63 ms
+2021-02-04 15:49:15 - Context refreshed
+2021-02-04 15:49:15 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 15:49:15 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 15:49:15 - Found 1 custom documentation plugin(s)
+2021-02-04 15:49:16 - Scanning for api listing references
+2021-02-04 15:49:16 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 15:49:17 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 15:49:17 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 15:49:17 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 15:49:17 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 15:49:19 - Spring Data repositories initialized!
+2021-02-04 15:49:19 - Started CarControllerTest in 20.335 seconds (JVM running for 25.935)
+2021-02-04 15:49:20 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:49:20 - Initializing Servlet ''
+2021-02-04 15:49:20 - Completed initialization in 0 ms
+2021-02-04 15:49:20 - Initializing Spring TestDispatcherServlet ''
+2021-02-04 15:49:20 - Initializing Servlet ''
+2021-02-04 15:49:20 - Completed initialization in 5 ms
+2021-02-04 15:49:39 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 15:49:39 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 15:49:39 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 15:49:39 - HikariPool-1 - Shutdown initiated...
+2021-02-04 15:49:39 - HikariPool-1 - Shutdown completed.
+2021-02-04 19:20:31 - Starting GreenLightApplication on WIN-74REM537BGC with PID 6208 (C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest\target\classes started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 19:20:31 - The following profiles are active: Arzuman
+2021-02-04 19:20:33 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-02-04 19:20:33 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-02-04 19:20:59 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 19:21:01 - Finished Spring Data repository scanning in 1392ms. Found 7 JPA repository interfaces.
+2021-02-04 19:21:09 - Tomcat initialized with port(s): 8080 (http)
+2021-02-04 19:21:09 - Starting service [Tomcat]
+2021-02-04 19:21:09 - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-02-04 19:21:09 - Initializing Spring embedded WebApplicationContext
+2021-02-04 19:21:09 - Root WebApplicationContext: initialization completed in 36665 ms
+2021-02-04 19:21:10 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 19:21:11 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 19:21:11 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 19:21:12 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 19:21:12 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 19:21:18 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 19:21:19 - HikariPool-1 - Starting...
+2021-02-04 19:21:20 - HikariPool-1 - Start completed.
+2021-02-04 19:21:20 - [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 19:21:20 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 19:21:21 - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2021-02-04 19:21:22 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2a4ef5e1, org.springframework.security.web.context.SecurityContextPersistenceFilter@43d2fe79, org.springframework.security.web.header.HeaderWriterFilter@2f8a21ac, org.springframework.security.web.authentication.logout.LogoutFilter@54012633, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@14439e0a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@29dc3164, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6bc3afc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5d2e0238, org.springframework.security.web.session.SessionManagementFilter@5457dbc8, org.springframework.security.web.access.ExceptionTranslationFilter@2810416d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@291a2d5a]
+2021-02-04 19:21:23 - LiveReload server is running on port 35729
+2021-02-04 19:21:25 - Tomcat started on port(s): 8080 (http) with context path ''
+2021-02-04 19:21:25 - Context refreshed
+2021-02-04 19:21:26 - Found 1 custom documentation plugin(s)
+2021-02-04 19:21:26 - Scanning for api listing references
+2021-02-04 19:21:31 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 19:21:31 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 19:21:31 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 19:21:31 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 19:21:32 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 19:21:32 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 19:21:32 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 19:21:35 - Spring Data repositories initialized!
+2021-02-04 19:21:35 - Started GreenLightApplication in 71.627 seconds (JVM running for 80.281)
+2021-02-04 19:25:10 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-02-04 19:25:10 - Initializing Servlet 'dispatcherServlet'
+2021-02-04 19:25:10 - Completed initialization in 40 ms
+2021-02-04 19:25:17 - user with email - arzuman.kochoyan98@mail.ru used forgotPass method
+2021-02-04 19:26:13 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 19:26:13 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 19:26:13 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 19:26:13 - HikariPool-1 - Shutdown initiated...
+2021-02-04 19:26:13 - HikariPool-1 - Shutdown completed.
+2021-02-04 19:26:25 - Starting GreenLightApplication on WIN-74REM537BGC with PID 6112 (C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest\target\classes started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 19:26:25 - The following profiles are active: Arzuman
+2021-02-04 19:26:25 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-02-04 19:26:25 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-02-04 19:26:28 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 19:26:28 - Finished Spring Data repository scanning in 232ms. Found 7 JPA repository interfaces.
+2021-02-04 19:26:30 - Tomcat initialized with port(s): 8080 (http)
+2021-02-04 19:26:30 - Starting service [Tomcat]
+2021-02-04 19:26:30 - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-02-04 19:26:30 - Initializing Spring embedded WebApplicationContext
+2021-02-04 19:26:30 - Root WebApplicationContext: initialization completed in 5056 ms
+2021-02-04 19:26:30 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 19:26:31 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 19:26:31 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 19:26:31 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 19:26:31 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 19:26:32 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 19:26:32 - HikariPool-1 - Starting...
+2021-02-04 19:26:33 - HikariPool-1 - Start completed.
+2021-02-04 19:26:33 - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2021-02-04 19:26:34 - [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 19:26:34 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 19:26:35 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@60b562d4, org.springframework.security.web.context.SecurityContextPersistenceFilter@7089e245, org.springframework.security.web.header.HeaderWriterFilter@17982b35, org.springframework.security.web.authentication.logout.LogoutFilter@378d5889, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@6651be17, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2cbb768a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2401a9b0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3deb5e16, org.springframework.security.web.session.SessionManagementFilter@6e93c458, org.springframework.security.web.access.ExceptionTranslationFilter@4d75e139, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2823d5c]
+2021-02-04 19:26:35 - LiveReload server is running on port 35729
+2021-02-04 19:26:36 - Tomcat started on port(s): 8080 (http) with context path ''
+2021-02-04 19:26:36 - Context refreshed
+2021-02-04 19:26:36 - Found 1 custom documentation plugin(s)
+2021-02-04 19:26:36 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 19:26:36 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 19:26:36 - Scanning for api listing references
+2021-02-04 19:26:37 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 19:26:37 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 19:26:37 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 19:26:37 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 19:26:37 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 19:26:39 - Spring Data repositories initialized!
+2021-02-04 19:26:39 - Started GreenLightApplication in 16.562 seconds (JVM running for 19.447)
+2021-02-04 19:27:55 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-02-04 19:27:55 - Initializing Servlet 'dispatcherServlet'
+2021-02-04 19:27:55 - Completed initialization in 22 ms
+2021-02-04 19:27:58 - user with email - arzuman.kochoyan98@mail.ru used forgotPass method
+2021-02-04 19:28:31 -  email - arzuman.kochoyan98@mail.ru used reset method
+2021-02-04 19:30:01 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 19:30:01 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 19:30:01 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 19:30:01 - HikariPool-1 - Shutdown initiated...
+2021-02-04 19:30:01 - HikariPool-1 - Shutdown completed.
+2021-02-04 19:30:14 - Starting GreenLightApplication on WIN-74REM537BGC with PID 7624 (C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest\target\classes started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 19:30:14 - The following profiles are active: Arzuman
+2021-02-04 19:30:14 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-02-04 19:30:14 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-02-04 19:30:17 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 19:30:17 - Finished Spring Data repository scanning in 188ms. Found 7 JPA repository interfaces.
+2021-02-04 19:30:18 - Tomcat initialized with port(s): 8080 (http)
+2021-02-04 19:30:18 - Starting service [Tomcat]
+2021-02-04 19:30:18 - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-02-04 19:30:19 - Initializing Spring embedded WebApplicationContext
+2021-02-04 19:30:19 - Root WebApplicationContext: initialization completed in 4317 ms
+2021-02-04 19:30:19 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 19:30:19 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 19:30:19 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 19:30:19 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 19:30:19 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 19:30:20 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 19:30:20 - HikariPool-1 - Starting...
+2021-02-04 19:30:20 - HikariPool-1 - Start completed.
+2021-02-04 19:30:20 - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2021-02-04 19:30:21 - [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 19:30:21 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 19:30:21 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5f554f9c, org.springframework.security.web.context.SecurityContextPersistenceFilter@529c3ca0, org.springframework.security.web.header.HeaderWriterFilter@5c88ee17, org.springframework.security.web.authentication.logout.LogoutFilter@11ffaee5, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@b7c7e55, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2a685f9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@351a7265, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@16e55ad, org.springframework.security.web.session.SessionManagementFilter@312c104a, org.springframework.security.web.access.ExceptionTranslationFilter@511138ab, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1b6f8f02]
+2021-02-04 19:30:22 - LiveReload server is running on port 35729
+2021-02-04 19:30:22 - Tomcat started on port(s): 8080 (http) with context path ''
+2021-02-04 19:30:22 - Context refreshed
+2021-02-04 19:30:22 - Found 1 custom documentation plugin(s)
+2021-02-04 19:30:22 - Scanning for api listing references
+2021-02-04 19:30:23 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 19:30:23 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 19:30:23 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 19:30:23 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 19:30:23 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 19:30:23 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 19:30:23 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 19:30:25 - Spring Data repositories initialized!
+2021-02-04 19:30:25 - Started GreenLightApplication in 12.427 seconds (JVM running for 14.817)
+2021-02-04 19:32:41 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-02-04 19:32:41 - Initializing Servlet 'dispatcherServlet'
+2021-02-04 19:32:42 - Completed initialization in 30 ms
+2021-02-04 19:32:47 -  email - arzuman.kochoyan98@mail.ru used reset method
+2021-02-04 19:32:57 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 19:32:57 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 19:32:57 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 19:32:57 - HikariPool-1 - Shutdown initiated...
+2021-02-04 19:32:57 - HikariPool-1 - Shutdown completed.
+2021-02-04 19:33:09 - Starting GreenLightApplication on WIN-74REM537BGC with PID 7764 (C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest\target\classes started by Arzuman in C:\Users\Arzuman\Desktop\table\Folder\Full Stack\GreenFULL\greenLightRest)
+2021-02-04 19:33:09 - The following profiles are active: Arzuman
+2021-02-04 19:33:09 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-02-04 19:33:09 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-02-04 19:33:11 - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-02-04 19:33:11 - Finished Spring Data repository scanning in 185ms. Found 7 JPA repository interfaces.
+2021-02-04 19:33:13 - Tomcat initialized with port(s): 8080 (http)
+2021-02-04 19:33:13 - Starting service [Tomcat]
+2021-02-04 19:33:13 - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-02-04 19:33:13 - Initializing Spring embedded WebApplicationContext
+2021-02-04 19:33:13 - Root WebApplicationContext: initialization completed in 4002 ms
+2021-02-04 19:33:13 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-04 19:33:13 - Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-04 19:33:13 - Initializing ExecutorService 'taskScheduler'
+2021-02-04 19:33:14 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-04 19:33:14 - HHH000412: Hibernate ORM core version 5.4.18.Final
+2021-02-04 19:33:14 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-02-04 19:33:14 - HikariPool-1 - Starting...
+2021-02-04 19:33:15 - HikariPool-1 - Start completed.
+2021-02-04 19:33:15 - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2021-02-04 19:33:15 - [THYMELEAF][restartedMain] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-02-04 19:33:15 - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-02-04 19:33:16 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@68e80047, org.springframework.security.web.context.SecurityContextPersistenceFilter@213fe855, org.springframework.security.web.header.HeaderWriterFilter@4e93b75f, org.springframework.security.web.authentication.logout.LogoutFilter@352e044c, am.greenlight.greenlight.security.JwtAuthenticationTokenFilter@23fd562, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@54e7698c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5ebc16f3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@43755d61, org.springframework.security.web.session.SessionManagementFilter@15941306, org.springframework.security.web.access.ExceptionTranslationFilter@88e0906, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6710bd90]
+2021-02-04 19:33:16 - LiveReload server is running on port 35729
+2021-02-04 19:33:17 - Tomcat started on port(s): 8080 (http) with context path ''
+2021-02-04 19:33:17 - Context refreshed
+2021-02-04 19:33:17 - Found 1 custom documentation plugin(s)
+2021-02-04 19:33:17 - Scanning for api listing references
+2021-02-04 19:33:18 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-04 19:33:18 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 19:33:18 - Generating unique operation named: saveUsingPOST_1
+2021-02-04 19:33:18 - Generating unique operation named: deleteUsingDELETE_1
+2021-02-04 19:33:18 - Generating unique operation named: saveUsingPOST_2
+2021-02-04 19:33:18 - Generating unique operation named: saveUsingPOST_3
+2021-02-04 19:33:18 - Triggering deferred initialization of Spring Data repositories…
+2021-02-04 19:33:19 - Spring Data repositories initialized!
+2021-02-04 19:33:19 - Started GreenLightApplication in 12.174 seconds (JVM running for 15.696)
+2021-02-04 19:33:37 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-02-04 19:33:37 - Initializing Servlet 'dispatcherServlet'
+2021-02-04 19:33:37 - Completed initialization in 27 ms
+2021-02-04 19:33:46 - user with email - arzuman.kochoyan98@mail.ru used forgotPass method
+2021-02-04 19:35:16 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m957ms85µs255ns).
+2021-02-04 19:35:17 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-02-04 19:35:17 - Shutting down ExecutorService 'taskScheduler'
+2021-02-04 19:35:17 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-04 19:35:17 - HikariPool-1 - Shutdown initiated...
+2021-02-04 19:35:17 - HikariPool-1 - Shutdown completed.

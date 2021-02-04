@@ -21,6 +21,6 @@ public class ForgotPasswordDto {
     private String email;
     @Size(min = 6, message = "Password length sold be at least 6 symbol")
     private String password;
-    private String confirmPassword;
+  //  private String confirmPassword;
 
 }

@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -23,6 +24,7 @@ public class UserService {
 
     private final UserRepo userRepo;
     private final PreferenceService prefService;
+    private final EmailService emailService;
 
 
     public User save(User user) {
@@ -58,5 +60,16 @@ public class UserService {
 
     public User getOne(long id) {
         return userRepo.getOne(id);
+    }
+
+
+    public void sendMessageToMailForRegister(User user, Locale locale) {
+        String link = "http://localhost:8080/user/activate?email=" + user.getEmail() + "&otp=" + user.getOtp();
+        emailService.sendHtmlEmil(user.getEmail(), "Բարի գալուստ GreenLight.am", user, link, "email/userWelcomeMail.html", locale);
+    }
+
+    public void sendMessageToMailForForgotPassword(User user, Locale locale) {
+        String link = "http://localhost:3000/user/forgotPassword/reset?email=" + user.getEmail() + "&otp=" + user.getOtp();
+        emailService.sendHtmlEmil(user.getEmail(), "GreenLight.am - Փոխել գաղտնաբառը", user, link, "email/forgotPasswordMail.html", locale);
     }
 }

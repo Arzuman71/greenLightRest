@@ -74,7 +74,7 @@ public class UserController {
                 user.setOtp(UUID.randomUUID().toString());
                 userService.save(user);
                 log.info("user with email - {} was registered", user.getEmail());
-                sendMessageToEmail(user);
+                userService.sendMessageToMailForRegister(user, locale);
                 return ResponseEntity.ok(0);
             } else if (byEmail.get().getStatus() == Status.ARCHIVED) {
                 long id = byEmail.get().getId();
@@ -84,18 +84,11 @@ public class UserController {
                 user.setOtp(UUID.randomUUID().toString());
                 userService.save(user);
                 log.info("user with email - {} was registered its ARCHIVED account ", user.getEmail());
-                String link = "http://localhost:8080/user/activate?email=" + user.getEmail() + "&otp=" + user.getOtp();
-                emailService.sendHtmlEmil(user.getEmail(), "Welcome", user, link,"email/userWelcomeMail.html",locale);
+                userService.sendMessageToMailForRegister(user, locale);
                 return ResponseEntity.ok(0);
             }
         }
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(result.getFieldErrorCount());
-    }
-
-    private void sendMessageToEmail(User user) {
-        String link = " http://localhost:8080/user/activate?email=" + user.getEmail() + "&otp=" + user.getOtp();
-        emailService.send(user.getEmail(), "Welcome", "Dear " + user.getName() + ' ' + user.getSurname() + " You have successfully registered.Please " +
-                "activate your account by clicking on: " + link);
     }
 
 
@@ -171,17 +164,15 @@ public class UserController {
 
     }
 
-    //petq e poxel tip@ zaprosi rexuest param
-    @GetMapping("/forgotPassword/{email}")
-    public ResponseEntity<String> forgotPass(@PathVariable("email") String email) {
+    @GetMapping("/forgotPassword")
+    public ResponseEntity<String> forgotPass(@RequestParam("email") String email, Locale locale) {
         Optional<User> byEmail = userService.findByEmail(email);
         if (byEmail.isPresent() && byEmail.get().getStatus() == Status.ACTIVE) {
             User user = byEmail.get();
             user.setOtp(UUID.randomUUID().toString());
             userService.save(user);
             log.info("user with email - {} used forgotPass method", user.getEmail());
-            String link = "http://localhost:3000/user/forgotPassword/reset?email=" + user.getEmail() + "&otp=" + user.getOtp();
-            emailService.send(user.getEmail(), "Welcome", "Dear " + user.getName() + ' ' + user.getSurname() + "activate your account by clicking on: " + link);
+            userService.sendMessageToMailForForgotPassword(user, locale);
             return ResponseEntity.ok("ok");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("this email not existent");
@@ -209,9 +200,7 @@ public class UserController {
         Optional<User> byEmail = userService.findByEmail(forgotPass.getEmail());
         if (byEmail.isPresent()) {
             User user = byEmail.get();
-            if (user.getOtp().equals(forgotPass.getOtp())
-                    && forgotPass.getPassword().equals(forgotPass.getConfirmPassword())) {
-
+            if (user.getOtp().equals(forgotPass.getOtp())) {
                 user.setPassword(passwordEncoder.encode(forgotPass.getPassword()));
                 userService.save(user);
                 log.info("user with email - {} changed its password", user.getEmail());
@@ -237,4 +226,6 @@ public class UserController {
     //      SecurityContextLogoutHandler sclh = new SecurityContextLogoutHandler();
     //     sclh.logout(req, res, null);
     //}
+
+
 }
