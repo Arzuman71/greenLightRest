@@ -18,6 +18,8 @@ public class Rating {
     @Id
     @GeneratedValue()
     private long id;
+
+    @Column
     private double number;
 
     @ManyToOne

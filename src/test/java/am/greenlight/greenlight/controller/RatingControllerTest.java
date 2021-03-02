@@ -39,15 +39,13 @@ class RatingControllerTest {
     @Autowired
     private RatingService ratingService;
     @Autowired
-    private UserService userService;
-    @Autowired
     private WebApplicationContext context;
 
 
     @BeforeEach
     public void setUp() {
         mvc = MockMvcBuilders
-                .standaloneSetup(new RatingController(ratingService, userService)).build();
+                .standaloneSetup(new RatingController(ratingService)).build();
         mvc2 = MockMvcBuilders
                 .webAppContextSetup(context)
                 .apply(springSecurity())

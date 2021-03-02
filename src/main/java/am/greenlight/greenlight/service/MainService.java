@@ -36,6 +36,7 @@ public class MainService {
         return getBytes(imageName, AdvertisementPicDir);
     }
 
+    // petq e dnel default nkar
     private byte[] getBytes(String imageName, String uploadDir) {
         if (imageName.equals("str")) {
             imageName = "17.png";
@@ -46,7 +47,8 @@ public class MainService {
             return IOUtils.toByteArray(in);
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
         }
+        //inaccessible. written for the syntax
+        return null;
     }
 }

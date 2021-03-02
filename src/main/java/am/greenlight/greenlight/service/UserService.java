@@ -1,5 +1,6 @@
 package am.greenlight.greenlight.service;
 
+import am.greenlight.greenlight.exception.UserNotFoundException;
 import am.greenlight.greenlight.model.User;
 import am.greenlight.greenlight.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
@@ -34,9 +35,13 @@ public class UserService {
         return userRepo.save(user);
     }
 
-    public Optional<User> findByEmail(String email) {
-        return userRepo.findByEmail(email);
+    public User findByEmail(String email) {
+        return userRepo
+                .findByEmail(email).orElseThrow(() -> new UserNotFoundException("User with " + email + " not found"));
     }
+
+   public Optional<User> findUserOptionalByEmail(String email) {
+       return userRepo.findByEmail(email);    }
 
 
     public boolean saveUserImg(User user, MultipartFile file) {

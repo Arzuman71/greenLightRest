@@ -5,6 +5,8 @@ import am.greenlight.greenlight.model.Images;
 import am.greenlight.greenlight.repository.CarRepo;
 import am.greenlight.greenlight.repository.ImagesRepo;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +21,7 @@ import java.util.UUID;
 public class ImagesService {
     private final ImagesRepo imagesRepo;
     private final CarRepo carRepo;
+    private static final Logger log = LoggerFactory.getLogger(ImagesService.class);
 
     @Value("${file.upload.carPicture.dir}")
     private String carPictureDir;
@@ -42,6 +45,7 @@ public class ImagesService {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            log.info("save image car with this id - {}", car.get().getId());
         }
     }
 
@@ -61,6 +65,7 @@ public class ImagesService {
     }
 
     public void deleteById(long id) {
+        log.info("car image with this id - {} deleted", id);
         imagesRepo.deleteById(id);
     }
 }

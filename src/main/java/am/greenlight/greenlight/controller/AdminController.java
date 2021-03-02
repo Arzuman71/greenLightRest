@@ -10,7 +10,6 @@ import am.greenlight.greenlight.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,12 +44,11 @@ public class AdminController {
 
 
     @PostMapping("/contactUs")
-    public ResponseEntity<String> contactUs(@RequestBody ContactUsDto contactUs) {
+    public void contactUs(@RequestBody ContactUsDto contactUs) {
         emailService.send(mailForContactUs, "Բողոք առաջարկ",
                 contactUs.getFirstName() + " " + contactUs.getLastName() + "\n"
                         + contactUs.getEmail() + "\n message \n" + contactUs.getMessage());
 
-        return ResponseEntity.ok().body("Ok");
     }
 
 }

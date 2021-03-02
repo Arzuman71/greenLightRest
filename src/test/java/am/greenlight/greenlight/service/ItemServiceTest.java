@@ -41,7 +41,7 @@ class ItemServiceTest {
     @Test
     void save_Ok() {
         given(itemRepo.save(item)).willReturn(item);
-        item = itemService.save(item, Status.ACTIVE);
+        item = itemService.changeStatus(item, Status.ACTIVE);
         assertThat(item).isNotNull();
     }
 

@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -37,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/user/forgotPassword", "/user/forgotPassword/reset", "/rating/{id}", "/item/{itemId}", "/advertisements", "/user/activate","/car/image/{name}","/user/avatar/{name}","/advertisement/image/{name}").permitAll()
+                .antMatchers(HttpMethod.GET, "/user/forgotPassword", "/user/forgotPassword/reset", "/rating/{id}", "/item/{itemId}", "/advertisements", "/user/activate", "/car/image/{name}", "/user/avatar/{name}", "/advertisement/image/{name}").permitAll()
                 .antMatchers(HttpMethod.POST, "/", "/user/auth", "/user", "/user/contactUs").permitAll()
                 .antMatchers(HttpMethod.PUT, "/user/forgotPassword/change").permitAll()
 
@@ -52,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().permitAll();
         //mnacac zaprosner@ pakelu hamar petq e stugvi  permitAll em tvel swageri hamar
 
-        // .anyRequest().hasAnyAuthority()
+        // .anyRequest().hasAnyAuthority();
 
         // Custom JWT based security filter
         http
@@ -63,6 +64,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // for http://localhost:8080/h2-console . you need change scope in runtime
         // http.headers().frameOptions().disable();
     }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/v2/api-docs",
+                "/configuration/ui",
+                "/swagger-resources/**",
+                "/configuration/security",
+                "/swagger-ui.html",
+                "/webjars/**");
+    }
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

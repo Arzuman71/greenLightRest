@@ -1,7 +1,6 @@
 package am.greenlight.greenlight.service;
 
 
-import am.greenlight.greenlight.controller.MainController;
 import am.greenlight.greenlight.dto.ItemReqDto;
 import am.greenlight.greenlight.dto.ItemSearchDto;
 import am.greenlight.greenlight.dto.ItemSearchResDto;
@@ -29,17 +28,20 @@ public class ItemService {
     private final ItemRepo itemRepo;
     private final RatingService ratingService;
     private final ModelMapper modelMapper;
-    private static final Logger log = LoggerFactory.getLogger(MainController.class);
+    private static final Logger log = LoggerFactory.getLogger(ItemService.class);
 
     public Item save(ItemReqDto itemDto, User user, Car car) {
         Item item = modelMapper.map(itemDto, Item.class);
         item.setUser(user);
         item.setCar(car);
+        log.info("user with email - {} save item", user.getEmail());
         return itemRepo.save(item);
     }
 
-    public Item save(Item item, Status status) {
+    public Item changeStatus(Item item, Status status) {
+
         item.setStatus(status);
+        log.info("user with email - {} changed item status- {}", item.getUser().getEmail(), status);
         return itemRepo.save(item);
     }
 
@@ -65,16 +67,8 @@ public class ItemService {
 
 
     public List<ItemSearchResDto> itemSearch(ItemSearchDto itemSearchDto) {
-        log.info("searching outset {}, end {}, type {}", itemSearchDto.getOutset(), itemSearchDto.getEnd(), itemSearchDto.getType());
-
         LocalDateTime from = LocalDateTime.now();
 
-        if (itemSearchDto.getOutset().equals("")) {
-            itemSearchDto.setOutset("_");
-        }
-        if (itemSearchDto.getEnd().equals("")) {
-            itemSearchDto.setEnd("_");
-        }
         if (itemSearchDto.getDateFrom() != null) {
             from = itemSearchDto.getDateFrom().atStartOfDay();
         }
@@ -83,6 +77,7 @@ public class ItemService {
         List<Item> items = itemRepo.itemSearch(itemSearchDto.getOutset(),
                 itemSearchDto.getEnd(), itemSearchDto.getType(),
                 from, itemSearchDto.getDateTo());
+        log.info("searching outset {}, end {}, type {}", itemSearchDto.getOutset(), itemSearchDto.getEnd(), itemSearchDto.getType());
 
         return getItemDtoFromItem(items);
 
@@ -91,19 +86,14 @@ public class ItemService {
     private List<ItemSearchResDto> getItemDtoFromItem(List<Item> items) {
         List<ItemSearchResDto> itemDto = new ArrayList<>();
         items.forEach(i -> {
-            String picUrl = "17.png";
-
-            if (i.getCar() != null && i.getCar().getPicUrl() != null) {
-                picUrl = i.getCar().getPicUrl();
-            }
             itemDto.add(ItemSearchResDto.builder()
                     .id(i.getId())
-                    .picture(picUrl)
+                    .picture(i.getCar().getPicUrl())
                     .name(i.getUser().getName())
                     .surname(i.getUser().getSurname())
                     .outset(i.getOutset())
                     .end(i.getEnd())
-                    .Rating(ratingService.findAllByToId(i.getUser().getId()))
+                    .rating(ratingService.findAllByToId(i.getUser().getId()))
                     .build());
         });
         return itemDto;

@@ -7,6 +7,8 @@ import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.repository.CarRepo;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,8 +26,9 @@ public class CarService {
 
     @Value("${file.upload.carPicture.dir}")
     private String carPictureDir;
-
     private final CarRepo carRepository;
+    private static final Logger log = LoggerFactory.getLogger(CarService.class);
+
 
     public Car save(Car car) {
         return carRepository.save(car);

@@ -5,7 +5,6 @@ import am.greenlight.greenlight.model.User;
 import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.security.CurrentUser;
 import am.greenlight.greenlight.security.JwtTokenUtil;
-import am.greenlight.greenlight.service.EmailService;
 import am.greenlight.greenlight.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -21,13 +20,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
@@ -37,10 +33,9 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
     private final JwtTokenUtil tokenUtil;
-    private final EmailService emailService;
 
 
-    @GetMapping("")
+    @GetMapping()
     public ResponseEntity<UserResDto> getUser(@AuthenticationPrincipal CurrentUser currentUser) {
         User user = currentUser.getUser();
         UserResDto userGetDto = modelMapper.map(user, UserResDto.class);
@@ -50,23 +45,21 @@ public class UserController {
 
     @PostMapping("/auth")
     public ResponseEntity<Object> authenticate(@RequestBody AuthRequestDto authRequest) {
-        Optional<User> byEmail = userService.findByEmail(authRequest.getEmail());
-        if (byEmail.isPresent()) {
-            User user = byEmail.get();
-            if (user.getStatus() == Status.ACTIVE && passwordEncoder.matches(authRequest.getPassword(), user.getPassword())) {
-                AuthResponseDto auth = new AuthResponseDto(tokenUtil.generateToken(user.getEmail()));
-                log.info("user with email - {} successful authentication", user.getEmail());
-                return ResponseEntity.ok(auth);
-            }
+
+        User user = userService.findByEmail(authRequest.getEmail());
+        if (user.getStatus() == Status.ACTIVE && passwordEncoder.matches(authRequest.getPassword(), user.getPassword())) {
+            AuthResponseDto auth = new AuthResponseDto(tokenUtil.generateToken(user.getEmail()));
+            log.info("user with email - {} successful authentication", user.getEmail());
+            return ResponseEntity.ok(auth);
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
     }
 
-    @PostMapping("")
+    @PostMapping()
     public ResponseEntity<Integer> register(@Valid @RequestBody UserRegisterDto userRegister,
                                             BindingResult result, Locale locale) {
         if (!result.hasErrors()) {
-            Optional<User> byEmail = userService.findByEmail(userRegister.getEmail());
+            Optional<User> byEmail = userService.findUserOptionalByEmail(userRegister.getEmail());
 
             if (!byEmail.isPresent()) {
                 User user = modelMapper.map(userRegister, User.class);
@@ -92,21 +85,18 @@ public class UserController {
     }
 
 
-    //TODO test  localhost:8080/user/activate?email=
+    //TODO test  localhost:8080/user/activate?email= ,  Exception  
     @GetMapping("/activate")
     public ResponseEntity<String> activate(@RequestParam("email") String email,
                                            @RequestParam("otp") String otp) {
 
-        Optional<User> byEmail = userService.findByEmail(email);
-        if (byEmail.isPresent()) {
-            User user = byEmail.get();
-            if (user.getOtp().equals(otp)) {
-                user.setStatus(Status.ACTIVE);
-                user.setOtp("");
-                userService.save(user);
-                log.info("user with email - {} was ACTIVE its account", user.getEmail());
-                return ResponseEntity.ok("User was activate,please login");
-            }
+        User user = userService.findByEmail(email);
+        if (user.getOtp().equals(otp)) {
+            user.setStatus(Status.ACTIVE);
+            user.setOtp("");
+            userService.save(user);
+            log.info("user with email - {} was ACTIVE its account", user.getEmail());
+            return ResponseEntity.ok("User was activate,please login");
         }
         return ResponseEntity.badRequest().body("Something went wrong.Please try again");
     }
@@ -124,7 +114,7 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
     }
 
-    @PutMapping("")
+    @PutMapping()
     public ResponseEntity<String> change(@AuthenticationPrincipal CurrentUser currentUser,
                                          @RequestBody UserChangeDto userDto, BindingResult result) {
 
@@ -154,21 +144,18 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("incompatibility");
     }
 
-    @DeleteMapping("")
-    public ResponseEntity<String> deleteUser(@AuthenticationPrincipal CurrentUser currentUser) {
+    @DeleteMapping()
+    public void deleteUser(@AuthenticationPrincipal CurrentUser currentUser) {
         User user = currentUser.getUser();
         user.setStatus(Status.ARCHIVED);
         userService.save(user);
         log.info("user with email - {} change its Status ARCHIVED", user.getEmail());
-        return ResponseEntity.ok("your account deleted");
-
     }
 
     @GetMapping("/forgotPassword")
     public ResponseEntity<String> forgotPass(@RequestParam("email") String email, Locale locale) {
-        Optional<User> byEmail = userService.findByEmail(email);
-        if (byEmail.isPresent() && byEmail.get().getStatus() == Status.ACTIVE) {
-            User user = byEmail.get();
+        User user = userService.findByEmail(email);
+        if (user.getStatus() != Status.DELETED) {
             user.setOtp(UUID.randomUUID().toString());
             userService.save(user);
             log.info("user with email - {} used forgotPass method", user.getEmail());
@@ -179,33 +166,30 @@ public class UserController {
     }
 
     @GetMapping("/forgotPassword/reset")
-    public ResponseEntity<ConfirmEmailDto> reset(@RequestParam("email") String email,
-                                                 @RequestParam("otp") String otp) {
-        ConfirmEmailDto confirmEmail = new ConfirmEmailDto();
+    public ResponseEntity<Map<String, String>> reset(@RequestParam("email") String email,
+                                                     @RequestParam("otp") String otp) {
 
-        Optional<User> byUsername = userService.findByEmail(email);
-        if (byUsername.isPresent() && byUsername.get().getOtp().equals(otp)) {
-            confirmEmail.setEmail(byUsername.get().getEmail());
-            confirmEmail.setOtp(byUsername.get().getOtp());
+        Map<String, String> response = new HashMap<>();
+        User user = userService.findByEmail(email);
+        if (user.getOtp().equals(otp)) {
+            response.put("email", user.getEmail());
+            response.put("otp", user.getOtp());
             log.info(" email - {} used reset method", email);
-            return ResponseEntity.ok(confirmEmail);
+            return ResponseEntity.ok(response);
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(confirmEmail);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
     }
 
     // front end-ը պետք է տա օտպը ու էմաիլը
     @PutMapping("/forgotPassword/change")
     public ResponseEntity<String> changePass(@RequestBody ForgotPasswordDto forgotPass) {
 
-        Optional<User> byEmail = userService.findByEmail(forgotPass.getEmail());
-        if (byEmail.isPresent()) {
-            User user = byEmail.get();
-            if (user.getOtp().equals(forgotPass.getOtp())) {
-                user.setPassword(passwordEncoder.encode(forgotPass.getPassword()));
-                userService.save(user);
-                log.info("user with email - {} changed its password", user.getEmail());
-                return ResponseEntity.ok("Ok");
-            }
+        User user = userService.findByEmail(forgotPass.getEmail());
+        if (user.getOtp().equals(forgotPass.getOtp())) {
+            user.setPassword(passwordEncoder.encode(forgotPass.getPassword()));
+            userService.save(user);
+            log.info("user with email - {} changed its password", user.getEmail());
+            return ResponseEntity.ok("Ok");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
     }

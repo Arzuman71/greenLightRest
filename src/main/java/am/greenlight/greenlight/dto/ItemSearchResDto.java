@@ -16,5 +16,5 @@ public class ItemSearchResDto {
     private String surname;
     private String outset;
     private String end;
-    private double Rating;
+    private double rating;
 }

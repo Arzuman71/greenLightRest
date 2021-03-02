@@ -24,27 +24,47 @@ public class Car {
     @Id
     @GeneratedValue()
     private long id;
+
+    @Column
     private String carBrand;
+
     @Enumerated(value = EnumType.STRING)
     private CarType carType;
+
+    @Column
     private String carNumber;
+
+    @Column
     private String picUrl;
+
+    @Column
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate year;
+
+    @Column
     private String carModel;
+
     @ManyToOne
     private User user;
+
     @Enumerated(value = EnumType.STRING)
     private Color color;
+
     @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
     private Set<Images> images;
 
     @Enumerated(value = EnumType.STRING)
     private Status status = Status.ACTIVE;
+
+    @Column
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime createdDate;
+
+    @Column
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime updatedDate;
+
+    @Column
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime deletedDate;
 

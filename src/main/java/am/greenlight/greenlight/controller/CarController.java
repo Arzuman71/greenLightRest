@@ -51,6 +51,7 @@ public class CarController {
         return ResponseEntity.ok(carRes);
     }
 
+    // stugel e petq karox e chancni, ete chancav jnje path = "/",
     @PostMapping(path = "/",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Car> save(@Valid @RequestBody CarRequestDto carReq,
@@ -69,15 +70,15 @@ public class CarController {
 
     @PutMapping(path = "/mainPicture",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> changeCarImg(@RequestParam("id") int id,
-                                                   @RequestParam(value = "image") MultipartFile file) {
+    public ResponseEntity<?> changeCarImg(@RequestParam("id") int id,
+                                          @RequestParam(value = "image") MultipartFile file) {
         Car car = carService.getOne(id);
         carService.save(car, file);
-        return ResponseEntity.ok().body("Ok");
+        return ResponseEntity.ok().build();
     }
 
     //ToDo test, petq e stugel
-    @PutMapping("")
+    @PutMapping()
     public ResponseEntity<Car> changeCarData(@Valid @RequestBody CarRequestDto carReqDto,
                                              BindingResult result,
                                              @AuthenticationPrincipal CurrentUser currentUser) {

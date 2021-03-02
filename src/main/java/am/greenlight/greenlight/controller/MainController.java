@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequiredArgsConstructor
 public class MainController {
@@ -42,7 +42,7 @@ public class MainController {
 
     @GetMapping(value = "/advertisement/image/{name}", produces = MediaType.IMAGE_JPEG_VALUE)
     public @ResponseBody
-    byte[] getAdvertisementImageImage(@PathVariable("name") String imageName) {
+    byte[] getAdvertisementImage(@PathVariable("name") String imageName) {
 
         return mainService.getAdvertisementImageOrNull(imageName);
     }

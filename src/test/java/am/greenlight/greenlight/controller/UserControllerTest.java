@@ -17,6 +17,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -69,10 +71,6 @@ class UserControllerTest {
     @Autowired
     private JwtTokenUtil tokenUtil;
     @Autowired
-    private UserController userController;
-    @Autowired
-    private EmailService emailService;
-    @Autowired
     private WebApplicationContext context;
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -81,7 +79,7 @@ class UserControllerTest {
     @BeforeEach
     public void setUp() {
         mvc = MockMvcBuilders.standaloneSetup(new UserController(userService,
-                passwordEncoder, modelMapper, tokenUtil, emailService))
+                passwordEncoder, modelMapper, tokenUtil))
                 .build();
 
         mvc2 = webAppContextSetup(context)
@@ -178,7 +176,9 @@ class UserControllerTest {
 
     @Test
     public void activate_ClientError() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/user/activate?email=arzuman.kochoyan98@mail.ru&otp=ClientError")
+        mvc.perform(MockMvcRequestBuilders.get("/user/activate")
+                .param("email", "arkochoyan@mail.ru")
+                .param("otp", "ClientError")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError())
                 .andDo(MockMvcResultHandlers.print());
@@ -291,6 +291,7 @@ class UserControllerTest {
             e.printStackTrace();
         }
     }
+
     @Test
     @WithUserDetails("arzuman.kochoyan@mail.ru")
     void savePhoneNumber_Ok() {

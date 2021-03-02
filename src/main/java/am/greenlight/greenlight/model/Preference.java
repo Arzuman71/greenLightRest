@@ -21,12 +21,16 @@ public class Preference {
     @Id
     @GeneratedValue()
     private long id;
+
     @Enumerated(value = EnumType.STRING)
     private Speak speak;
+
     @Enumerated(value = EnumType.STRING)
     private Smoke smoke;
+
     @Enumerated(value = EnumType.STRING)
     private WithAnimals withAnimals;
+
     @Enumerated(value = EnumType.STRING)
     private Music music;
 }

@@ -34,7 +34,7 @@ public class ItemController {
     private final ModelMapper modelMapper;
     private final RatingService ratingService;
 
-    @PostMapping("")
+    @PostMapping()
     public ResponseEntity<ItemReqDto> save(@Valid @RequestBody ItemReqDto itemDto, BindingResult result,
                                            @AuthenticationPrincipal CurrentUser currentUser) {
 
@@ -114,7 +114,7 @@ public class ItemController {
         Item item = itemService.getOne(id);
         if (item.getUser().equals(currentUser.getUser())) {
 
-            itemService.save(item, Status.ACTIVE);
+            itemService.changeStatus(item, Status.ACTIVE);
             return ResponseEntity.ok("Ok");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
@@ -125,7 +125,7 @@ public class ItemController {
                                                        @AuthenticationPrincipal CurrentUser currentUser) {
         Item item = itemService.getOne(id);
         if (item.getUser().equals(currentUser.getUser())) {
-            itemService.save(item, Status.ARCHIVED);
+            itemService.changeStatus(item, Status.ARCHIVED);
             return ResponseEntity.ok("Ok");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");
@@ -137,7 +137,7 @@ public class ItemController {
                                          @AuthenticationPrincipal CurrentUser currentUser) {
         Item item = itemService.getOne(id);
         if (item.getUser().equals(currentUser.getUser())) {
-            itemService.save(item, Status.DELETED);
+            itemService.changeStatus(item, Status.DELETED);
             return ResponseEntity.ok("Ok");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("UNAUTHORIZED");

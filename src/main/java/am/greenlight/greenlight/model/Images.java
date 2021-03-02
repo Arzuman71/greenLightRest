@@ -17,6 +17,8 @@ public class Images {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column
     private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)

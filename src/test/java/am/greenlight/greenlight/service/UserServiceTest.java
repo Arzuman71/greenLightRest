@@ -53,14 +53,14 @@ class UserServiceTest {
     @Test
     void findByEmail_Ok() {
         given(userRepo.findByEmail("poxos@mail.ru")).willReturn(Optional.of(new User()));
-        Optional<User> userResponse = userService.findByEmail("poxos@mail.ru");
+       User userResponse = userService.findByEmail("poxos@mail.ru");
         assertThat(userResponse).isNotNull();
     }
 
     @Test
     void findByEmail_Null() {
         given(userRepo.findByEmail("poxos@mail.ru")).willReturn(null);
-        Optional<User> userResponse = userService.findByEmail("poxos@mail.ru");
+        User userResponse = userService.findByEmail("poxos@mail.ru");
         assertThat(userResponse).isNull();
     }
 

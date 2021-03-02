@@ -20,7 +20,7 @@ public class PreferenceController {
     private final PreferenceService prefService;
     private final UserService userService;
 
-    @PostMapping("")
+    @PostMapping()
     public ResponseEntity<String> save(
             @AuthenticationPrincipal CurrentUser currentUser,
             @RequestBody Preference newPreference) {
@@ -30,7 +30,7 @@ public class PreferenceController {
         return ResponseEntity.ok("OK");
     }
 
-    @GetMapping("")
+    @GetMapping()
     public ResponseEntity<Preference> getPreference(@AuthenticationPrincipal CurrentUser currentUser) {
         Preference preference = currentUser.getUser().getPreference();
         return ResponseEntity.ok(preference);

@@ -4,6 +4,8 @@ import am.greenlight.greenlight.model.Preference;
 import am.greenlight.greenlight.model.User;
 import am.greenlight.greenlight.repository.PreferenceRepo;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Service;
 public class PreferenceService {
 
     private final PreferenceRepo PrefRepository;
+    private static final Logger log = LoggerFactory.getLogger(PreferenceService.class);
+
 
 
     public User save(Preference newPreference, User user) {
@@ -31,7 +35,8 @@ public class PreferenceService {
         if (preference.getId() != 1) {
             newPreference.setId(preference.getId());
         }
-        user.setPreference(PrefRepository.save(newPreference) );
+        user.setPreference(PrefRepository.save(newPreference));
+        log.info("user with email - {} changed its reference" , user.getEmail());
         return user;
     }
 
