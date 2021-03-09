@@ -21,13 +21,11 @@ public class PreferenceController {
     private final UserService userService;
 
     @PostMapping()
-    public ResponseEntity<String> save(
-            @AuthenticationPrincipal CurrentUser currentUser,
-            @RequestBody Preference newPreference) {
+    public void save(@AuthenticationPrincipal CurrentUser currentUser,
+                     @RequestBody Preference newPreference) {
 
         User user = prefService.save(newPreference, currentUser.getUser());
         userService.save(user);
-        return ResponseEntity.ok("OK");
     }
 
     @GetMapping()

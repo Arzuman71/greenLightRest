@@ -1,5 +1,7 @@
 package am.greenlight.greenlight.service;
 
+import am.greenlight.greenlight.dto.response.AdvertisementResponse;
+import am.greenlight.greenlight.mapper.AdvertisementMapper;
 import am.greenlight.greenlight.model.Advertisement;
 import am.greenlight.greenlight.repository.AdvertisementRepo;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -19,14 +22,19 @@ public class AdvertisementService {
     private String AdvertisementPicDir;
 
     private final AdvertisementRepo advertisementRepo;
+    private final AdvertisementMapper advertisementMapper;
 
 
-    public List<Advertisement> findAll() {
-        return advertisementRepo.findAll();
+    public List<AdvertisementResponse> findAll() {
+        List<Advertisement> advertisements = advertisementRepo.findAll();
+        List<AdvertisementResponse> responseList = advertisements.stream()
+                .map(advertisementMapper::toResponse)
+                .collect(Collectors.toList());
+        return responseList;
 
     }
 
-    public Advertisement save(Advertisement advertisement, MultipartFile file) {
+    public AdvertisementResponse save(Advertisement advertisement, MultipartFile file) {
         try {
             String name = UUID.randomUUID().toString().replace("-", "") + file.getOriginalFilename();
             File picUrl = new File(AdvertisementPicDir, name);
@@ -36,7 +44,8 @@ public class AdvertisementService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return advertisementRepo.save(advertisement);
+
+        return advertisementMapper.toResponse(advertisementRepo.save(advertisement));
     }
 
 

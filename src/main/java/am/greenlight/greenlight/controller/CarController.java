@@ -79,15 +79,16 @@ public class CarController {
 
     //ToDo test, petq e stugel
     @PutMapping()
-    public ResponseEntity<Car> changeCarData(@Valid @RequestBody CarRequestDto carReqDto,
+    public ResponseEntity<CarRes> changeCarData(@Valid @RequestBody CarRequestDto carReqDto,
                                              BindingResult result,
                                              @AuthenticationPrincipal CurrentUser currentUser) {
 
         if (!result.hasErrors()) {
             Car car = modelMapper.map(carReqDto, Car.class);
             car.setUser(currentUser.getUser());
-            carService.save(car);
-            return ResponseEntity.ok(car);
+            Car car1 = carService.save(car);
+           CarRes res = modelMapper.map(car1, CarRes.class);
+            return ResponseEntity.ok(res);
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }

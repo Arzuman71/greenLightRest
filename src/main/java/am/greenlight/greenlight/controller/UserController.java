@@ -23,7 +23,7 @@ import javax.validation.Valid;
 import java.util.*;
 
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")

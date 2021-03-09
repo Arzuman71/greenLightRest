@@ -1,5 +1,7 @@
 package am.greenlight.greenlight.controller;
 
+import am.greenlight.greenlight.dto.response.AdvertisementResponse;
+import am.greenlight.greenlight.mapper.AdvertisementMapper;
 import am.greenlight.greenlight.model.Advertisement;
 import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.security.CurrentUser;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -20,28 +23,28 @@ public class AdvertisementController {
     private final AdvertisementService advertisementService;
 
     @GetMapping("/advertisements")
-    public ResponseEntity<List<Advertisement>> findAll() {
-        List<Advertisement> advertisements = advertisementService.findAll();
-        return ResponseEntity.ok(advertisements);
+    public List<AdvertisementResponse> findAll() {
+        List<AdvertisementResponse> Responses = advertisementService.findAll();
+
+        return Responses;
     }
 
     //dto 2
     @PostMapping("/advertisement")
-    public ResponseEntity<Advertisement> save(@AuthenticationPrincipal CurrentUser currentUser,
-                                              @RequestBody Advertisement advertisement,
-                                              @RequestParam("image") MultipartFile file) {
+    public ResponseEntity<AdvertisementResponse> save(@AuthenticationPrincipal CurrentUser currentUser,
+                                                      @RequestBody Advertisement advertisement,
+                                                      @RequestParam("image") MultipartFile file) {
         advertisement.setUser(currentUser.getUser());
-        advertisement = advertisementService.save(advertisement, file);
-        return ResponseEntity.ok(advertisement);
+        AdvertisementResponse response = advertisementService.save(advertisement, file);
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/advertisement/{id}")
-    public ResponseEntity<String> delete(@PathVariable("id") int id) {
+    public void delete(@PathVariable("id") int id) {
+
         Advertisement advertisement = advertisementService.getOne(id);
         advertisement.setStatus(Status.ARCHIVED);
         advertisementService.save(advertisement);
-        return ResponseEntity.ok("Ok");
-
     }
 
 }
