@@ -29,7 +29,6 @@ public class AdvertisementController {
         return Responses;
     }
 
-    //dto 2
     @PostMapping("/advertisement")
     public ResponseEntity<AdvertisementResponse> save(@AuthenticationPrincipal CurrentUser currentUser,
                                                       @RequestBody Advertisement advertisement,

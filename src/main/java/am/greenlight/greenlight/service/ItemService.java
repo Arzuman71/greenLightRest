@@ -14,7 +14,9 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -66,7 +68,7 @@ public class ItemService {
     }
 
 
-    public List<ItemSearchResDto> itemSearch(ItemSearchDto itemSearchDto) {
+    public Page<ItemSearchResDto> itemSearch(ItemSearchDto itemSearchDto, Pageable pageable) {
         LocalDateTime from = LocalDateTime.now();
 
         if (itemSearchDto.getDateFrom() != null) {
@@ -74,16 +76,16 @@ public class ItemService {
         }
         itemSearchDto.setDateTo(from.plusDays(1));
 
-        List<Item> items = itemRepo.itemSearch(itemSearchDto.getOutset(),
+        Page<Item> items = itemRepo.itemSearch(itemSearchDto.getOutset(),
                 itemSearchDto.getEnd(), itemSearchDto.getType(),
-                from, itemSearchDto.getDateTo());
+                from, itemSearchDto.getDateTo(), pageable);
         log.info("searching outset {}, end {}, type {}", itemSearchDto.getOutset(), itemSearchDto.getEnd(), itemSearchDto.getType());
 
-        return getItemDtoFromItem(items);
+        return new PageImpl(getItemDtoFromItem(items), pageable, items.getTotalElements());
 
     }
 
-    private List<ItemSearchResDto> getItemDtoFromItem(List<Item> items) {
+    private List<ItemSearchResDto> getItemDtoFromItem(Page<Item> items) {
         List<ItemSearchResDto> itemDto = new ArrayList<>();
         items.forEach(i -> {
             itemDto.add(ItemSearchResDto.builder()

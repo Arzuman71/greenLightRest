@@ -1,9 +1,11 @@
 package am.greenlight.greenlight.service;
 
+import am.greenlight.greenlight.dto.response.AdvertisementResponse;
 import am.greenlight.greenlight.model.Advertisement;
 import am.greenlight.greenlight.model.Item;
 import am.greenlight.greenlight.model.User;
 import am.greenlight.greenlight.model.enumForUser.Status;
+import am.greenlight.greenlight.repository.AdvertisementRepo;
 import am.greenlight.greenlight.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -18,7 +20,7 @@ import java.util.List;
 public class SchedulingService {
 
     private final ItemService ItemService;
-    private final AdvertisementService advertisementService;
+    private final AdvertisementRepo advertisementRepo;
     private final UserRepo userRepo;
 
 
@@ -33,7 +35,7 @@ public class SchedulingService {
 
     @Scheduled(cron = " 0 0 5 * * *")
     public void changeAdvertisementsStatus() {
-        List<Advertisement> advertisements = advertisementService.findAll();
+        List<Advertisement> advertisements = advertisementRepo.findAll();
         advertisements.stream()
                 .filter(a -> a.getDeadline().isBefore(LocalDateTime.now().plus(1, ChronoUnit.DAYS)))
                 .forEach(a -> a.setStatus(Status.ARCHIVED));

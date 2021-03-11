@@ -17,28 +17,25 @@ public class ImagesController {
 
     @PostMapping(path = "/car/picture",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> savePicture(@RequestParam("carId") int id,
-                                              @RequestParam(value = "image") MultipartFile file) {
+    public void savePicture(@RequestParam("carId") int id,
+                            @RequestParam(value = "image") MultipartFile file) {
 
         imagesService.save(id, file);
-        return ResponseEntity.ok().body("Ok");
     }
 
     @PutMapping(path = "/car/picture",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> changePicture(@RequestParam("pictureId") int id,
-                                                @RequestParam(value = "image") MultipartFile file) {
+    public void changePicture(@RequestParam("pictureId") int id,
+                              @RequestParam(value = "image") MultipartFile file) {
 
         imagesService.change(id, file);
-        return ResponseEntity.ok().body("Ok");
     }
 
 
     @DeleteMapping(path = "/car/picture{pictureId}")
-    public ResponseEntity<String> deletePicture(@PathVariable("pictureId") int id) {
+    public void deletePicture(@PathVariable("pictureId") int id) {
 
         imagesService.deleteById(id);
-        return ResponseEntity.ok().body("Ok");
     }
 
 

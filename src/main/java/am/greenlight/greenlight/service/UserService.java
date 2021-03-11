@@ -20,7 +20,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserService {
 
-    @Value("${file.upload.userAvatar.dir}")
+    @Value("${file.upload.dir}")
     private String userAvatarDir;
 
     private final UserRepo userRepo;
@@ -40,8 +40,9 @@ public class UserService {
                 .findByEmail(email).orElseThrow(() -> new UserNotFoundException("User with " + email + " not found"));
     }
 
-   public Optional<User> findUserOptionalByEmail(String email) {
-       return userRepo.findByEmail(email);    }
+    public Optional<User> findUserOptionalByEmail(String email) {
+        return userRepo.findByEmail(email);
+    }
 
 
     public boolean saveUserImg(User user, MultipartFile file) {

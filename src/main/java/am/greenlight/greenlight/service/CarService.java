@@ -24,7 +24,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CarService {
 
-    @Value("${file.upload.carPicture.dir}")
+    @Value("${file.upload.dir}")
     private String carPictureDir;
     private final CarRepo carRepository;
     private static final Logger log = LoggerFactory.getLogger(CarService.class);

@@ -23,7 +23,7 @@ public class ImagesService {
     private final CarRepo carRepo;
     private static final Logger log = LoggerFactory.getLogger(ImagesService.class);
 
-    @Value("${file.upload.carPicture.dir}")
+    @Value("${file.upload.dir}")
     private String carPictureDir;
 
     public Images getOne(long id) {

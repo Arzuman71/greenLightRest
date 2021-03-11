@@ -203,13 +203,4 @@ public class UserController {
         log.info("user with email - {} save its PhoneNumber", user.getEmail());
         return ResponseEntity.ok("Ok");
     }
-
-    //porcac che karoxa chi ashxati
-    // @PostMapping("/logout")
-    //  public void logout(HttpServletRequest req, HttpServletResponse res) {
-    //      SecurityContextLogoutHandler sclh = new SecurityContextLogoutHandler();
-    //     sclh.logout(req, res, null);
-    //}
-
-
 }

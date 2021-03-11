@@ -15,30 +15,13 @@ import java.io.InputStream;
 @RequiredArgsConstructor
 public class MainService {
 
-    @Value("${file.upload.userAvatar.dir}")
-    private String userAvatarDir;
-    @Value("${file.upload.carPicture.dir}")
-    private String carPictureDir;
-    @Value("${file.upload.AdvertisementPic.dir}")
-    private String AdvertisementPicDir;
+    @Value("${file.upload.dir}")
+    private String uploadDir;
 
 
-    public byte[] getUserAvatarOrNull(String imageName) {
-        return getBytes(imageName, userAvatarDir);
-    }
-
-    public byte[] getCarImageOrNull(String imageName) {
-        return getBytes(imageName, carPictureDir);
-    }
-
-    public byte[] getAdvertisementImageOrNull(String imageName) {
-
-        return getBytes(imageName, AdvertisementPicDir);
-    }
-
-    // petq e dnel default nkar
-    private byte[] getBytes(String imageName, String uploadDir) {
+    public byte[] getBytes(String imageName) {
         if (imageName.equals("str")) {
+            //default picture
             imageName = "17.png";
         }
         try {

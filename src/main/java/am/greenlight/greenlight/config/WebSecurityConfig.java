@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/user/forgotPassword", "/user/forgotPassword/reset", "/rating/{id}", "/item/{itemId}", "/advertisements", "/user/activate", "/car/image/{name}", "/user/avatar/{name}", "/advertisement/image/{name}").permitAll()
+                .antMatchers(HttpMethod.GET, "/user/forgotPassword", "/user/forgotPassword/reset", "/rating/{id}", "/item/{itemId}", "/advertisements", "/user/activate", "/image/{name}").permitAll()
                 .antMatchers(HttpMethod.POST, "/", "/user/auth", "/user", "/user/contactUs").permitAll()
                 .antMatchers(HttpMethod.PUT, "/user/forgotPassword/change").permitAll()
 

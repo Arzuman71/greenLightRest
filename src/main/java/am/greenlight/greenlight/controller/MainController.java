@@ -5,11 +5,10 @@ import am.greenlight.greenlight.dto.ItemSearchResDto;
 import am.greenlight.greenlight.service.ItemService;
 import am.greenlight.greenlight.service.MainService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -19,32 +18,17 @@ public class MainController {
     private final ItemService itemService;
 
     @PostMapping("/")
-    public ResponseEntity<List<ItemSearchResDto>> items(@RequestBody ItemSearchDto itemSearchDto) {
-        List<ItemSearchResDto> itemsDto = itemService.itemSearch(itemSearchDto);
+    public Page<ItemSearchResDto> items(@RequestBody ItemSearchDto itemSearchDto, Pageable pageable) {
+        Page<ItemSearchResDto> itemsDto = itemService.itemSearch(itemSearchDto, pageable);
 
-        return ResponseEntity.ok(itemsDto);
+        return itemsDto;
     }
 
-    //petq e poxel tip@ zaprosi rexuest param
-    @GetMapping(value = "/user/avatar/{name}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public @ResponseBody
-    byte[] getUserAvatar(@PathVariable("name") String imageName) {
-
-        return mainService.getUserAvatarOrNull(imageName);
-    }
-
-    @GetMapping(value = "/car/image/{name}", produces = MediaType.IMAGE_JPEG_VALUE)
+    @GetMapping(value = "/image/{name}", produces = MediaType.IMAGE_JPEG_VALUE)
     public @ResponseBody
     byte[] getCarImage(@PathVariable("name") String imageName) {
 
-        return mainService.getCarImageOrNull(imageName);
-    }
-
-    @GetMapping(value = "/advertisement/image/{name}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public @ResponseBody
-    byte[] getAdvertisementImage(@PathVariable("name") String imageName) {
-
-        return mainService.getAdvertisementImageOrNull(imageName);
+        return mainService.getBytes(imageName);
     }
 
 }
