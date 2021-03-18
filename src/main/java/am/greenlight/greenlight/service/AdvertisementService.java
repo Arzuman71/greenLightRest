@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class AdvertisementService {
-    @Value("${file.upload.AdvertisementPic.dir}")
+    @Value("${file.upload.dir}")
     private String AdvertisementPicDir;
 
     private final AdvertisementRepo advertisementRepo;

@@ -1,12 +1,9 @@
 package am.greenlight.greenlight.service;
 
-import am.greenlight.greenlight.dto.CarRequestDto;
 import am.greenlight.greenlight.model.Car;
-import am.greenlight.greenlight.model.User;
 import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.repository.CarRepo;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
