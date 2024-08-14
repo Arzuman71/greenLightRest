@@ -50,5 +50,4 @@ public class AdminController {
                         + contactUs.getEmail() + "\n message \n" + contactUs.getMessage());
 
     }
-
 }
