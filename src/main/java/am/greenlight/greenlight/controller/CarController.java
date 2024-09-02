@@ -51,8 +51,8 @@ public class CarController {
         return ResponseEntity.ok(carRes);
     }
 
-    @PostMapping(path = "",
-            consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(path = "")
+//            , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Car> save(@Valid @RequestBody CarRequestDto carReq,
                                     BindingResult result, @AuthenticationPrincipal CurrentUser currentUser,
                                     @RequestParam(value = "image", required = false) MultipartFile file) {
