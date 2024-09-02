@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api")
 public class MainController {
     private final MainService mainService;
     private final ItemService itemService;
 
-    @PostMapping("/")
+    @PostMapping()
     public Page<ItemSearchResDto> items(@RequestBody ItemSearchDto itemSearchDto, Pageable pageable) {
         Page<ItemSearchResDto> itemsDto = itemService.itemSearch(itemSearchDto, pageable);
 

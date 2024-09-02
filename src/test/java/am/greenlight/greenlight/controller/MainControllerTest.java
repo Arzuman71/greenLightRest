@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -32,6 +33,7 @@ class MainControllerTest {
         mvc = MockMvcBuilders.standaloneSetup(mainController).build();
     }
 
+    //todo it doesn't work in line 44
     @Test
     void items_Ok() throws Exception {
         ObjectNode objectNode = new ObjectMapper().createObjectNode();
@@ -39,7 +41,7 @@ class MainControllerTest {
         objectNode.put("end", "t");
         objectNode.put("dateFrom", "2021-01-09");
         objectNode.put("type", "CAR_DRIVER");
-        mvc.perform(MockMvcRequestBuilders.post("/")
+        mvc.perform(MockMvcRequestBuilders.post("/api?page=1&size=10")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectNode.toString()))
                 .andDo(print())
@@ -49,7 +51,7 @@ class MainControllerTest {
 
     @Test
     void getImage_Ok() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/image/17.png")
+        mvc.perform(MockMvcRequestBuilders.get("/api/image/17.png")
                 .contentType(MediaType.IMAGE_JPEG_VALUE))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
