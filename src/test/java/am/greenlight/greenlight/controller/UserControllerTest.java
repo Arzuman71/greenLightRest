@@ -1,5 +1,6 @@
 package am.greenlight.greenlight.controller;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.anonymous;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
@@ -27,6 +28,7 @@ import org.springframework.http.MediaType;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.mock.web.MockPart;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -45,6 +47,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.HashMap;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -282,7 +285,7 @@ class UserControllerTest {
         try {
             File f = new File("C:\\Users\\User\\Desktop\\project\\greenLightRest\\upload\\17.png");
             InputStream inputStream = new FileInputStream(f);
-            MockMultipartFile file = new MockMultipartFile("file", "17.png",
+            MockMultipartFile file = new MockMultipartFile("image", "17.png",
                     MediaType.IMAGE_PNG_VALUE, inputStream);
             mockMvc.perform(multipart("/user/avatar").file(file))
                     .andDo(MockMvcResultHandlers.print())
