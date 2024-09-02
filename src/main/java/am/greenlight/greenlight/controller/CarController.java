@@ -51,8 +51,7 @@ public class CarController {
         return ResponseEntity.ok(carRes);
     }
 
-    // stugel e petq karox e chancni, ete chancav jnje path = "/",
-    @PostMapping(path = "/",
+    @PostMapping(path = "",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Car> save(@Valid @RequestBody CarRequestDto carReq,
                                     BindingResult result, @AuthenticationPrincipal CurrentUser currentUser,

@@ -280,7 +280,7 @@ class UserControllerTest {
     @WithUserDetails("arzuman.kochoyan@mail.ru")
     void changeAvatar_Ok() {
         try {
-            File f = new File("C:\\Users\\Arzuman\\Desktop\\Folder\\rest\\greenLightRest\\upload\\17.png");
+            File f = new File("C:\\Users\\User\\Desktop\\project\\greenLightRest\\upload\\17.png");
             InputStream inputStream = new FileInputStream(f);
             MockMultipartFile file = new MockMultipartFile("file", "17.png",
                     MediaType.IMAGE_PNG_VALUE, inputStream);
