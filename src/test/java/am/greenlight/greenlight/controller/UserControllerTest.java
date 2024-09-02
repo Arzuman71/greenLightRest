@@ -165,6 +165,8 @@ class UserControllerTest {
     }
 
 
+
+    //todo can not find user with this email
     @Test
     void activate_Ok() {
         try {
