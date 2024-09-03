@@ -95,7 +95,7 @@ class UserControllerTest {
     @Test
     @WithUserDetails("arzuman.kochoyan@mail.ru")
     public void getUser_Ok() throws Exception {
-        mvc2.perform(MockMvcRequestBuilders.get("/user")
+        mvc2.perform(MockMvcRequestBuilders.get("/api/users")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(MockMvcResultHandlers.print());
@@ -107,7 +107,7 @@ class UserControllerTest {
         objectNode.put("email", "arzuman.kochoyan@mail.ru");
         objectNode.put("password", "Arzuman");
 
-        mvc.perform(MockMvcRequestBuilders.post("/user/auth")
+        mvc.perform(MockMvcRequestBuilders.post("/api/users/auth")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectNode.toString()))
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -121,7 +121,7 @@ class UserControllerTest {
         objectNode.put("email", "an.kochoyan@mail.ru");
         objectNode.put("password", "A");
 
-        mvc.perform(MockMvcRequestBuilders.post("/user/auth")
+        mvc.perform(MockMvcRequestBuilders.post("/api/users/auth")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectNode.toString()))
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError())
@@ -140,7 +140,7 @@ class UserControllerTest {
         objectNode.put("email", "user.user@mail.ru");
         objectNode.put("gender", "MALE");
 
-        mvc.perform(post("/user")
+        mvc.perform(post("/api/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectNode.toString()))
                 .andDo(MockMvcResultHandlers.print())
@@ -157,7 +157,7 @@ class UserControllerTest {
         objectNode.put("email", "arzuman.ClientError");
         objectNode.put("gender", "MALE");
 
-        mvc.perform(post("/user")
+        mvc.perform(post("/api/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectNode.toString()))
                 .andDo(MockMvcResultHandlers.print())
@@ -170,7 +170,7 @@ class UserControllerTest {
     @Test
     void activate_Ok() {
         try {
-            mvc.perform(get("/user/activate?email=arzuman.kochoyan98@mail.ru&otp=0eace02f-9e10-4106-a01f-86a9550f01b3")
+            mvc.perform(get("/api/users/activate?email=arzuman.kochoyan98@mail.ru&otp=0eace02f-9e10-4106-a01f-86a9550f01b3")
                     .contentType(MediaType.APPLICATION_JSON))
                     .andExpect(MockMvcResultMatchers.status().isOk())
                     .andDo(MockMvcResultHandlers.print());
@@ -181,7 +181,7 @@ class UserControllerTest {
 
     @Test
     public void activate_ClientError() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/user/activate")
+        mvc.perform(MockMvcRequestBuilders.get("/api/users/activate")
                 .param("email", "arkochoyan@mail.ru")
                 .param("otp", "ClientError")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -192,7 +192,7 @@ class UserControllerTest {
     //petq e poxel tip@ zaprosi rexuest param
     @Test
     void forgotPass_Ok() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/user/forgotPassword")
+        mvc.perform(MockMvcRequestBuilders.get("/api/users/forgotPassword")
                 .param("email", "arzuman.kochoyan@mail.ru")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -202,7 +202,7 @@ class UserControllerTest {
 
     @Test
     void forgotPass_ClientError() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/user/forgotPassword")
+        mvc.perform(MockMvcRequestBuilders.get("/api/users/forgotPassword")
                 .param("email", "ClientError@mail.ru")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().is4xxClientError())
@@ -212,7 +212,7 @@ class UserControllerTest {
 
     @Test
     void reset_Ok() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/user/forgotPassword/reset")
+        mvc.perform(MockMvcRequestBuilders.get("/api/users/forgotPassword/reset")
                 .param("email", "poxostest@mail.ru")
                 .param("otp", "e570c78e-81b8-40a5-bdcc-98fe790f6464")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -222,7 +222,7 @@ class UserControllerTest {
 
     @Test
     void reset_ClientError() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/user/forgotPassword/reset")
+        mvc.perform(MockMvcRequestBuilders.get("/api/users/forgotPassword/reset")
                 .param("email", "poxostest@mail.ru")
                 .param("otp", "ClientError")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -237,7 +237,7 @@ class UserControllerTest {
         objectNode.put("oldPassword", "arzuman");
         objectNode.put("password", "newPassword");
         try {
-            mvc2.perform(put("/user/password/change")
+            mvc2.perform(put("/api/users/password/change")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectNode.toString()))
                     .andExpect(MockMvcResultMatchers.status().isOk())
@@ -254,7 +254,7 @@ class UserControllerTest {
         objectNode.put("oldPassword", "ARZUMAN");
         objectNode.put("password", "passwordTest");
         try {
-            mvc2.perform(MockMvcRequestBuilders.put("/user/password/change")
+            mvc2.perform(MockMvcRequestBuilders.put("/api/users/password/change")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectNode.toString()))
                     .andExpect(MockMvcResultMatchers.status().is4xxClientError())
@@ -271,7 +271,7 @@ class UserControllerTest {
         objectNode.put("oldPassword", "PasswordError");
         objectNode.put("password", "passwordTest");
         try {
-            mvc2.perform(MockMvcRequestBuilders.put("/user/password/change")
+            mvc2.perform(MockMvcRequestBuilders.put("/api/users/password/change")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectNode.toString()))
                     .andExpect(MockMvcResultMatchers.status().is4xxClientError())
@@ -289,7 +289,7 @@ class UserControllerTest {
             InputStream inputStream = new FileInputStream(f);
             MockMultipartFile file = new MockMultipartFile("image", "17.png",
                     MediaType.IMAGE_PNG_VALUE, inputStream);
-            mockMvc.perform(multipart("/user/avatar").file(file))
+            mockMvc.perform(multipart("/api/users/avatar").file(file))
                     .andDo(MockMvcResultHandlers.print())
                     .andExpect(status().isOk());
         } catch (Exception e) {
@@ -303,7 +303,7 @@ class UserControllerTest {
         ObjectNode objectNode = new ObjectMapper().createObjectNode();
         objectNode.put("number", "171717");
         try {
-            mvc2.perform(MockMvcRequestBuilders.put("/user/phone")
+            mvc2.perform(MockMvcRequestBuilders.put("/api/users/phone")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectNode.toString()))
                     .andExpect(MockMvcResultMatchers.status().isOk())

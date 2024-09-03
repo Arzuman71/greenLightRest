@@ -32,7 +32,7 @@ class AdvertisementControllerTest {
     
     @Test
     void findAll_Ok() throws Exception {
-        mvc.perform(get("/advertisements")
+        mvc.perform(get("/api/advertisements")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());

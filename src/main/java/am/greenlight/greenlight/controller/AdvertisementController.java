@@ -18,18 +18,19 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/advertisements")
 public class AdvertisementController {
 
     private final AdvertisementService advertisementService;
 
-    @GetMapping("/advertisements")
+    @GetMapping("")
     public List<AdvertisementResponse> findAll() {
         List<AdvertisementResponse> Responses = advertisementService.findAll();
 
         return Responses;
     }
 
-    @PostMapping("/advertisement")
+    @PostMapping("")
     public ResponseEntity<AdvertisementResponse> save(@AuthenticationPrincipal CurrentUser currentUser,
                                                       @RequestBody Advertisement advertisement,
                                                       @RequestParam("image") MultipartFile file) {
@@ -38,7 +39,7 @@ public class AdvertisementController {
         return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping("/advertisement/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") int id) {
 
         Advertisement advertisement = advertisementService.getOne(id);

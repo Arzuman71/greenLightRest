@@ -54,7 +54,7 @@ class RatingControllerTest {
 
     @Test
     void findAllByToId_Ok() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/rating/46")
+        mvc.perform(MockMvcRequestBuilders.get("/api/ratings/46")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(MockMvcResultHandlers.print());
@@ -67,7 +67,7 @@ class RatingControllerTest {
         objectNode.put("number", 2);
         objectNode.put("toId", 22);
 
-        mvc2.perform(MockMvcRequestBuilders.post("/rating")
+        mvc2.perform(MockMvcRequestBuilders.post("/api/ratings")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectNode.toString()))
                 .andExpect(status().isOk())

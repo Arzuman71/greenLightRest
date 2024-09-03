@@ -25,14 +25,14 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/car")
+@RequestMapping("/api/cars")
 public class CarController {
 
     private final CarService carService;
     private final ModelMapper modelMapper;
 
 
-    @GetMapping("cars")
+    @GetMapping("")
     public ResponseEntity<List<CarRes>> cars(@AuthenticationPrincipal CurrentUser currentUser) {
         User user = currentUser.getUser();
         List<Car> cars = carService.findCarByUserIdAndStatus(user.getId(), Status.ACTIVE);

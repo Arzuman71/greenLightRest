@@ -38,18 +38,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/user/forgotPassword", "/user/forgotPassword/reset", "/rating/{id}", "/item/{itemId}", "/advertisements", "/user/activate", "/image/{name}").permitAll()
-                .antMatchers(HttpMethod.POST, "/", "/user/auth", "/user", "/user/contactUs").permitAll()
-                .antMatchers(HttpMethod.PUT, "/user/forgotPassword/change").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/users/forgotPassword", "/api/users/forgotPassword/reset", "/api/ratings/{id}", "/api/items/{itemId}", "/api/advertisements", "/api/users/activate", "/api/image/{name}").permitAll()
+                .antMatchers(HttpMethod.POST, "/api", "/api/users/auth", "/api/users", "/api/users/contactUs").permitAll()
+                .antMatchers(HttpMethod.PUT, "/api/users/forgotPassword/change").permitAll()
 
-                .antMatchers(HttpMethod.GET, "/user", "/item/my/{id}", "/item/active", "/item/archived", "/cars", "/car/{id}", "/preference").hasAnyAuthority("USER")
-                .antMatchers(HttpMethod.POST, "/rating", "/preference", "/item", "/car", "/user/avatar", "/car/picture").hasAnyAuthority("USER")
-                .antMatchers(HttpMethod.PUT, "/user/password/change", "/user", "/item/change", "/item/change/active/{id}", "/item/change/archived/{id}", "/car/mainPicture", "/car", "/user/phone", "/car/picture").hasAnyAuthority("USER")
-                .antMatchers(HttpMethod.DELETE, "/user", "/item/{id}", "/car/{id}", "/car/picture{pictureId}").hasAnyAuthority("USER")
+                .antMatchers(HttpMethod.GET, "/api/users", "/api/items/my/{id}", "/api/items/active", "/api/items/archived", "api/cars", "api/cars/{id}", "/api/preference").hasAnyAuthority("USER")
+                .antMatchers(HttpMethod.POST, "/api/ratings", "/api/preference", "api/items", "/api/cars", "/api/users/avatar", "/api/cars/picture").hasAnyAuthority("USER")
+                .antMatchers(HttpMethod.PUT, "/api/users/password/change", "/api/users", "/api/items/change", "/api/items/change/active/{id}", "/api/items/change/archived/{id}", "/api/cars/mainPicture", "/api/cars", "/api/users/phone", "/api/cars/picture").hasAnyAuthority("USER")
+                .antMatchers(HttpMethod.DELETE, "/api/users", "/api/items/{id}", "/api/cars/{id}", "/api/cars/picture{id}").hasAnyAuthority("USER")
 
-                .antMatchers(HttpMethod.GET, "/user/find/{name}/{surname}").hasAnyAuthority("ADMIN")
-                .antMatchers(HttpMethod.POST, "/advertisement", "/user/find").hasAnyAuthority("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/advertisement/{id}", "/user/{id}").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/users/find/{name}/{surname}").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/api/advertisements/", "/api/users/find").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/advertisements/{id}", "/api/users/{id}").hasAnyAuthority("ADMIN")
                 .anyRequest().permitAll();
         //mnacac zaprosner@ pakelu hamar petq e stugvi  permitAll em tvel swageri hamar
 

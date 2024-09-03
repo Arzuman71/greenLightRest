@@ -47,7 +47,7 @@ class PreferenceControllerTest {
         ObjectNode objectNode = new ObjectMapper().createObjectNode();
 
         try {
-            mvc.perform(MockMvcRequestBuilders.post("/preference")
+            mvc.perform(MockMvcRequestBuilders.post("/api/preference")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectNode.toString()))
                     .andExpect(status().isOk())

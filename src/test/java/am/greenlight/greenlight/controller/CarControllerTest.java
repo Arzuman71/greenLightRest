@@ -48,7 +48,7 @@ class CarControllerTest {
     @Test
     @WithUserDetails("arzuman.kochoyan@mail.ru")
     void cars_Ok() throws Exception {
-        mvc2.perform(get("/car/cars")
+        mvc2.perform(get("/api/cars")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
@@ -56,7 +56,7 @@ class CarControllerTest {
 
     @Test
     void getOne_Ok() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/car/3")
+        mvc.perform(MockMvcRequestBuilders.get("/api/cars/3")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
@@ -74,7 +74,7 @@ class CarControllerTest {
         objectNode.put("color", "BLACK");
         objectNode.put("year", "1998-10-29");
         try {
-            mvc2.perform(MockMvcRequestBuilders.post("/car")
+            mvc2.perform(MockMvcRequestBuilders.post("/api/cars")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectNode.toString()))
                     .andExpect(MockMvcResultMatchers.status().isOk())
@@ -92,7 +92,7 @@ class CarControllerTest {
         objectNode.put("carBrand", "ClientError");
         objectNode.put("color", "BLACK");
         try {
-            mvc2.perform(MockMvcRequestBuilders.post("/car")
+            mvc2.perform(MockMvcRequestBuilders.post("/api/cars")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectNode.toString()))
                     .andExpect(MockMvcResultMatchers.status().is4xxClientError())

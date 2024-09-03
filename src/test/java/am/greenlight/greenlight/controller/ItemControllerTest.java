@@ -48,7 +48,7 @@ class ItemControllerTest {
 
     @Test
     void findById_Ok() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/item/5")
+        mvc.perform(MockMvcRequestBuilders.get("/api/items/5")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
@@ -57,7 +57,7 @@ class ItemControllerTest {
     @Test
     @WithUserDetails("arzuman.@mail.ru")
     void getItemsActive_Ok() throws Exception {
-        mvc2.perform(MockMvcRequestBuilders.get("/item/active")
+        mvc2.perform(MockMvcRequestBuilders.get("/api/items/active")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
@@ -66,7 +66,7 @@ class ItemControllerTest {
     @Test
     @WithUserDetails("arzuman.@mail.ru")
     void getItemsArchived() throws Exception {
-        mvc2.perform(MockMvcRequestBuilders.get("/item/archived")
+        mvc2.perform(MockMvcRequestBuilders.get("/api/items/archived")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
@@ -83,7 +83,7 @@ class ItemControllerTest {
         objectNode.put("type", "CAR_DRIVER");
 
         try {
-            mvc2.perform(MockMvcRequestBuilders.post("/item")
+            mvc2.perform(MockMvcRequestBuilders.post("/api/items")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectNode.toString()))
                     .andExpect(MockMvcResultMatchers.status().isOk())
@@ -101,7 +101,7 @@ class ItemControllerTest {
         objectNode.put("startDate", "2020-10-29T01:15:21.641");
         objectNode.put("type", "ClientError");
         try {
-            mvc.perform(MockMvcRequestBuilders.post("/item")
+            mvc.perform(MockMvcRequestBuilders.post("/api/items")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectNode.toString()))
                     .andExpect(MockMvcResultMatchers.status().is4xxClientError())

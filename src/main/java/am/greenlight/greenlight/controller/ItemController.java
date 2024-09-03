@@ -27,7 +27,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/item")
+@RequestMapping("/api/items")
 public class ItemController {
     private final ItemService itemService;
     private final CarService carService;

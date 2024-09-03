@@ -11,11 +11,12 @@ import org.springframework.web.multipart.MultipartFile;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/cars")
 public class ImagesController {
     private final ImagesService imagesService;
 
 
-    @PostMapping(path = "/car/picture",
+    @PostMapping(path = "/picture",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void savePicture(@RequestParam("carId") int id,
                             @RequestParam(value = "image") MultipartFile file) {
@@ -23,7 +24,7 @@ public class ImagesController {
         imagesService.save(id, file);
     }
 
-    @PutMapping(path = "/car/picture",
+    @PutMapping(path = "/picture",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void changePicture(@RequestParam("pictureId") int id,
                               @RequestParam(value = "image") MultipartFile file) {
@@ -32,8 +33,8 @@ public class ImagesController {
     }
 
 
-    @DeleteMapping(path = "/car/picture{pictureId}")
-    public void deletePicture(@PathVariable("pictureId") int id) {
+    @DeleteMapping(path = "/picture/{id}")
+    public void deletePicture(@PathVariable("id") int id) {
 
         imagesService.deleteById(id);
     }

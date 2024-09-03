@@ -17,7 +17,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/user")
+@RequestMapping("/api/users")
 public class AdminController {
 
     private final UserService userService;
@@ -33,8 +33,8 @@ public class AdminController {
     }
 
 
-    @DeleteMapping("/{userId}")
-    public ResponseEntity<String> deleteUserByAdmin(@PathVariable("userId") long id) {
+    @DeleteMapping("/id}")
+    public ResponseEntity<String> deleteUserByAdmin(@PathVariable("id") long id) {
         User userDelete = userService.getOne(id);
         userDelete.setStatus(Status.DELETED);
         userService.save(userDelete);
