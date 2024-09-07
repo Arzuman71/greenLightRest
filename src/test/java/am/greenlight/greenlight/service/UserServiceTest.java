@@ -4,6 +4,7 @@ import am.greenlight.greenlight.model.User;
 import am.greenlight.greenlight.repository.UserRepo;
 import com.google.common.collect.ImmutableList;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -24,12 +25,11 @@ class UserServiceTest {
     private  EmailService emailService;
     @Mock
     private User user;
-
+    @InjectMocks
     private UserService userService;
 
     public UserServiceTest() {
         MockitoAnnotations.initMocks(this);
-        this.userService = new UserService(userRepo, prefService, emailService);
     }
 
     @Test

@@ -4,6 +4,7 @@ import am.greenlight.greenlight.model.Item;
 import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.repository.ItemRepo;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
@@ -28,14 +29,13 @@ class ItemServiceTest {
     private Page<Item> itemPage;
     @Mock
     private ModelMapper modelMapper;
-
+    @InjectMocks
     private ItemService itemService;
     private RatingService ratingService;
 
 
     ItemServiceTest() {
         MockitoAnnotations.initMocks(this);
-        this.itemService = new ItemService(itemRepo, ratingService, modelMapper);
     }
 
     @Test

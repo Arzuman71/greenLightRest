@@ -5,6 +5,7 @@ import am.greenlight.greenlight.model.enumForUser.Status;
 import am.greenlight.greenlight.repository.CarRepo;
 import com.google.common.collect.ImmutableList;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.mock.web.MockMultipartFile;
@@ -22,11 +23,11 @@ class CarServiceTest {
     private Car car;
     @Mock
     private MockMultipartFile file;
+    @InjectMocks
     private CarService carService;
 
     public CarServiceTest() {
         MockitoAnnotations.initMocks(this);
-        this.carService = new CarService(carRepo);
     }
 
     @Test

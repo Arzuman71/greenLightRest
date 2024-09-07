@@ -8,6 +8,7 @@ import am.greenlight.greenlight.model.enumPreferance.Speak;
 import am.greenlight.greenlight.model.enumPreferance.WithAnimals;
 import am.greenlight.greenlight.repository.PreferenceRepo;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -23,12 +24,11 @@ class PreferenceServiceTest {
     private Preference preference;
 
 
-
+    @InjectMocks
     private PreferenceService preferenceService;
 
     public PreferenceServiceTest() {
         MockitoAnnotations.initMocks(this);
-        this.preferenceService = new PreferenceService(preferenceRepo);
     }
 
     @Test

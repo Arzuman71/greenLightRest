@@ -3,6 +3,7 @@ package am.greenlight.greenlight.service;
 import am.greenlight.greenlight.model.Rating;
 import am.greenlight.greenlight.repository.RatingRepo;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -18,14 +19,13 @@ class RatingServiceTest {
     private RatingRepo ratingRepo;
     @Mock
     Rating rating;
-
+    @InjectMocks
     private RatingService ratingService;
     private UserService userService;
 
 
     RatingServiceTest() {
         MockitoAnnotations.initMocks(this);
-        this.ratingService = new RatingService(ratingRepo, userService);
     }
 
 

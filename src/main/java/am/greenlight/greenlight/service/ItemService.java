@@ -43,7 +43,7 @@ public class ItemService {
     public Item changeStatus(Item item, Status status) {
 
         item.setStatus(status);
-        log.info("user with email - {} changed item status- {}", item.getUser().getEmail(), status);
+//        log.info("user with email - {} changed item status- {}", item.getUser().getEmail(), status);
         return itemRepo.save(item);
     }
 

@@ -5,6 +5,7 @@ import am.greenlight.greenlight.mapper.AdvertisementMapper;
 import am.greenlight.greenlight.model.Advertisement;
 import am.greenlight.greenlight.repository.AdvertisementRepo;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +28,13 @@ class AdvertisementServiceTest {
     List<Advertisement> advertisements;
     @Mock
     private MockMultipartFile file;
-    AdvertisementService advertisementService;
-    @Autowired
+    @Mock
     AdvertisementMapper advertisementMapper;
+    @InjectMocks
+    AdvertisementService advertisementService;
 
     AdvertisementServiceTest() {
         MockitoAnnotations.initMocks(this);
-        this.advertisementService = new AdvertisementService(advertisementRepo, advertisementMapper);
     }
 
     @Test
