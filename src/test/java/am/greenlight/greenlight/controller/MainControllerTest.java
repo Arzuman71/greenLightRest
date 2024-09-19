@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,16 +25,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("test")
 class MainControllerTest {
 
-    private MockMvc mvc;
+    private MockMvc mockMvc;
     @Autowired
     private MainController mainController;
 
     @BeforeEach
     public void setUp() {
-        mvc = MockMvcBuilders.standaloneSetup(mainController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(mainController)
+                .setCustomArgumentResolvers(new PageableHandlerMethodArgumentResolver())
+                .build();
     }
 
-    //todo it doesn't work in line 44
     @Test
     void items_Ok() throws Exception {
         ObjectNode objectNode = new ObjectMapper().createObjectNode();
@@ -41,7 +43,7 @@ class MainControllerTest {
         objectNode.put("end", "t");
         objectNode.put("dateFrom", "2021-01-09");
         objectNode.put("type", "CAR_DRIVER");
-        mvc.perform(MockMvcRequestBuilders.post("/api?page=1&size=10")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api?page=1&size=10")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectNode.toString()))
                 .andDo(print())
@@ -51,7 +53,7 @@ class MainControllerTest {
 
     @Test
     void getImage_Ok() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/api/image/17.png")
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/image/17.png")
                 .contentType(MediaType.IMAGE_JPEG_VALUE))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
