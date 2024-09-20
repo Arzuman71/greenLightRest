@@ -25,9 +25,9 @@ public class MainController {
         return itemsDto;
     }
 
-    @GetMapping(value = "/image/{name}", produces = MediaType.IMAGE_JPEG_VALUE)
+    @GetMapping(value = "/image", produces = MediaType.IMAGE_JPEG_VALUE)
     public @ResponseBody
-    byte[] getCarImage(@PathVariable("name") String imageName) {
+    byte[] getCarImage(@RequestParam(name = "imageName")  String imageName) {
 
         return mainService.getBytes(imageName);
     }

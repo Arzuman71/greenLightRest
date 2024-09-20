@@ -53,8 +53,8 @@ class MainControllerTest {
 
     @Test
     void getImage_Ok() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/image/17.png")
-                .contentType(MediaType.IMAGE_JPEG_VALUE))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/image?imageName=17.png")
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print());
     }
