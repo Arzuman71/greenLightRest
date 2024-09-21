@@ -166,7 +166,7 @@ class UserControllerTest {
 
 
 
-    //todo can not find user with this email
+    // can not find user with this email ,UserNotFoundException
     @Test
     void activate_Ok() {
         try {

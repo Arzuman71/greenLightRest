@@ -85,7 +85,7 @@ public class UserController {
     }
 
 
-    //TODO test  localhost:8080/user/activate?email= ,  Exception  
+
     @GetMapping("/activate")
     public ResponseEntity<String> activate(@RequestParam("email") String email,
                                            @RequestParam("otp") String otp) {
