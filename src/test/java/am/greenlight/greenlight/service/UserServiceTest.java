@@ -1,5 +1,6 @@
 package am.greenlight.greenlight.service;
 
+import am.greenlight.greenlight.exception.UserNotFoundException;
 import am.greenlight.greenlight.model.User;
 import am.greenlight.greenlight.repository.UserRepo;
 import com.google.common.collect.ImmutableList;
@@ -13,6 +14,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.given;
 
 class UserServiceTest {
@@ -57,12 +59,19 @@ class UserServiceTest {
         assertThat(userResponse).isNotNull();
     }
 
-    @Test
-    void findByEmail_Null() {
-        given(userRepo.findByEmail("poxos@mail.ru")).willReturn(null);
-        User userResponse = userService.findByEmail("poxos@mail.ru");
-        assertThat(userResponse).isNull();
+    @Test()
+    void findByEmail_UserNotFoundException() {
+        Exception exception = assertThrows(UserNotFoundException.class, () -> {
+            userService.findByEmail("poxos@mail.ru");
+        });
+
+        String expectedMessage = "User with poxos@mail.ru not found";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+
     }
+
 
 
     @Test
